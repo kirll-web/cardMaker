@@ -1,0 +1,5 @@
+.page {
+    background: '#FFFFFF';
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
