@@ -1,25 +1,23 @@
 import React from "react";
 import "./App.css";
-import { Page } from "../canvas/canvas";
-import { Component } from "react";
+import Canvas from "../canvas/canvas";
+import { Page } from "../models/models";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Page
-          {...{
-            id: "id",
-            xPos: 50,
-            yPos: 50,
-            width: 200,
-            height: 200,
-            elements: [],
-          }}
-        />
-      </div>
-    );
-  }
-}
+const App = () => {
+  const page: Page = {
+    id: "page1",
+    width: 800,
+    height: 600,
+    yPos: 50,
+    xPos: 50,
+    elements: [],
+  };
+
+  return (
+    <div className="App">
+      <Canvas {...page} />
+    </div>
+  );
+};
 
 export default App;
