@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import Canvas from "../canvas/canvas";
-import { Page } from "../models/models";
+import { PageProps } from "../models/models";
 
 const App = () => {
-  const page: Page = {
+  const page: PageProps = {
     id: "page1",
     width: 800,
     height: 600,

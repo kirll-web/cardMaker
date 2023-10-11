@@ -1,8 +1,7 @@
-import { TextBlock } from "../models/models";
-import { Component, ReactNode } from "react";
+import { TextBlockProps } from "../models/models";
 import "./textBlock.css";
 
-const TextArea = (props: TextBlock) => {
+const TextBlock = (props: TextBlockProps) => {
   const textBlockData = {
     id: props.id,
     type: "text",
@@ -27,4 +26,4 @@ const TextArea = (props: TextBlock) => {
   );
 };
 
-export default TextArea;
+export default TextBlock;

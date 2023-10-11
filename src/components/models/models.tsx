@@ -13,8 +13,8 @@ type Block = Coordinates &
     id: string;
   };
 
-type TextBlock = Block & {
-  type: "text";
+type TextBlockProps = Block & {
+  type: string;
   value: Array<string>;
   fontSize: number;
   fontFamily: string;
@@ -28,72 +28,81 @@ type GraphicObject = Block & {
   backgroundColor: string;
 };
 
-type ImageBlock = Block & {
+type ImageBlockProps = Block & {
   type: "image";
   data: string;
   allowedFormat: Array<string>;
 };
 
-type Circle = GraphicObject & {
-  type: "circle";
+type CircleProps = GraphicObject & {
   borderRadius: number;
 };
 
-type Rectangle = GraphicObject & {
-  type: "tectangle";
-};
+type RectangleProps = GraphicObject;
 
-type Triangle = GraphicObject & {
-  type: "triangle";
-};
+type TriangleProps = GraphicObject;
 
-type Filter = Block & {
+type FilterProps = Block & {
   id: string;
   colorOfFilter: string;
   opacity: number;
 };
 
-type FilterCollection = Array<Filter>;
+type FilterCollection = Array<FilterProps>;
 
-type SelectionArea = Block;
+type SelectionAreaProps = Block;
 
-type Template = {
+type TemplateProps = {
   id: string;
   name: string;
   blocks: Array<
-    TextBlock | ImageBlock | Filter | Triangle | Circle | Rectangle
+    | TextBlockProps
+    | ImageBlockProps
+    | FilterProps
+    | TriangleProps
+    | CircleProps
+    | RectangleProps
   >;
 };
 
 type TemplatesCollection = {
-  templates: Array<Template>;
+  templates: Array<TemplateProps>;
 };
 
-type Page = Block & {
+type PageProps = Block & {
   id: string;
   elements: Array<
-    | TextBlock
-    | ImageBlock
-    | Filter
-    | Triangle
-    | Circle
-    | Rectangle
-    | Filter
-    | Template
+    | TextBlockProps
+    | ImageBlockProps
+    | FilterProps
+    | TriangleProps
+    | CircleProps
+    | RectangleProps
+    | FilterProps
+    | TemplateProps
   >;
 };
 
 type HistoryCommands = {
   indexOfHistory: number;
-  history: Array<Page>;
+  history: Array<PageProps>;
 };
 
 type Doc = {
-  page: Page;
+  page: PageProps;
   templateCollection: TemplatesCollection;
   historyCommands: HistoryCommands;
   filterCollection: FilterCollection;
-  selectionArea: SelectionArea;
+  selectionArea: SelectionAreaProps;
 };
 
-export type { Page, Doc, Filter, TextBlock };
+export type {
+  PageProps,
+  Doc,
+  FilterProps,
+  TextBlockProps,
+  TriangleProps,
+  RectangleProps,
+  CircleProps,
+  ImageBlockProps,
+};
