@@ -48,21 +48,21 @@ const Canvas = (props: PageProps) => {
     backgroundColor: "red",
     width: 50,
     height: 50,
-    xPos: 140,
-    yPos: 140,
+    xPos: 200,
+    yPos: 200,
     borderRadius: 50,
   };
 
   const circle2Props = {
     type: "circle",
-    id: "rect1",
+    id: "rect2",
     backgroundImage: "",
     backgroundColor: "green",
     width: 50,
     height: 50,
     xPos: 140,
     yPos: 140,
-    borderRadius: 40,
+    borderRadius: 50,
   };
 
   const imageProps = {
