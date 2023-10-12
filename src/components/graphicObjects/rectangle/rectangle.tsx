@@ -2,9 +2,7 @@ import { RectangleProps } from "../../models/models";
 import "./rectangle.css";
 
 const Rectangle = (props: RectangleProps) => {
-  const styleRectangle = {
-    id: props.id,
-    type: "rectangle",
+  const style = {
     backgroundImage: `${props.backgroundImage}`,
     backgroundColor: `${props.backgroundColor}`,
     width: `${props.width}px`,
@@ -13,7 +11,7 @@ const Rectangle = (props: RectangleProps) => {
     top: `${props.yPos}px`,
   };
 
-  return <div className="rectangle" style={styleRectangle}></div>;
+  return <div className="rectangle" style={style}></div>;
 };
 
 export default Rectangle;

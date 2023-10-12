@@ -29,8 +29,8 @@ type GraphicObject = Block & {
 };
 
 type ImageBlockProps = Block & {
-  type: "image";
-  data: string;
+  type: string;
+  url: string;
   allowedFormat: Array<string>;
 };
 
@@ -39,8 +39,6 @@ type CircleProps = GraphicObject & {
 };
 
 type RectangleProps = GraphicObject;
-
-type TriangleProps = GraphicObject;
 
 type FilterProps = Block & {
   id: string;
@@ -59,7 +57,6 @@ type TemplateProps = {
     | TextBlockProps
     | ImageBlockProps
     | FilterProps
-    | TriangleProps
     | CircleProps
     | RectangleProps
   >;
@@ -75,7 +72,6 @@ type PageProps = Block & {
     | TextBlockProps
     | ImageBlockProps
     | FilterProps
-    | TriangleProps
     | CircleProps
     | RectangleProps
     | FilterProps
@@ -101,7 +97,6 @@ export type {
   Doc,
   FilterProps,
   TextBlockProps,
-  TriangleProps,
   RectangleProps,
   CircleProps,
   ImageBlockProps,

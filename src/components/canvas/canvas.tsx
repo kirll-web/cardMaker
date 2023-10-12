@@ -3,6 +3,8 @@ import { PageProps } from "../models/models";
 import TextBlock from "../textBlock/textBlock";
 import Rectangle from "../graphicObjects/rectangle/rectangle";
 import Circle from "../graphicObjects/circle/circle";
+import Image from "../graphicObjects/image/image";
+import Filter from "../Filter/Filter";
 import "./canvas.css";
 
 const Canvas = (props: PageProps) => {
@@ -14,7 +16,7 @@ const Canvas = (props: PageProps) => {
     background: "#000000",
   };
 
-  const styleTextBlock = {
+  const textBlockProps = {
     type: "text",
     id: "10",
     width: 100,
@@ -28,7 +30,7 @@ const Canvas = (props: PageProps) => {
     value: ["asddas", "asdasd", "asdasd"],
   };
 
-  const styleRectangle = {
+  const rectangleProps = {
     type: "rectangle",
     id: "rect1",
     backgroundImage: "",
@@ -39,8 +41,8 @@ const Canvas = (props: PageProps) => {
     yPos: 70,
   };
 
-  const styleCircle1 = {
-    type: "circle1",
+  const circle1Props = {
+    type: "circle",
     id: "rect1",
     backgroundImage: "",
     backgroundColor: "red",
@@ -51,8 +53,8 @@ const Canvas = (props: PageProps) => {
     borderRadius: 50,
   };
 
-  const styleCircle2 = {
-    type: "circle2",
+  const circle2Props = {
+    type: "circle",
     id: "rect1",
     backgroundImage: "",
     backgroundColor: "green",
@@ -63,12 +65,36 @@ const Canvas = (props: PageProps) => {
     borderRadius: 40,
   };
 
+  const imageProps = {
+    id: "img1",
+    type: "image",
+    width: 400,
+    height: 200,
+    xPos: 300,
+    yPos: 100,
+    url: "https://w.forfun.com/fetch/c5/c514ddd3da0d86f1348f4b10560f7f35.jpeg",
+    allowedFormat: ["JPEG", "PNG"],
+  };
+
+  const filterProps = {
+    id: "filter1",
+    type: "filter",
+    width: 800,
+    height: 600,
+    xPos: 0,
+    yPos: 0,
+    opacity: 0.5,
+    colorOfFilter: "#f901cd",
+  };
+
   return (
     <div className="page" style={stylePage}>
-      <TextBlock {...styleTextBlock} />
-      <Rectangle {...styleRectangle} />
-      <Circle {...styleCircle1} />
-      <Circle {...styleCircle2} />
+      <TextBlock {...textBlockProps} />
+      <Rectangle {...rectangleProps} />
+      <Circle {...circle1Props} />
+      <Circle {...circle2Props} />
+      <Image {...imageProps} />
+      <Filter {...filterProps} />
     </div>
   );
 };
