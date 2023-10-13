@@ -41,6 +41,7 @@ type CircleProps = GraphicObject & {
 type RectangleProps = GraphicObject;
 
 type FilterProps = Block & {
+  type: string;
   id: string;
   colorOfFilter: string;
   opacity: number;
