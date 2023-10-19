@@ -1,5 +1,5 @@
 import { TextBlockProps } from "../models/models";
-import "./textBlock.css";
+import style from "./textBlock.module.css";
 
 const TextBlock = (props: TextBlockProps) => {
   const textBlockData = {
@@ -8,7 +8,7 @@ const TextBlock = (props: TextBlockProps) => {
     data: ["as", "asdasd", "asdasd"],
   };
 
-  const styleData = {
+  const styleProps = {
     width: `${props.width}px`,
     height: `${props.height}px`,
     top: `${props.yPos}px`,
@@ -20,7 +20,7 @@ const TextBlock = (props: TextBlockProps) => {
   };
 
   return (
-    <p className="textBlock" style={styleData}>
+    <p className={style.textBlock} style={styleProps}>
       {textBlockData.data.join(" ")}
     </p>
   );

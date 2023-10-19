@@ -1,7 +1,8 @@
 import { FilterProps } from "../models/models";
+import style from "./filter.module.css";
 
 const Filter = (props: FilterProps) => {
-  const style = {
+  const styleProps = {
     width: `${props.width}px`,
     height: `${props.height}px`,
     left: `${props.xPos}px`,
@@ -10,7 +11,7 @@ const Filter = (props: FilterProps) => {
     backgroundColor: props.colorOfFilter,
   };
 
-  return <div style={style}></div>;
+  return <div className={style.filter} style={styleProps}></div>;
 };
 
 export default Filter;

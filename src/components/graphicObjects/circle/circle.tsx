@@ -1,8 +1,8 @@
 import { CircleProps } from "../../models/models";
-import "./circle.css";
+import style from "./circle.module.css";
 
 const Circle = (props: CircleProps) => {
-  const style = {
+  const styleProps = {
     backgroundImage: `${props.backgroundImage}`,
     backgroundColor: `${props.backgroundColor}`,
     width: `${props.width}px`,
@@ -12,7 +12,7 @@ const Circle = (props: CircleProps) => {
     borderRadius: `${props.borderRadius}%`,
   };
 
-  return <div className="circle" style={style}></div>;
+  return <div className={style.circle} style={styleProps}></div>;
 };
 
 export default Circle;

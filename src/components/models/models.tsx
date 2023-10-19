@@ -40,7 +40,8 @@ type CircleProps = GraphicObject & {
 
 type RectangleProps = GraphicObject;
 
-type FilterProps = Block & {
+type FilterProps = {
+  name: string;
   type: string;
   id: string;
   colorOfFilter: string;
@@ -75,8 +76,6 @@ type PageProps = Block & {
     | FilterProps
     | CircleProps
     | RectangleProps
-    | FilterProps
-    | TemplateProps
   >;
 };
 
@@ -93,6 +92,79 @@ type Doc = {
   selectionArea: SelectionAreaProps;
 };
 
+const greenFilter: FilterProps = {
+  colorOfFilter: "#00ff00",
+  name: "greenFilter",
+  type: "filter",
+  id: "filter1",
+  opacity: 50,
+};
+
+const blueFilter: FilterProps = {
+  name: "blueFilter",
+  colorOfFilter: "#0000ff",
+  type: "filter",
+  id: "filter2",
+  opacity: 50,
+};
+
+const redFilter: FilterProps = {
+  name: "redFilter",
+  colorOfFilter: "#f91800",
+  type: "filter",
+  id: "filter3",
+  opacity: 50,
+};
+
+const grayFilter: FilterProps = {
+  name: "grayFilter",
+  colorOfFilter: "#f91800",
+  type: "filter",
+  id: "filter4",
+  opacity: 50,
+};
+
+const filterCollection: FilterCollection = [
+  greenFilter,
+  blueFilter,
+  redFilter,
+  grayFilter,
+];
+
+const page: PageProps = {
+  id: "page1",
+  width: 800,
+  height: 600,
+  xPos: 50,
+  yPos: 50,
+  elements: [],
+};
+
+const selectionArea: SelectionAreaProps = {
+  id: "idSelect",
+  width: 0,
+  height: 0,
+  xPos: 0,
+  yPos: 0,
+};
+
+const templateCollection: TemplatesCollection = {
+  templates: [],
+};
+
+const historyCommands: HistoryCommands = {
+  indexOfHistory: 0,
+  history: [],
+};
+
+const doc: Doc = {
+  page,
+  templateCollection,
+  historyCommands,
+  filterCollection,
+  selectionArea,
+};
+
 export type {
   PageProps,
   Doc,
@@ -102,3 +174,5 @@ export type {
   CircleProps,
   ImageBlockProps,
 };
+
+export { doc };
