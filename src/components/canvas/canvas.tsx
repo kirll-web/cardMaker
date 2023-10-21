@@ -1,11 +1,17 @@
-import { PageProps } from "../models/models";
+import {
+  PageProps,
+  FilterProps,
+  TextBlockProps,
+  RectangleProps,
+  CircleProps,
+  ImageBlockProps,
+} from "../models/models";
 
 import Filter from "../filter/filter";
 import TextBlock from "../textBlock/textBlock";
 import Rectangle from "../graphicObjects/rectangle/rectangle";
 import Circle from "../graphicObjects/circle/circle";
 import Image from "../graphicObjects/image/image";
-import { TextBlockProps } from "../models/models";
 
 import styles from "./canvas.module.css";
 
@@ -20,20 +26,17 @@ const Canvas = (props: PageProps) => {
   return (
     <div className={styles.page} style={styleProps}>
       {props.elements.map((el, index) => {
-        if (el.type == "text") {
-          return <TextBlock {...(el as TextBlockProps)} key={index} />;
-        }
-        if (el.type == "filter") {
-          return <Filter {...el} key={index} />;
-        }
-        if (el.type == "circle") {
-          return <Circle {...el} key={index} />;
-        }
-        if (el.type == "rectangle") {
-          return <Rectangle {...el} key={index} />;
-        }
-        if (el.type == "image") {
-          return <Image {...el} key={index} />;
+        switch (el.type) {
+          case "text":
+            return <TextBlock {...(el as TextBlockProps)} key={index} />;
+          case "filter":
+            return <Filter {...(el as FilterProps)} key={el.id} />;
+          case "circle":
+            return <Circle {...(el as CircleProps)} key={index} />;
+          case "rectangle":
+            return <Rectangle {...(el as RectangleProps)} key={index} />;
+          case "image":
+            return <Image {...(el as ImageBlockProps)} key={index} />;
         }
       })}
     </div>

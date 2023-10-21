@@ -9,7 +9,6 @@ const Circle = (props: CircleProps) => {
     height: `${props.height}px`,
     left: `${props.xPos}px`,
     top: `${props.yPos}px`,
-    borderRadius: `${props.borderRadius}%`,
   };
 
   return <div className={style.circle} style={styleProps}></div>;

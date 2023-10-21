@@ -4,8 +4,8 @@ import style from "./textBlock.module.css";
 const TextBlock = (props: TextBlockProps) => {
   const textBlockData = {
     id: props.id,
-    type: "text",
-    data: ["as", "asdasd", "asdasd"],
+    type: props.type,
+    data: props.value,
   };
 
   const styleProps = {
