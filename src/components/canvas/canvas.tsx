@@ -1,11 +1,4 @@
-import {
-  PageProps,
-  FilterProps,
-  TextBlockProps,
-  RectangleProps,
-  CircleProps,
-  ImageBlockProps,
-} from "../models/models";
+import { PageProps } from "../models/models";
 
 import Filter from "../filter/filter";
 import TextBlock from "../textBlock/textBlock";
