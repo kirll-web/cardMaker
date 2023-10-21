@@ -14,7 +14,7 @@ type Block = Coordinates &
   };
 
 type TextBlockProps = Block & {
-  type: string;
+  type: "text";
   value: Array<string>;
   fontSize: number;
   fontFamily: string;
@@ -23,24 +23,26 @@ type TextBlockProps = Block & {
 };
 
 type GraphicObject = Block & {
-  type: string;
   backgroundImage: string;
   backgroundColor: string;
 };
 
 type ImageBlockProps = Block & {
-  type: string;
+  type: "image";
   url: string;
   allowedFormat: Array<string>;
 };
 
-type CircleProps = GraphicObject;
+type CircleProps = GraphicObject & {
+  type: "circle";
+};
 
-type RectangleProps = GraphicObject;
-
+type RectangleProps = GraphicObject & {
+  type: "rectangle";
+};
 type FilterProps = {
   name: string;
-  type: string;
+  type: "filter";
   id: string;
   colorOfFilter: string;
   opacity: number;

@@ -28,15 +28,15 @@ const Canvas = (props: PageProps) => {
       {props.elements.map((el, index) => {
         switch (el.type) {
           case "text":
-            return <TextBlock {...(el as TextBlockProps)} key={index} />;
+            return <TextBlock {...el} key={index} />;
           case "filter":
-            return <Filter {...(el as FilterProps)} key={el.id} />;
+            return <Filter {...el} key={el.id} />;
           case "circle":
-            return <Circle {...(el as CircleProps)} key={index} />;
+            return <Circle {...el} key={index} />;
           case "rectangle":
-            return <Rectangle {...(el as RectangleProps)} key={index} />;
+            return <Rectangle {...el} key={index} />;
           case "image":
-            return <Image {...(el as ImageBlockProps)} key={index} />;
+            return <Image {...el} key={index} />;
         }
       })}
     </div>
