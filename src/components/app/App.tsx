@@ -2,6 +2,7 @@ import "./App.css";
 import Canvas from "../canvas/canvas";
 import { PageProps } from "../models/models";
 import { doc } from "../models/models";
+import ButtonDownload from "../buttonDownload/buttonDownload";
 
 const App = () => {
   const page: PageProps = {
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <div className="App">
       <Canvas {...page} />
+      <ButtonDownload {...doc} />
     </div>
   );
 };
