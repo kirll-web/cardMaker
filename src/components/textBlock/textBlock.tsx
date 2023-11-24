@@ -1,4 +1,5 @@
-import { useState, useRef, MouseEvent, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { MouseEvent } from "react";
 import useSelectArea from "../../hooks/useSelectArea/useSelectArea";
 
 import { useDnD } from "../../hooks/useDnD/useDnD";
