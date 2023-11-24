@@ -1,4 +1,6 @@
-const ButtonDownload = (props: object) => {
+import { PageProps } from "../models/models";
+
+const ButtonDownload = (props: PageProps) => {
   const createFile = () => {
     const file = new Blob([JSON.stringify(props)], {
       type: "application/json",

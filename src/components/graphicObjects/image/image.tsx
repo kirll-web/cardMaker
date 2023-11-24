@@ -1,21 +1,40 @@
+import { useState } from "react";
 import { ImageBlockProps } from "../../models/models";
+import SelectionArea from "../../selectionArea/selectionArea";
 import style from "./image.module.css";
 
 const Image = (props: ImageBlockProps) => {
+  const [activeSelectionArea, setActiveSelectionArea] = useState(false);
+
+  const [state, setState] = useState(props);
+
   const styleProps = {
-    width: `${props.width}px`,
-    height: `${props.height}px`,
-    left: `${props.xPos}px`,
-    top: `${props.yPos}px`,
+    width: `${state.width}px`,
+    height: `${state.height}px`,
+    left: `${state.xPos}px`,
+    top: `${state.yPos}px`,
   };
 
   return (
-    <img
-      className={style.image}
-      style={styleProps}
-      src={props.url}
-      alt={props.id}
-    />
+    <div>
+      <img
+        className={style.image}
+        style={styleProps}
+        src={state.url}
+        alt={state.id}
+      />
+      {activeSelectionArea ? (
+        <SelectionArea
+          {...{
+            type: "selectionArea",
+            width: props.width,
+            height: props.height,
+            xPos: props.xPos,
+            yPos: props.yPos,
+          }}
+        />
+      ) : null}
+    </div>
   );
 };
 

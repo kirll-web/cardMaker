@@ -1,7 +1,5 @@
 .page {
     overflow: hidden;
     background: '#FFFFFF';
-    position: absolute;
     border: 2px #000000 solid;
-    transform: translate(-50%, -50%);
 }
