@@ -1,7 +1,14 @@
+import { RefObject, useRef } from "react";
 import { SelectionAreaProps } from "../models/models";
 import styles from "./selectionArea.module.css";
 
-const SelectionArea = (props: SelectionAreaProps) => {
+type Props = {
+  props: SelectionAreaProps;
+  ref2: RefObject<HTMLDivElement>;
+};
+
+const SelectionArea = (propsArea: Props) => {
+  const { ref2, props } = propsArea;
   const sizesSelectionArea = {
     width: `${props.width}px`,
     height: `${props.height}px`,
@@ -9,7 +16,11 @@ const SelectionArea = (props: SelectionAreaProps) => {
     left: `${props.yPos}px`,
   };
   return (
-    <div style={sizesSelectionArea} className={styles.selectionArea}></div>
+    <div
+      ref={ref2}
+      style={sizesSelectionArea}
+      className={styles.selectionArea}
+    ></div>
   );
 };
 

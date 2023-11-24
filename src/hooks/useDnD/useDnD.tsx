@@ -14,10 +14,7 @@ type InternalDndItemInfo = DndItemInfo & {
   startX: number;
 };
 
-type RegisterDndItemFn = (
-  index: number,
-  dndItemInfo: DndItemInfo
-) => {
+type RegisterDndItemFn = (dndItemInfo: DndItemInfo) => {
   onDragStart: OnDragStartFn;
 };
 
@@ -35,34 +32,31 @@ const useDnD = () => {
   const items = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<Array<InternalDndItemInfo>>([]);
 
-  const registerDndItem = useCallback(
-    (index: number, dndItemInfo: DndItemInfo) => {
-      const item = {
-        ...dndItemInfo,
-        startY: 0,
-        startX: 0,
+  const registerDndItem = useCallback((dndItemInfo: DndItemInfo) => {
+    const item = {
+      ...dndItemInfo,
+      startY: 0,
+      startX: 0,
+    };
+
+    const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
+      item.startY = item.elementRef.current!.getBoundingClientRect().top;
+      item.startX = item.elementRef.current!.getBoundingClientRect().left;
+
+      const onMouseUp = (event: MouseEvent) => {
+        onDrop(event);
+
+        window.removeEventListener("mousemove", onDrag);
+        window.removeEventListener("mouseup", onMouseUp);
       };
+      window.addEventListener("mousemove", onDrag);
+      window.addEventListener("mouseup", onMouseUp);
+    };
 
-      const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
-        item.startY = item.elementRef.current!.getBoundingClientRect().top;
-        item.startX = item.elementRef.current!.getBoundingClientRect().left;
-
-        const onMouseUp = (event: MouseEvent) => {
-          onDrop(event);
-
-          window.removeEventListener("mousemove", onDrag);
-          window.removeEventListener("mouseup", onMouseUp);
-        };
-        window.addEventListener("mousemove", onDrag);
-        window.addEventListener("mouseup", onMouseUp);
-      };
-
-      return {
-        onDragStart,
-      };
-    },
-    []
-  );
+    return {
+      onDragStart,
+    };
+  }, []);
 
   return {
     registerDndItem,

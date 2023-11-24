@@ -44,7 +44,7 @@ type CircleProps = GraphicObject & {
 type RectangleProps = GraphicObject & {
   type: "rectangle";
 };
-type FilterProps = {
+type FilterProps = Block & {
   name: string;
   type: "filter";
   id: string;
@@ -110,4 +110,5 @@ export type {
   FilterCollection,
   TemplateProps,
   TemplatesCollection,
+  Coordinates,
 };

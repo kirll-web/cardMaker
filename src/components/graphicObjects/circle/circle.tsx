@@ -11,27 +11,11 @@ const Circle = (props: CircleProps) => {
   const styleProps = {
     backgroundImage: `${state.backgroundImage}`,
     backgroundColor: `${state.backgroundColor}`,
-    width: `${state.width}px`,
-    height: `${state.height}px`,
     left: `${state.xPos}px`,
     top: `${state.yPos}px`,
   };
 
-  return (
-    <div className={style.circle} style={styleProps}>
-      {activeSelectionArea ? (
-        <SelectionArea
-          {...{
-            type: "selectionArea",
-            width: props.width,
-            height: props.height,
-            xPos: props.xPos,
-            yPos: props.yPos,
-          }}
-        />
-      ) : null}
-    </div>
-  );
+  return <div className={style.circle} style={styleProps}></div>;
 };
 
 export default Circle;

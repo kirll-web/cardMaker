@@ -19,6 +19,10 @@ const greenFilter: FilterProps = {
   type: "filter",
   id: "filter1",
   opacity: 0.5,
+  width: 800,
+  height: 600,
+  xPos: 0,
+  yPos: 0,
 };
 
 const blueFilter: FilterProps = {
@@ -27,6 +31,10 @@ const blueFilter: FilterProps = {
   type: "filter",
   id: "filter2",
   opacity: 0.5,
+  width: 800,
+  height: 600,
+  xPos: 0,
+  yPos: 0,
 };
 
 const redFilter: FilterProps = {
@@ -35,6 +43,10 @@ const redFilter: FilterProps = {
   type: "filter",
   id: "filter3",
   opacity: 0.5,
+  width: 800,
+  height: 600,
+  xPos: 0,
+  yPos: 0,
 };
 
 const grayFilter: FilterProps = {
@@ -43,6 +55,10 @@ const grayFilter: FilterProps = {
   type: "filter",
   id: "filter4",
   opacity: 0.5,
+  width: 800,
+  height: 600,
+  xPos: 0,
+  yPos: 0,
 };
 
 const filterCollection: FilterCollection = [
@@ -303,16 +319,6 @@ const template3: TemplateProps = {
     },
     {
       id: "img1",
-      type: "image",
-      width: 200,
-      height: 200,
-      xPos: 300,
-      yPos: 200,
-      url: "../../../resource/3.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
-    },
-    {
-      id: "img2",
       type: "image",
       width: 200,
       height: 200,

@@ -8,12 +8,7 @@ const Image = (props: ImageBlockProps) => {
 
   const [state, setState] = useState(props);
 
-  const styleProps = {
-    width: `${state.width}px`,
-    height: `${state.height}px`,
-    left: `${state.xPos}px`,
-    top: `${state.yPos}px`,
-  };
+  const styleProps = {};
 
   return (
     <div>
@@ -23,17 +18,6 @@ const Image = (props: ImageBlockProps) => {
         src={state.url}
         alt={state.id}
       />
-      {activeSelectionArea ? (
-        <SelectionArea
-          {...{
-            type: "selectionArea",
-            width: props.width,
-            height: props.height,
-            xPos: props.xPos,
-            yPos: props.yPos,
-          }}
-        />
-      ) : null}
     </div>
   );
 };

@@ -12,27 +12,11 @@ const Rectangle = (props: RectangleProps) => {
   const styleProps = {
     backgroundImage: `${state.backgroundImage}`,
     backgroundColor: `${state.backgroundColor}`,
-    width: `${state.width}px`,
-    height: `${state.height}px`,
     left: `${state.xPos}px`,
     top: `${state.yPos}px`,
   };
 
-  return (
-    <div className={style.rectangle} style={styleProps}>
-      {activeSelectionArea ? (
-        <SelectionArea
-          {...{
-            type: "selectionArea",
-            width: state.width,
-            height: state.height,
-            xPos: state.xPos,
-            yPos: state.yPos,
-          }}
-        />
-      ) : null}
-    </div>
-  );
+  return <div className={style.rectangle} style={styleProps}></div>;
 };
 
 export default Rectangle;
