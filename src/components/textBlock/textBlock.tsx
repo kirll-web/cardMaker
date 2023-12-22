@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 import { TextBlockProps } from "../models/models";
 
@@ -6,7 +6,6 @@ import style from "./textBlock.module.css";
 
 const TextBlock = (props: TextBlockProps) => {
   const [state, setState] = useState(props);
-  window.addEventListener("click", (e: MouseEvent) => console.log(e.target));
   const styleProps = {
     width: `${state.width}px`,
     height: `${state.height}px`,
@@ -22,10 +21,8 @@ const TextBlock = (props: TextBlockProps) => {
       className={style.textBlock}
       style={styleProps}
     >
-      {state.value.join(" ")}
-      {/* <div ref={dndControlRef}> */}
+      {state.value}
     </div>
-    // </div>
   );
 };
 

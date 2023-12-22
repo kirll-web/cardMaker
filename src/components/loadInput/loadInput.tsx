@@ -23,13 +23,15 @@ const LoadInput = (props: Props) => {
         if (file.type !== "application/json")
           throw Error("invalid file: " + file.type);
         const dataParsing = JSON.parse(reader.result);
-        setPage({
-          id: dataParsing.id,
-          width: dataParsing.width,
-          height: dataParsing.height,
-          yPos: dataParsing.yPos,
-          xPos: dataParsing.xPos,
-          elements: [...dataParsing.elements],
+        setPage((page: PageProps) => {
+          return {
+            id: dataParsing.id,
+            width: dataParsing.width,
+            height: dataParsing.height,
+            yPos: dataParsing.yPos,
+            xPos: dataParsing.xPos,
+            elements: [...dataParsing.elements],
+          };
         });
       } catch (error) {
         alert(error);

@@ -8,17 +8,20 @@ const Image = (props: ImageBlockProps) => {
 
   const [state, setState] = useState(props);
 
-  const styleProps = {};
+  const styleProps = {
+    left: 0,
+    top: 0,
+    width: `${state.width}px`,
+    height: `${state.height}px`,
+  };
 
   return (
-    <div>
-      <img
-        className={style.image}
-        style={styleProps}
-        src={state.url}
-        alt={state.id}
-      />
-    </div>
+    <img
+      className={style.image}
+      style={styleProps}
+      src={state.url}
+      alt={state.id}
+    />
   );
 };
 

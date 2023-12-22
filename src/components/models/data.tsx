@@ -89,7 +89,7 @@ const page2: PageProps = {
     {
       id: "text1",
       type: "text",
-      value: ["Привет", "Мир"],
+      value: "Привет, Мир",
       fontSize: 20,
       fontFamily: "Roboto",
       color: "#000000",
@@ -102,7 +102,7 @@ const page2: PageProps = {
     {
       id: "text2",
       type: "text",
-      value: ["HelloWorld"],
+      value: "HelloWorld",
       fontSize: 17,
       fontFamily: "Roboto",
       color: "#565656",
@@ -136,7 +136,7 @@ const page3: PageProps = {
     {
       id: "text1",
       type: "text",
-      value: ["Привет", "Мир"],
+      value: "Привет Мир",
       fontSize: 20,
       fontFamily: "Roboto",
       color: "#000000",
@@ -149,7 +149,7 @@ const page3: PageProps = {
     {
       id: "text2",
       type: "text",
-      value: ["HelloWorld"],
+      value: "HelloWorld",
       fontSize: 17,
       fontFamily: "Roboto",
       color: "#565656",
@@ -182,11 +182,21 @@ const page3: PageProps = {
     {
       id: "rectangle1",
       type: "rectangle",
-      backgroundColor: "#909090",
+      backgroundColor: "#6aa449",
       backgroundImage: "",
       width: 200,
       height: 200,
       xPos: 600,
+      yPos: 300,
+    },
+    {
+      id: "circle1",
+      type: "circle",
+      backgroundColor: "#67f216",
+      backgroundImage: "",
+      width: 200,
+      height: 200,
+      xPos: 0,
       yPos: 0,
     },
     greenFilter,
@@ -208,7 +218,7 @@ const template1: TemplateProps = {
     {
       id: "text1",
       type: "text",
-      value: ["С днём"],
+      value: "С днём",
       fontSize: 23,
       fontFamily: "Roboto",
       color: "#000000",
@@ -221,7 +231,7 @@ const template1: TemplateProps = {
     {
       id: "text2",
       type: "text",
-      value: ["ковыряния в носу!"],
+      value: "ковыряния в носу!",
       fontSize: 30,
       fontFamily: "Roboto",
       color: "#565656",
@@ -251,7 +261,7 @@ const template2: TemplateProps = {
     {
       id: "text1",
       type: "text",
-      value: ["С днём"],
+      value: "С днём",
       fontSize: 23,
       fontFamily: "Roboto",
       color: "#000000",
@@ -264,7 +274,7 @@ const template2: TemplateProps = {
     {
       id: "text2",
       type: "text",
-      value: ["зелёных цифр в СберИнвестиции!"],
+      value: "зелёных цифр в СберИнвестиции!",
       fontSize: 30,
       fontFamily: "Roboto",
       color: "#565656",
@@ -291,10 +301,11 @@ const template3: TemplateProps = {
   id: "template1",
   name: "template1",
   blocks: [
+    greenFilter,
     {
       id: "text1",
       type: "text",
-      value: ["С днём"],
+      value: "С днём",
       fontSize: 23,
       fontFamily: "Roboto",
       color: "#000000",
@@ -307,7 +318,7 @@ const template3: TemplateProps = {
     {
       id: "text2",
       type: "text",
-      value: ["красных цифр в СберИнвестиции..."],
+      value: "красных цифр в СберИнвестиции...",
       fontSize: 30,
       fontFamily: "Roboto",
       color: "#565656",
@@ -326,6 +337,16 @@ const template3: TemplateProps = {
       yPos: 200,
       url: "../../../resource/3.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+    },
+    {
+      id: "circle1",
+      type: "circle",
+      backgroundColor: "#da2b35",
+      backgroundImage: "",
+      width: 200,
+      height: 200,
+      xPos: 200,
+      yPos: 200,
     },
   ],
 };

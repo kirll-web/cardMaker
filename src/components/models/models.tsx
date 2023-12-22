@@ -17,7 +17,7 @@ type Info = {
 type TextBlockProps = Block &
   Info & {
     type: "text";
-    value: Array<string>;
+    value: string;
     fontSize: number;
     fontFamily: string;
     color: string;
@@ -54,7 +54,7 @@ type FilterProps = Block & {
 
 type FilterCollection = Array<FilterProps>;
 
-type SelectionAreaProps = Block & {
+type SelectionAreaProps = {
   type: "selectionArea";
 };
 

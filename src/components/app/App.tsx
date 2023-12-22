@@ -1,5 +1,5 @@
 import "./App.css";
-import Canvas from "../canvas/canvas";
+import Page from "../page/page";
 import {
   PageProps,
   TextBlockProps,
@@ -25,6 +25,14 @@ const App = () => {
     elements: [...doc.page.elements],
   });
 
+  const [newElement, setNewElement] = useState<
+    | TextBlockProps
+    | ImageBlockProps
+    | CircleProps
+    | RectangleProps
+    | FilterProps
+  >(null!);
+
   const addElement = (
     elem:
       | TextBlockProps
@@ -33,15 +41,17 @@ const App = () => {
       | RectangleProps
       | FilterProps
   ) => {
-    setPage((page: PageProps) => ({
-      ...page,
-      elements: [...page.elements, elem],
-    }));
+    setNewElement(elem);
   };
 
   return (
     <div className="App">
-      <Canvas {...page} />
+      <Page
+        page={page}
+        newElement={newElement}
+        deleteNewElement={setNewElement}
+        setPage={setPage}
+      />
       <ButtonDownload {...page} />
       <LoadInput setPage={setPage} />
       <Menu addElement={addElement} />

@@ -11,8 +11,10 @@ const Circle = (props: CircleProps) => {
   const styleProps = {
     backgroundImage: `${state.backgroundImage}`,
     backgroundColor: `${state.backgroundColor}`,
-    left: `${state.xPos}px`,
-    top: `${state.yPos}px`,
+    left: 0,
+    top: 0,
+    width: `${state.width}px`,
+    height: `${state.height}px`,
   };
 
   return <div className={style.circle} style={styleProps}></div>;
