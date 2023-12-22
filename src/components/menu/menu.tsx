@@ -30,7 +30,7 @@ const Menu = (props: props) => {
       yPos: 400,
       fontSize: 20,
       fontFamily: `Roboto`,
-      color: `#000000`,
+      color: `#ff00e4`,
       bold: false,
       value: "Добавить текст",
     };

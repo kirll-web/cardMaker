@@ -38,23 +38,24 @@ const Canvas = (props: PageProps) => {
           | FilterProps
       ) => {
         const ctx = canvas.getContext("2d");
+        ctx!.beginPath();
         console.log(element);
         switch (element.type) {
           case "text":
-            ctx!.fillText(element.value, element.xPos, element.yPos);
+            ctx!.font = ` ${element.fontSize}px ${element.fontFamily}  serif`;
             ctx!.fillStyle = element.color;
-            ctx!.font = `${element.fontSize}px ${element.fontFamily}`;
+            ctx!.fillText(element.value, element.xPos, element.yPos);
             break;
           case "circle":
-            ctx!.fillStyle = element.backgroundColor;
             ctx!.arc(
-              element.xPos,
-              element.yPos,
+              element.xPos + element.width / 2 + 4,
+              element.yPos + element.height / 2 + 4,
               element.width / 2,
               0,
               Math.PI * 2
             );
-            ctx?.fill();
+            ctx!.fillStyle = element.backgroundColor;
+            ctx!.fill();
             break;
           case "rectangle":
             ctx!.fillStyle = element.backgroundColor;
