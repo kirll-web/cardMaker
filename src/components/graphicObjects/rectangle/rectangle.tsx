@@ -14,8 +14,8 @@ const Rectangle = (props: RectangleProps) => {
     backgroundColor: `${state.backgroundColor}`,
     left: 0,
     top: 0,
-    width: `${state.width}px`,
-    height: `${state.height}px`,
+    width: "100%",
+    height: "100%",
   };
 
   return <div className={style.rectangle} style={styleProps}></div>;

@@ -49,7 +49,7 @@ const App = () => {
       <Page
         page={page}
         newElement={newElement}
-        deleteNewElement={setNewElement}
+        setNewElement={setNewElement}
         setPage={setPage}
       />
       <ButtonDownload {...page} />

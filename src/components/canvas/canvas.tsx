@@ -28,6 +28,19 @@ const Canvas = (props: PageProps) => {
     canvas.style.top = `${props.yPos}%`;
     canvas.style.left = `${props.xPos}%`;
     context!.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Promise.all(elemens.filter().map(() => {
+    //   new Image()
+    //   return new Promise(res => {
+    //     onload = {
+    //       res()
+    //     }
+    //   })
+    // }))
+    // .then(() => {
+
+    // })
+
     props.elements.forEach(
       (
         element:
@@ -37,12 +50,12 @@ const Canvas = (props: PageProps) => {
           | RectangleProps
           | FilterProps
       ) => {
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d")!;
         ctx!.beginPath();
-        console.log(element);
+        // console.log(element.type);
         switch (element.type) {
           case "text":
-            ctx!.font = ` ${element.fontSize}px ${element.fontFamily}  serif`;
+            ctx.font = ` ${element.fontSize}px ${element.fontFamily}  serif`;
             ctx!.fillStyle = element.color;
             ctx!.fillText(element.value, element.xPos, element.yPos);
             break;
@@ -79,9 +92,17 @@ const Canvas = (props: PageProps) => {
                 element.height
               );
             };
+            ctx!.drawImage(
+              pic,
+              element.xPos,
+              element.yPos,
+              element.width,
+              element.height
+            );
             break;
           case "filter":
             ctx!.fillStyle = element.colorOfFilter;
+            ctx.globalAlpha = 0.5;
             ctx!.fillRect(
               element.xPos,
               element.yPos,

@@ -1,8 +1,19 @@
 import { RefObject, useCallback, useRef } from "react";
 
+type ControlResizeRefs = {
+  leftControl: RefObject<HTMLDivElement>;
+  rightControl: RefObject<HTMLDivElement>;
+  topControl: RefObject<HTMLDivElement>;
+  bottomControl: RefObject<HTMLDivElement>;
+  topLeftControl: RefObject<HTMLDivElement>;
+  topRightControl: RefObject<HTMLDivElement>;
+  bottomLeftControl: RefObject<HTMLDivElement>;
+  bottomRightControl: RefObject<HTMLDivElement>;
+};
+
 type ResizeItemInfo = {
   elementRef: RefObject<HTMLDivElement>;
-  controlRef: RefObject<HTMLDivElement>;
+  controlRef: ControlResizeRefs;
 };
 
 type OnResizeStartFn = (args: {
@@ -39,4 +50,4 @@ const useResize = () => {
     registerResizeItem,
   };
 };
-export { useResize };
+export { useResize, ControlResizeRefs };

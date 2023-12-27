@@ -1,8 +1,9 @@
 import { PageProps } from "../models/models";
+import { Dispatch, SetStateAction } from "react";
 
 import { ChangeEvent } from "react";
 type Props = {
-  setPage: (data: PageProps) => void;
+  setPage: Dispatch<SetStateAction<PageProps>>;
 };
 
 const LoadInput = (props: Props) => {
@@ -23,7 +24,7 @@ const LoadInput = (props: Props) => {
         if (file.type !== "application/json")
           throw Error("invalid file: " + file.type);
         const dataParsing = JSON.parse(reader.result);
-        setPage((page: PageProps) => {
+        setPage(() => {
           return {
             id: dataParsing.id,
             width: dataParsing.width,

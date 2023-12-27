@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { RefObject, useState } from "react";
 
 import { CircleProps } from "../../models/models";
 import SelectionArea from "../../selectionArea/selectionArea";
@@ -13,8 +13,8 @@ const Circle = (props: CircleProps) => {
     backgroundColor: `${state.backgroundColor}`,
     left: 0,
     top: 0,
-    width: `${state.width}px`,
-    height: `${state.height}px`,
+    width: "100%",
+    height: "100%",
   };
 
   return <div className={style.circle} style={styleProps}></div>;

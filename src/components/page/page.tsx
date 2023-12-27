@@ -22,7 +22,7 @@ type Props = {
     | RectangleProps
     | FilterProps;
   setPage: Dispatch<SetStateAction<PageProps>>;
-  deleteNewElement: Dispatch<
+  setNewElement: Dispatch<
     SetStateAction<
       | TextBlockProps
       | ImageBlockProps
@@ -34,7 +34,7 @@ type Props = {
 };
 
 const Page = (props: Props) => {
-  const { page, newElement, setPage, deleteNewElement } = props;
+  const { page, newElement, setPage, setNewElement } = props;
 
   const stylePage = {
     width: `${page.width}px`,
@@ -48,9 +48,11 @@ const Page = (props: Props) => {
       <Canvas {...page} />
       {newElement != null ? (
         <SelectionArea
-          newElem={newElement}
-          deleteNewElement={deleteNewElement}
+          newElement={newElement}
+          setNewElement={setNewElement}
           setPage={setPage}
+          pageX={page.xPos}
+          pageY={page.yPos}
         />
       ) : null}
     </div>
