@@ -54,6 +54,8 @@ const App = () => {
     bold: doc.defaultMenuText.bold,
     underline: doc.defaultMenuText.underline,
     italic: doc.defaultMenuText.italic,
+    fontSize: doc.defaultMenuText.fontSize,
+    value: doc.defaultMenuText.value,
   });
 
   return (
@@ -66,7 +68,7 @@ const App = () => {
       />
       <ButtonDownload {...page} />
       <LoadInput setPage={setPage} />
-      <Menu addElement={addElement} />
+      <Menu stateMenuText={stateMenuText} addElement={addElement} />
       <MenuText
         dataMenuText={doc.dataMenuText}
         stateMenuText={stateMenuText}

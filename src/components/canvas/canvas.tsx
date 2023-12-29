@@ -57,7 +57,7 @@ const Canvas = (props: PageProps) => {
         // console.log(element.type);
         switch (element.type) {
           case "text":
-            ctx.font = ` ${element.fontSize}px ${element.fontFamily}  serif`;
+            ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
             ctx!.fillStyle = element.color;
             ctx!.fillText(element.value, element.xPos, element.yPos);
             break;

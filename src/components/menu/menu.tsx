@@ -4,6 +4,7 @@ import {
   CircleProps,
   RectangleProps,
   FilterProps,
+  MenuText,
 } from "../models/models";
 
 type props = {
@@ -15,24 +16,27 @@ type props = {
       | RectangleProps
       | FilterProps
   ) => void;
+  stateMenuText: MenuText;
 };
 
 const Menu = (props: props) => {
-  const { addElement } = props;
+  const { addElement, stateMenuText } = props;
 
   const addTextBlock = () => {
     const elem: TextBlockProps = {
       type: "text",
-      id: "asdasd223",
+      id: stateMenuText.value,
       width: 200,
       height: 100,
       xPos: 400,
       yPos: 400,
-      fontSize: 20,
-      fontFamily: `Roboto`,
-      color: `#ff00e4`,
-      bold: false,
-      value: "Добавить текст",
+      fontSize: stateMenuText.fontSize,
+      fontFamily: stateMenuText.fontFamily,
+      color: stateMenuText.color,
+      bold: stateMenuText.bold,
+      italic: stateMenuText.italic,
+      underline: stateMenuText.underline,
+      value: stateMenuText.value,
     };
     addElement(elem);
   };

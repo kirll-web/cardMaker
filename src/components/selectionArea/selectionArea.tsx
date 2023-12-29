@@ -125,7 +125,7 @@ const SelectionArea = (props: Props) => {
         },
         onDrop: (dropEvent) => {
           dropEvent.stopPropagation();
-          setNewElement({
+          setNewElement((newElement) => ({
             ...newElement,
             xPos:
               dropEvent.clientX +
@@ -135,7 +135,7 @@ const SelectionArea = (props: Props) => {
               dropEvent.clientY +
               (newElement.yPos - mouseDownEvent.clientY) +
               5,
-          });
+          }));
         },
       });
     };

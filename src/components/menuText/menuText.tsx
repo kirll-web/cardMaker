@@ -57,6 +57,28 @@ const MenuText = (props: Props) => {
     console.log(e.target.value);
   };
 
+  const changeTextElement = (e: ChangeEvent<HTMLInputElement>) => {
+    setStateMenuText((stateMenu) => ({
+      ...stateMenu,
+      value: e.target.value,
+    }));
+    setNewElement((newElement) => ({
+      ...newElement,
+      value: e.target.value,
+    }));
+  };
+
+  const changeTextSize = (e: ChangeEvent<HTMLInputElement>) => {
+    setStateMenuText((stateMenu) => ({
+      ...stateMenu,
+      fontSize: parseInt(e.target.value),
+    }));
+    setNewElement((newElement) => ({
+      ...newElement,
+      fontSize: parseInt(e.target.value),
+    }));
+  };
+
   return (
     <div className="menuText">
       <select onChange={changeFont} name="fontSelect" id="fontSelect">
@@ -82,6 +104,16 @@ const MenuText = (props: Props) => {
           </div>
         ))}
       </div>
+      <input
+        onChange={changeTextSize}
+        type="number"
+        value={stateMenuText.fontSize}
+      />
+      <input
+        onChange={changeTextElement}
+        type="text"
+        value={stateMenuText.value}
+      />
       <input onChange={changeTextStyle} type="checkbox" value={"bold"} />
       <input onChange={changeTextStyle} type="checkbox" value={"italic"} />
       <input onChange={changeTextStyle} type="checkbox" value={"underline"} />

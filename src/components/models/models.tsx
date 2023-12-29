@@ -101,11 +101,13 @@ type DataMenuText = {
 };
 
 type MenuText = {
-  color: string;
+  value: string;
+  fontSize: number;
   fontFamily: string;
+  color: string;
   bold: boolean;
-  underline: boolean;
   italic: boolean;
+  underline: boolean;
 };
 
 type Doc = {

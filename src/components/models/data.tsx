@@ -448,6 +448,8 @@ const dataMenuText: DataMenuText = {
 };
 
 const defaultMenuText: MenuText = {
+  value: "Добавить текст",
+  fontSize: 20,
   color: "#000000",
   fontFamily: "Roboto",
   bold: false,
@@ -464,4 +466,4 @@ const doc: Doc = {
   dataMenuText,
 };
 
-export { doc, defaultMenuText, dataMenuText };
+export { doc, dataMenuText };
