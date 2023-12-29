@@ -48,7 +48,7 @@ const App = () => {
     setNewElement(elem);
   };
 
-  const [stateMenu, setStateMenu] = useState<MenuTextType>({
+  const [stateMenuText, setStateMenuText] = useState<MenuTextType>({
     color: doc.defaultMenuText.color,
     font: doc.defaultMenuText.font,
     bold: doc.defaultMenuText.bold,
@@ -69,8 +69,9 @@ const App = () => {
       <Menu addElement={addElement} />
       <MenuText
         dataMenuText={doc.dataMenuText}
-        stateMenu={stateMenu}
-        setStateMenu={setStateMenu}
+        stateMenuText={stateMenuText}
+        setStateMenuText={setStateMenuText}
+        setNewElement={setNewElement}
       />
     </div>
   );

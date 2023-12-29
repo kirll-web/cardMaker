@@ -20,6 +20,7 @@ import {
   CircleProps,
   RectangleProps,
   FilterProps,
+  MenuText,
 } from "../models/models";
 
 type Props = {
@@ -39,6 +40,7 @@ type Props = {
       | FilterProps
     >
   >;
+  stateMenu: MenuText;
   pageX: number;
   pageY: number;
 };

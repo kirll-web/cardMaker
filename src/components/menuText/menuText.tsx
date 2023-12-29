@@ -11,34 +11,47 @@ import styles from "./menuText.module.css";
 
 type Props = {
   dataMenuText: DataMenuText;
-  stateMenu: MenuTextType;
-  setStateMenu: Dispatch<SetStateAction<MenuTextType>>;
+  stateMenuText: MenuTextType;
+  setStateMenuText: Dispatch<SetStateAction<MenuTextType>>;
+  setNewElement: Dispatch<SetStateAction<MenuTextType>>;
 };
 
 const MenuText = (props: Props) => {
-  const { dataMenuText, stateMenu, setStateMenu } = props;
+  const { dataMenuText, stateMenuText, setStateMenuText } = props;
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    setStateMenu((stateMenu) => ({
+    setStateMenuText((stateMenu) => ({
       ...stateMenu,
       color: element.getAttribute("data-color")!,
     }));
+    setNewElement: (newElement) => ({
+      ...newElement,
+      color: element.getAttribute("data-color")!,
+    });
   };
 
   const changeFont = (e: MouseEvent<HTMLInputElement>) => {
-    setStateMenu((stateMenu) => ({
+    setStateMenuText((stateMenu) => ({
       ...stateMenu,
       font: e.currentTarget.value,
     }));
+    setNewElement: (newElement) => ({
+      ...newElement,
+      font: e.currentTarget.value,
+    });
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
     const element = e.target as HTMLInputElement;
-    setStateMenu((stateMenu) => ({
+    setStateMenuText((stateMenu) => ({
       ...stateMenu,
       [`${e.target.value}`]: e.target.checked,
     }));
+    setNewElement: (newElement) => ({
+      ...newElement,
+      [`${e.target.value}`]: e.target.checked,
+    });
     console.log(e.target.value);
   };
 
