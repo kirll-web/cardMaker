@@ -11,6 +11,10 @@ import {
   FilterCollection,
   TemplateProps,
   TemplatesCollection,
+  Colors,
+  Fonts,
+  DataMenuText,
+  MenuText,
 } from "./models";
 
 const greenFilter: FilterProps = {
@@ -410,12 +414,38 @@ const historyCommands: HistoryCommands = {
   history: [page6],
 };
 
+const colors: Colors = [
+  "#ac00ff",
+  "#0000ff",
+  "#00ff00",
+  "#ff0000",
+  "#ffffff",
+  "#000000",
+];
+
+const fonts: Fonts = ["Roboto", "Playfair Display", "Roboto Slab", "Lobster"];
+
+const dataMenuText: DataMenuText = {
+  colors: colors,
+  fonts: fonts,
+};
+
+const defaultMenuText: MenuText = {
+  color: "#000000",
+  font: "Roboto",
+  bold: false,
+  underline: false,
+  italic: false,
+};
+
 const doc: Doc = {
   page: historyCommands.history[historyCommands.indexOfHistory],
   templateCollection,
   historyCommands,
   filterCollection,
   selectionArea,
+  defaultMenuText,
+  dataMenuText,
 };
 
-export { doc };
+export { doc, defaultMenuText, dataMenuText };

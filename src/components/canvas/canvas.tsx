@@ -51,7 +51,9 @@ const Canvas = (props: PageProps) => {
           | FilterProps
       ) => {
         const ctx = canvas.getContext("2d")!;
+
         ctx!.beginPath();
+        ctx.globalAlpha = 1;
         // console.log(element.type);
         switch (element.type) {
           case "text":
@@ -60,13 +62,16 @@ const Canvas = (props: PageProps) => {
             ctx!.fillText(element.value, element.xPos, element.yPos);
             break;
           case "circle":
-            ctx!.arc(
+            ctx.ellipse(
               element.xPos + element.width / 2 + 4,
               element.yPos + element.height / 2 + 4,
               element.width / 2,
+              element.height / 2,
               0,
-              Math.PI * 2
+              0,
+              2 * Math.PI
             );
+            ctx.stroke();
             ctx!.fillStyle = element.backgroundColor;
             ctx!.fill();
             break;

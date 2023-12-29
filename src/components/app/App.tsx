@@ -1,5 +1,6 @@
 import "./App.css";
-import Page from "../page/page";
+import { useState } from "react";
+
 import {
   PageProps,
   TextBlockProps,
@@ -7,12 +8,15 @@ import {
   CircleProps,
   RectangleProps,
   FilterProps,
+  MenuText as MenuTextType,
 } from "../models/models";
 import { doc } from "../models/data";
 import ButtonDownload from "../buttonDownload/buttonDownload";
 import Menu from "../menu/menu";
+import Page from "../page/page";
 import LoadInput from "../loadInput/loadInput";
-import { useState } from "react";
+import MenuText from "../menuText/menuText";
+
 // import { Page } from "../models/modelsOld";
 
 const App = () => {
@@ -44,6 +48,14 @@ const App = () => {
     setNewElement(elem);
   };
 
+  const [stateMenu, setStateMenu] = useState<MenuTextType>({
+    color: doc.defaultMenuText.color,
+    font: doc.defaultMenuText.font,
+    bold: doc.defaultMenuText.bold,
+    underline: doc.defaultMenuText.underline,
+    italic: doc.defaultMenuText.italic,
+  });
+
   return (
     <div className="App">
       <Page
@@ -55,6 +67,11 @@ const App = () => {
       <ButtonDownload {...page} />
       <LoadInput setPage={setPage} />
       <Menu addElement={addElement} />
+      <MenuText
+        dataMenuText={doc.dataMenuText}
+        stateMenu={stateMenu}
+        setStateMenu={setStateMenu}
+      />
     </div>
   );
 };

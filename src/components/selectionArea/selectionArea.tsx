@@ -72,7 +72,7 @@ const SelectionArea = (props: Props) => {
   ) => {
     switch (newElement.type) {
       case "text":
-        return <TextBlock {...newElement} />;
+        return <TextBlock {...newElement} />; //* поменять переданные элементы на stateMenu. Может возникнуть проблема с типами.
       case "circle":
         return <Circle {...newElement} />;
       case "rectangle":

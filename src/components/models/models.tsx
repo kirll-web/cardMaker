@@ -89,6 +89,22 @@ type HistoryCommands = {
   indexOfHistory: number;
   history: Array<PageProps>;
 };
+type Colors = Array<string>;
+
+type Fonts = Array<string>;
+
+type DataMenuText = {
+  colors: Colors;
+  fonts: Fonts;
+};
+
+type MenuText = {
+  color: string;
+  font: string;
+  bold: boolean;
+  underline: boolean;
+  italic: boolean;
+};
 
 type Doc = {
   page: PageProps;
@@ -96,7 +112,10 @@ type Doc = {
   historyCommands: HistoryCommands;
   filterCollection: FilterCollection;
   selectionArea: SelectionAreaProps;
+  dataMenuText: DataMenuText;
+  defaultMenuText: MenuText;
 };
+
 export type {
   PageProps,
   Doc,
@@ -111,4 +130,8 @@ export type {
   TemplateProps,
   TemplatesCollection,
   Coordinates,
+  Colors,
+  Fonts,
+  MenuText,
+  DataMenuText,
 };
