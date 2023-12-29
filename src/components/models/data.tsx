@@ -102,6 +102,8 @@ const page2: PageProps = {
       height: 100,
       xPos: 0,
       yPos: 0,
+      italic: false,
+      underline: false,
     },
     {
       id: "text2",
@@ -115,6 +117,8 @@ const page2: PageProps = {
       height: 100,
       xPos: 100,
       yPos: 100,
+      italic: false,
+      underline: false,
     },
     {
       id: "img1",
@@ -149,6 +153,8 @@ const page3: PageProps = {
       height: 100,
       xPos: 0,
       yPos: 0,
+      italic: false,
+      underline: false,
     },
     {
       id: "text2",
@@ -162,6 +168,8 @@ const page3: PageProps = {
       height: 100,
       xPos: 100,
       yPos: 100,
+      italic: false,
+      underline: false,
     },
     {
       id: "img1",
@@ -207,14 +215,6 @@ const page3: PageProps = {
   ],
 };
 
-const selectionArea: SelectionAreaProps = {
-  type: "selectionArea",
-  width: 0,
-  height: 0,
-  xPos: 0,
-  yPos: 0,
-};
-
 const template1: TemplateProps = {
   id: "template1",
   name: "template1",
@@ -231,6 +231,8 @@ const template1: TemplateProps = {
       height: 100,
       xPos: 300,
       yPos: 100,
+      italic: false,
+      underline: false,
     },
     {
       id: "text2",
@@ -244,6 +246,8 @@ const template1: TemplateProps = {
       height: 100,
       xPos: 350,
       yPos: 490,
+      italic: false,
+      underline: false,
     },
     {
       id: "img1",
@@ -274,6 +278,8 @@ const template2: TemplateProps = {
       height: 100,
       xPos: 300,
       yPos: 100,
+      italic: false,
+      underline: false,
     },
     {
       id: "text2",
@@ -287,6 +293,8 @@ const template2: TemplateProps = {
       height: 100,
       xPos: 250,
       yPos: 490,
+      italic: false,
+      underline: false,
     },
     {
       id: "img1",
@@ -318,6 +326,8 @@ const template3: TemplateProps = {
       height: 100,
       xPos: 300,
       yPos: 100,
+      italic: false,
+      underline: false,
     },
     {
       id: "text2",
@@ -331,6 +341,8 @@ const template3: TemplateProps = {
       height: 100,
       xPos: 250,
       yPos: 490,
+      italic: false,
+      underline: false,
     },
     {
       id: "img1",
@@ -423,7 +435,12 @@ const colors: Colors = [
   "#000000",
 ];
 
-const fonts: Fonts = ["Roboto", "Playfair Display", "Roboto Slab", "Lobster"];
+const fonts: Fonts = [
+  "Roboto",
+  "PlayfairDisplay",
+  "RobotoSlab",
+  "YanoneKaffeesatz",
+];
 
 const dataMenuText: DataMenuText = {
   colors: colors,
@@ -432,7 +449,7 @@ const dataMenuText: DataMenuText = {
 
 const defaultMenuText: MenuText = {
   color: "#000000",
-  font: "Roboto",
+  fontFamily: "Roboto",
   bold: false,
   underline: false,
   italic: false,
@@ -443,7 +460,6 @@ const doc: Doc = {
   templateCollection,
   historyCommands,
   filterCollection,
-  selectionArea,
   defaultMenuText,
   dataMenuText,
 };

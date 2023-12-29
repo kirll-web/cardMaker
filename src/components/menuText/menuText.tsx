@@ -17,7 +17,8 @@ type Props = {
 };
 
 const MenuText = (props: Props) => {
-  const { dataMenuText, stateMenuText, setStateMenuText } = props;
+  const { dataMenuText, stateMenuText, setStateMenuText, setNewElement } =
+    props;
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
@@ -25,21 +26,22 @@ const MenuText = (props: Props) => {
       ...stateMenu,
       color: element.getAttribute("data-color")!,
     }));
-    setNewElement: (newElement) => ({
+    setNewElement((newElement) => ({
       ...newElement,
       color: element.getAttribute("data-color")!,
-    });
+    }));
   };
 
   const changeFont = (e: MouseEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
     setStateMenuText((stateMenu) => ({
       ...stateMenu,
-      font: e.currentTarget.value,
+      fontFamily: e.target.value,
     }));
-    setNewElement: (newElement) => ({
+    setNewElement((newElement) => ({
       ...newElement,
-      font: e.currentTarget.value,
-    });
+      fontFamily: e.target.value,
+    }));
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,10 +50,10 @@ const MenuText = (props: Props) => {
       ...stateMenu,
       [`${e.target.value}`]: e.target.checked,
     }));
-    setNewElement: (newElement) => ({
+    setNewElement((newElement) => ({
       ...newElement,
       [`${e.target.value}`]: e.target.checked,
-    });
+    }));
     console.log(e.target.value);
   };
 
@@ -71,7 +73,9 @@ const MenuText = (props: Props) => {
               onClick={changeColor}
               data-color={color}
               className={`${styles.colorLabel} ${
-                stateMenu.color === color ? styles.checkedColorCheckbox : null
+                stateMenuText.color === color
+                  ? styles.checkedColorCheckbox
+                  : null
               }`}
               style={{ backgroundColor: color }}
             ></div>

@@ -1,3 +1,70 @@
-:root {
 
+@font-face {
+  font-family: 'YanoneKaffeesatz', sans-serif;
+  font-weight: 400;
+  src: url('../resource/fonts/YanoneKaffeesatz-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'YanoneKaffeesatz', sans-serif;
+  font-weight: 700;
+  src: url('../resource/fonts/YanoneKaffeesatz-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'YanoneKaffeesatz', sans-serif;
+  font-weight: 400;
+  src:  url(../resource/fonts/YanoneKaffeesatz-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoSlab', sans-serif;
+  font-weight: 400;
+  src: url(../resource/fonts/RobotoSlab-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoSlab', sans-serif;
+  font-weight: 700;
+  src: url(../resource/fonts/RobotoSlab-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  src:url('../resource/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  src: url('../resource/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../resource/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  src: url('../resource/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  src: url('../resource/fonts/PlayfairDisplay-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  src:  url('../resource/fonts/PlayfairDisplay-SemiBoldItalic.ttf') format('truetype');
 }

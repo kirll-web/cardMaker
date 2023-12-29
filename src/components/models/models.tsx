@@ -22,6 +22,8 @@ type TextBlockProps = Block &
     fontFamily: string;
     color: string;
     bold: boolean;
+    italic: boolean;
+    underline: boolean;
   };
 
 type GraphicObject = Block &
@@ -54,7 +56,7 @@ type FilterProps = Block & {
 
 type FilterCollection = Array<FilterProps>;
 
-type SelectionAreaProps = {
+type SelectionAreaProps = Block & {
   type: "selectionArea";
 };
 
@@ -100,7 +102,7 @@ type DataMenuText = {
 
 type MenuText = {
   color: string;
-  font: string;
+  fontFamily: string;
   bold: boolean;
   underline: boolean;
   italic: boolean;
@@ -111,7 +113,6 @@ type Doc = {
   templateCollection: TemplatesCollection;
   historyCommands: HistoryCommands;
   filterCollection: FilterCollection;
-  selectionArea: SelectionAreaProps;
   dataMenuText: DataMenuText;
   defaultMenuText: MenuText;
 };

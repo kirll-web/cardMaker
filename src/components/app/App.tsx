@@ -50,7 +50,7 @@ const App = () => {
 
   const [stateMenuText, setStateMenuText] = useState<MenuTextType>({
     color: doc.defaultMenuText.color,
-    font: doc.defaultMenuText.font,
+    fontFamily: doc.defaultMenuText.fontFamily,
     bold: doc.defaultMenuText.bold,
     underline: doc.defaultMenuText.underline,
     italic: doc.defaultMenuText.italic,
