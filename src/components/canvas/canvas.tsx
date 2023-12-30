@@ -29,97 +29,109 @@ const Canvas = (props: PageProps) => {
     canvas.style.left = `${props.xPos}%`;
     context!.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Promise.all(elemens.filter().map(() => {
-    //   new Image()
-    //   return new Promise(res => {
-    //     onload = {
-    //       res()
-    //     }
-    //   })
-    // }))
-    // .then(() => {
-
-    // })
-
-    props.elements.forEach(
-      (
-        element:
-          | TextBlockProps
-          | ImageBlockProps
-          | CircleProps
-          | RectangleProps
-          | FilterProps
-      ) => {
-        const ctx = canvas.getContext("2d")!;
-
-        ctx!.beginPath();
-        ctx.globalAlpha = 1;
-        // console.log(element.type);
-        switch (element.type) {
-          case "text":
-            ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
-            ctx!.fillStyle = element.color;
-            ctx!.fillText(element.value, element.xPos, element.yPos);
-            break;
-          case "circle":
-            ctx.ellipse(
-              element.xPos + element.width / 2 + 4,
-              element.yPos + element.height / 2 + 4,
-              element.width / 2,
-              element.height / 2,
-              0,
-              0,
-              2 * Math.PI
-            );
-            ctx.stroke();
-            ctx!.fillStyle = element.backgroundColor;
-            ctx!.fill();
-            break;
-          case "rectangle":
-            ctx!.fillStyle = element.backgroundColor;
-            ctx!.fillRect(
-              element.xPos,
-              element.yPos,
-              element.width,
-              element.height
-            );
-            console.log(element.backgroundColor);
-            break;
-          case "image":
-            const pic = new Image(); // "Создаём" изображение
-            pic.src = element.url; // Источник изображения, позаимствовано на хабре
-            pic.onload = function () {
-              ctx!.drawImage(
-                pic,
+    Promise.all(
+      props.elements.map(
+        (
+          element:
+            | TextBlockProps
+            | ImageBlockProps
+            | CircleProps
+            | RectangleProps
+            | FilterProps
+        ) => {
+          if (element.type === "image") {
+            return new Promise<
+              | TextBlockProps
+              | ImageBlockProps
+              | CircleProps
+              | RectangleProps
+              | FilterProps
+            >((res) => {
+              const pic = new Image(); // "Создаём" изображение
+              pic.src = element.url; // Источник изображения, позаимствовано на хабре
+              pic.onload = () => res({ ...element, pic: pic });
+            });
+          } else {
+            return new Promise<
+              | TextBlockProps
+              | ImageBlockProps
+              | CircleProps
+              | RectangleProps
+              | FilterProps
+            >((res) => {
+              res(element);
+            });
+          }
+        }
+      )
+    ).then((elements) => {
+      elements.forEach(
+        (
+          element:
+            | TextBlockProps
+            | ImageBlockProps
+            | CircleProps
+            | RectangleProps
+            | FilterProps
+        ) => {
+          const ctx = canvas.getContext("2d")!;
+          ctx!.beginPath();
+          ctx.globalAlpha = 1;
+          switch (element.type) {
+            case "text":
+              ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
+              ctx!.fillStyle = element.color;
+              ctx!.fillText(element.value, element.xPos, element.yPos);
+              break;
+            case "circle":
+              ctx.ellipse(
+                element.xPos + element.width / 2 + 4,
+                element.yPos + element.height / 2 + 4,
+                element.width / 2,
+                element.height / 2,
+                0,
+                0,
+                2 * Math.PI
+              );
+              ctx.stroke();
+              ctx!.fillStyle = element.backgroundColor;
+              ctx!.fill();
+              break;
+            case "rectangle":
+              ctx!.fillStyle = element.backgroundColor;
+              ctx!.fillRect(
                 element.xPos,
                 element.yPos,
                 element.width,
                 element.height
               );
-            };
-            ctx!.drawImage(
-              pic,
-              element.xPos,
-              element.yPos,
-              element.width,
-              element.height
-            );
-            break;
-          case "filter":
-            ctx!.fillStyle = element.colorOfFilter;
-            ctx.globalAlpha = 0.5;
-            ctx!.fillRect(
-              element.xPos,
-              element.yPos,
-              element.width,
-              element.height
-            );
-            break;
-          default:
-            return null;
+              console.log(element.backgroundColor);
+              break;
+            case "image":
+              ctx!.drawImage(
+                element.pic as HTMLImageElement,
+                element.xPos,
+                element.yPos,
+                element.width,
+                element.height
+              );
+              break;
+            case "filter":
+              ctx!.fillStyle = element.colorOfFilter;
+              ctx.globalAlpha = 0.5;
+              ctx!.fillRect(
+                element.xPos,
+                element.yPos,
+                element.width,
+                element.height
+              );
+              break;
+            default:
+              return null;
+          }
         }
-      }
-    );
+      );
+    });
   });
 
   return <canvas className={style.page} ref={ref}></canvas>;

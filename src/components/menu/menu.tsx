@@ -106,7 +106,6 @@ const Menu = (props: props) => {
       <button onClick={addCircle}>Добавить круг</button>
       <button onClick={addRectangle}>Добавить квадрат</button>
       <button onClick={addImage}>Добавить картинку</button>
-      <button onClick={addFilter}>Добавить фильтр</button>
     </div>
   );
 };

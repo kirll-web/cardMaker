@@ -129,6 +129,7 @@ const page2: PageProps = {
       yPos: 300,
       url: "../../../resource/1.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
     },
   ],
 };
@@ -180,6 +181,7 @@ const page3: PageProps = {
       yPos: 300,
       url: "../../../resource/1.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
     },
     {
       id: "circle1",
@@ -258,6 +260,7 @@ const template1: TemplateProps = {
       yPos: 150,
       url: "../../../resource/1.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
     },
   ],
 };
@@ -305,6 +308,7 @@ const template2: TemplateProps = {
       yPos: 200,
       url: "../../../resource/2.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
     },
   ],
 };
@@ -314,6 +318,17 @@ const template3: TemplateProps = {
   name: "template1",
   blocks: [
     greenFilter,
+    {
+      id: "img1",
+      type: "image",
+      width: 200,
+      height: 200,
+      xPos: 300,
+      yPos: 200,
+      url: "../../../resource/3.png",
+      allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
+    },
     {
       id: "text1",
       type: "text",
@@ -344,16 +359,7 @@ const template3: TemplateProps = {
       italic: false,
       underline: false,
     },
-    {
-      id: "img1",
-      type: "image",
-      width: 200,
-      height: 200,
-      xPos: 300,
-      yPos: 200,
-      url: "../../../resource/3.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
-    },
+
     {
       id: "circle1",
       type: "circle",

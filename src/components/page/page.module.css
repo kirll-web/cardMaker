@@ -2,4 +2,5 @@
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border: 2px #000000 solid;
 }

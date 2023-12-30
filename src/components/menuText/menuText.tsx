@@ -2,6 +2,10 @@ import {
   DataMenuText,
   MenuText as MenuTextType,
   TextBlockProps,
+  ImageBlockProps,
+  CircleProps,
+  RectangleProps,
+  FilterProps,
 } from "../models/models";
 import {
   Dispatch,
@@ -11,6 +15,7 @@ import {
   ChangeEvent,
 } from "react";
 
+import {} from "../models/models";
 import styles from "./menuText.module.css";
 
 type Props = {
@@ -21,7 +26,7 @@ type Props = {
 };
 
 const MenuText = (props: Props) => {
-  const { dataMenuText, defaultMenuText, newElement, setNewElement } = props;
+  const { dataMenuText, newElement, setNewElement } = props;
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
@@ -31,16 +36,15 @@ const MenuText = (props: Props) => {
     }));
   };
 
-  const changeFont = (e: MouseEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
+  const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
+    const target = e.target as HTMLSelectElement;
     setNewElement((newElement) => ({
       ...newElement,
-      fontFamily: e.currentTarget.value,
+      fontFamily: target.value,
     }));
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
-    const element = e.target as HTMLInputElement;
     setNewElement((newElement) => ({
       ...newElement,
       [`${e.target.value}`]: e.target.checked,

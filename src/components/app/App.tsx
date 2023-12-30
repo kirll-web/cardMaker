@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { SetStateAction, useState, Dispatch } from "react";
 
 import {
   PageProps,
@@ -80,8 +80,10 @@ const App = () => {
         <MenuText
           dataMenuText={doc.dataMenuText}
           defaultMenuText={doc.defaultMenuText}
-          newElement={newElement}
-          setNewElement={setNewElement}
+          newElement={newElement as TextBlockProps}
+          setNewElement={
+            setNewElement as Dispatch<SetStateAction<TextBlockProps>>
+          }
         />
       ) : null}
     </div>

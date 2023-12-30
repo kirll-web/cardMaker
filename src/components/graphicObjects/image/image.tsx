@@ -16,8 +16,7 @@ const Image = (props: ImageBlockProps) => {
   const styleProps = {
     left: 0,
     top: 0,
-    width: `${state.width}px`,
-    height: `${state.height}px`,
+    width: "100%",
     // height: `${state.height}px`,
   };
 

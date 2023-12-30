@@ -39,6 +39,7 @@ type ImageBlockProps = Block &
     type: "image";
     url: string;
     allowedFormat: Array<string>;
+    pic: HTMLImageElement | null;
   };
 
 type CircleProps = GraphicObject & {

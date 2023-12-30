@@ -1,5 +1,4 @@
 import { RefObject, useRef, useState, useEffect } from "react";
-import { SelectionAreaProps } from "../models/models";
 import styles from "./selectionArea.module.css";
 
 import TextBlock from "../textBlock/textBlock";
@@ -114,7 +113,7 @@ const SelectionArea = (props: Props) => {
 
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
       onDragStart({
-        onDrag: (dragEvent) => {
+        onDrag: (dragEvent: MouseEvent) => {
           dragEvent.stopPropagation();
           dragEvent.preventDefault();
           // console.log(dragEvent, mouseDownEvent);
@@ -125,7 +124,7 @@ const SelectionArea = (props: Props) => {
             dragEvent.clientX + (newElement.xPos - mouseDownEvent.clientX)
           }px`;
         },
-        onDrop: (dropEvent) => {
+        onDrop: (dropEvent: MouseEvent) => {
           dropEvent.stopPropagation();
           setNewElement((newElement) => ({
             ...newElement,
@@ -157,13 +156,15 @@ const SelectionArea = (props: Props) => {
     >
       <div style={styleArea} ref={ref} className={styles.selectionArea}>
         <div ref={dndControlRef} className={styles.dndBlock}></div>
-        <ResizeArea
-          refResize={ref}
-          newElement={newElement}
-          setNewElement={setNewElement}
-          pageX={props.pageX}
-          pageY={props.pageY}
-        />
+        {newElement.type !== "text" ? (
+          <ResizeArea
+            refResize={ref}
+            newElement={newElement}
+            setNewElement={setNewElement}
+            pageX={props.pageX}
+            pageY={props.pageY}
+          />
+        ) : null}
         {addElement(newElement)}
         <div onClick={deleteNewItem}>
           <img
