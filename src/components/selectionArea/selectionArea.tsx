@@ -43,10 +43,11 @@ type Props = {
   stateMenu: MenuText;
   pageX: number;
   pageY: number;
+  setShowMenuText: Dispatch<SetStateAction<boolean>>;
 };
 
 const SelectionArea = (props: Props) => {
-  const { newElement, setPage, setNewElement } = props;
+  const { newElement, setPage, setNewElement, setShowMenuText } = props;
 
   const [state, setState] = useState(props.newElement);
   // const [newElementState, setnewElementState] = useState(props.newElement);
@@ -89,6 +90,7 @@ const SelectionArea = (props: Props) => {
   };
 
   const deleteNewItem = () => {
+    setShowMenuText(() => false);
     setNewElement(() => null!);
   };
 
@@ -100,7 +102,7 @@ const SelectionArea = (props: Props) => {
           elements: [...page.elements, newElement],
         };
       });
-      setNewElement(null!);
+      deleteNewItem();
     }
   };
 

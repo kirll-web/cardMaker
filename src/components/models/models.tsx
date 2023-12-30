@@ -14,10 +14,12 @@ type Info = {
   id: string;
 };
 
-type TextBlockProps = Block &
+type TextBlockProps = Coordinates &
   Info & {
     type: "text";
     value: string;
+    width: number;
+    height: number;
     fontSize: number;
     fontFamily: string;
     color: string;
@@ -116,7 +118,7 @@ type Doc = {
   historyCommands: HistoryCommands;
   filterCollection: FilterCollection;
   dataMenuText: DataMenuText;
-  defaultMenuText: MenuText;
+  defaultMenuText: TextBlockProps;
 };
 
 export type {

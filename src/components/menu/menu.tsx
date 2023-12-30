@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 import {
   TextBlockProps,
   ImageBlockProps,
@@ -16,28 +18,28 @@ type props = {
       | RectangleProps
       | FilterProps
   ) => void;
-  stateMenuText: MenuText;
+  defaultMenuText: TextBlockProps;
+  setShowMenuText: Dispatch<SetStateAction<boolean>>;
 };
 
 const Menu = (props: props) => {
-  const { addElement, stateMenuText } = props;
+  const { addElement, defaultMenuText, setShowMenuText } = props;
 
   const addTextBlock = () => {
     const elem: TextBlockProps = {
       type: "text",
-      id: stateMenuText.value,
-      width: 200,
-      height: 100,
+      id: defaultMenuText.value,
       xPos: 400,
       yPos: 400,
-      fontSize: stateMenuText.fontSize,
-      fontFamily: stateMenuText.fontFamily,
-      color: stateMenuText.color,
-      bold: stateMenuText.bold,
-      italic: stateMenuText.italic,
-      underline: stateMenuText.underline,
-      value: stateMenuText.value,
+      fontSize: defaultMenuText.fontSize,
+      fontFamily: defaultMenuText.fontFamily,
+      color: defaultMenuText.color,
+      bold: defaultMenuText.bold,
+      italic: defaultMenuText.italic,
+      underline: defaultMenuText.underline,
+      value: defaultMenuText.value,
     };
+    setShowMenuText(() => true);
     addElement(elem);
   };
 

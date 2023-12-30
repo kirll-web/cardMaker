@@ -31,10 +31,11 @@ type Props = {
       | FilterProps
     >
   >;
+  setShowMenuText: Dispatch<SetStateAction<boolean>>;
 };
 
 const Page = (props: Props) => {
-  const { page, newElement, setPage, setNewElement } = props;
+  const { page, newElement, setPage, setNewElement, setShowMenuText } = props;
 
   const stylePage = {
     width: `${page.width}px`,
@@ -53,6 +54,7 @@ const Page = (props: Props) => {
           setPage={setPage}
           pageX={page.xPos}
           pageY={page.yPos}
+          setShowMenuText={setShowMenuText}
         />
       ) : null}
     </div>

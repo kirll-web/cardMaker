@@ -7,14 +7,12 @@ import style from "./textBlock.module.css";
 const TextBlock = (props: TextBlockProps) => {
   // const [state, setState] = useState(props);
   const styleProps = {
-    width: `${props.width}px`,
-    height: `${props.height}px`,
     fontSize: `${props.fontSize}px`,
     fontFamily: `${props.fontFamily}, sans-serif`,
     color: `${props.color}`,
     fontWeight: props.bold ? "700" : "400",
-    fontStyle: props.italic ? "italic" : null,
-    textDecoration: props.underline ? "underline" : null,
+    fontStyle: props.italic ? "italic" : "normal",
+    textDecoration: props.underline ? "underline" : "none",
   };
 
   return (

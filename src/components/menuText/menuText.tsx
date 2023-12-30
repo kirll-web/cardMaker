@@ -1,4 +1,8 @@
-import { DataMenuText, MenuText as MenuTextType } from "../models/models";
+import {
+  DataMenuText,
+  MenuText as MenuTextType,
+  TextBlockProps,
+} from "../models/models";
 import {
   Dispatch,
   HTMLInputTypeAttribute,
@@ -11,21 +15,16 @@ import styles from "./menuText.module.css";
 
 type Props = {
   dataMenuText: DataMenuText;
-  stateMenuText: MenuTextType;
-  setStateMenuText: Dispatch<SetStateAction<MenuTextType>>;
-  setNewElement: Dispatch<SetStateAction<MenuTextType>>;
+  defaultMenuText: TextBlockProps;
+  newElement: TextBlockProps;
+  setNewElement: Dispatch<SetStateAction<TextBlockProps>>;
 };
 
 const MenuText = (props: Props) => {
-  const { dataMenuText, stateMenuText, setStateMenuText, setNewElement } =
-    props;
+  const { dataMenuText, defaultMenuText, newElement, setNewElement } = props;
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    setStateMenuText((stateMenu) => ({
-      ...stateMenu,
-      color: element.getAttribute("data-color")!,
-    }));
     setNewElement((newElement) => ({
       ...newElement,
       color: element.getAttribute("data-color")!,
@@ -34,22 +33,14 @@ const MenuText = (props: Props) => {
 
   const changeFont = (e: MouseEvent<HTMLInputElement>) => {
     console.log(e.currentTarget.value);
-    setStateMenuText((stateMenu) => ({
-      ...stateMenu,
-      fontFamily: e.target.value,
-    }));
     setNewElement((newElement) => ({
       ...newElement,
-      fontFamily: e.target.value,
+      fontFamily: e.currentTarget.value,
     }));
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
     const element = e.target as HTMLInputElement;
-    setStateMenuText((stateMenu) => ({
-      ...stateMenu,
-      [`${e.target.value}`]: e.target.checked,
-    }));
     setNewElement((newElement) => ({
       ...newElement,
       [`${e.target.value}`]: e.target.checked,
@@ -58,10 +49,6 @@ const MenuText = (props: Props) => {
   };
 
   const changeTextElement = (e: ChangeEvent<HTMLInputElement>) => {
-    setStateMenuText((stateMenu) => ({
-      ...stateMenu,
-      value: e.target.value,
-    }));
     setNewElement((newElement) => ({
       ...newElement,
       value: e.target.value,
@@ -69,16 +56,13 @@ const MenuText = (props: Props) => {
   };
 
   const changeTextSize = (e: ChangeEvent<HTMLInputElement>) => {
-    setStateMenuText((stateMenu) => ({
-      ...stateMenu,
-      fontSize: parseInt(e.target.value),
-    }));
+    const fontSize = e.target.value === "" ? 0 : parseInt(e.target.value);
     setNewElement((newElement) => ({
       ...newElement,
-      fontSize: parseInt(e.target.value),
+      fontSize: fontSize,
     }));
   };
-
+  console.log(dataMenuText);
   return (
     <div className="menuText">
       <select onChange={changeFont} name="fontSelect" id="fontSelect">
@@ -95,24 +79,18 @@ const MenuText = (props: Props) => {
               onClick={changeColor}
               data-color={color}
               className={`${styles.colorLabel} ${
-                stateMenuText.color === color
-                  ? styles.checkedColorCheckbox
-                  : null
+                newElement.color === color ? styles.checkedColorCheckbox : null
               }`}
               style={{ backgroundColor: color }}
             ></div>
           </div>
         ))}
       </div>
-      <input
-        onChange={changeTextSize}
-        type="number"
-        value={stateMenuText.fontSize}
-      />
+      <input onChange={changeTextSize} type="number" />
       <input
         onChange={changeTextElement}
         type="text"
-        value={stateMenuText.value}
+        value={newElement.value}
       />
       <input onChange={changeTextStyle} type="checkbox" value={"bold"} />
       <input onChange={changeTextStyle} type="checkbox" value={"italic"} />

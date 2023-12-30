@@ -37,6 +37,8 @@ const App = () => {
     | FilterProps
   >(null!);
 
+  const [showMenuText, setShowMenuText] = useState<boolean>(false);
+
   const addElement = (
     elem:
       | TextBlockProps
@@ -48,15 +50,15 @@ const App = () => {
     setNewElement(elem);
   };
 
-  const [stateMenuText, setStateMenuText] = useState<MenuTextType>({
-    color: doc.defaultMenuText.color,
-    fontFamily: doc.defaultMenuText.fontFamily,
-    bold: doc.defaultMenuText.bold,
-    underline: doc.defaultMenuText.underline,
-    italic: doc.defaultMenuText.italic,
-    fontSize: doc.defaultMenuText.fontSize,
-    value: doc.defaultMenuText.value,
-  });
+  // const [stateMenuText, setStateMenuText] = useState<MenuTextType>({
+  //   color: doc.defaultMenuText.color,
+  //   fontFamily: doc.defaultMenuText.fontFamily,
+  //   bold: doc.defaultMenuText.bold,
+  //   underline: doc.defaultMenuText.underline,
+  //   italic: doc.defaultMenuText.italic,
+  //   fontSize: doc.defaultMenuText.fontSize,
+  //   value: doc.defaultMenuText.value,
+  // });
 
   return (
     <div className="App">
@@ -65,16 +67,23 @@ const App = () => {
         newElement={newElement}
         setNewElement={setNewElement}
         setPage={setPage}
+        setShowMenuText={setShowMenuText}
       />
       <ButtonDownload {...page} />
       <LoadInput setPage={setPage} />
-      <Menu stateMenuText={stateMenuText} addElement={addElement} />
-      <MenuText
-        dataMenuText={doc.dataMenuText}
-        stateMenuText={stateMenuText}
-        setStateMenuText={setStateMenuText}
-        setNewElement={setNewElement}
+      <Menu
+        defaultMenuText={doc.defaultMenuText}
+        addElement={addElement}
+        setShowMenuText={setShowMenuText}
       />
+      {showMenuText ? (
+        <MenuText
+          dataMenuText={doc.dataMenuText}
+          defaultMenuText={doc.defaultMenuText}
+          newElement={newElement}
+          setNewElement={setNewElement}
+        />
+      ) : null}
     </div>
   );
 };

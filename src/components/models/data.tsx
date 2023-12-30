@@ -447,8 +447,14 @@ const dataMenuText: DataMenuText = {
   fonts: fonts,
 };
 
-const defaultMenuText: MenuText = {
+const defaultMenuText: TextBlockProps = {
+  type: "text",
+  id: "1",
   value: "Добавить текст",
+  width: 200,
+  height: 200,
+  xPos: 400,
+  yPos: 300,
   fontSize: 20,
   color: "#000000",
   fontFamily: "Roboto",
