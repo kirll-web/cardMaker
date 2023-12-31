@@ -7,6 +7,7 @@ import Rectangle from "../graphicObjects/rectangle/rectangle";
 import Image from "../graphicObjects/image/image";
 import Filter from "../filter/filter";
 import { Dispatch, SetStateAction } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useDnD } from "../../hooks/useDnD/useDnD";
 
@@ -45,11 +46,9 @@ type Props = {
   setShowMenuText: Dispatch<SetStateAction<boolean>>;
 };
 
-const SelectionArea = (props: Props) => {
-  const { newElement, setPage, setNewElement, setShowMenuText } = props;
-
-  const [state, setState] = useState(props.newElement);
-  // const [newElementState, setnewElementState] = useState(props.newElement);
+const SelectionArea = () => {
+  const dispatch = useDispatch();
+  const newElement = useSelector((state) => state.newElement);
 
   const styleArea = {
     width: newElement.width,
@@ -89,18 +88,13 @@ const SelectionArea = (props: Props) => {
   };
 
   const deleteNewItem = () => {
-    setShowMenuText(() => false);
-    setNewElement(() => null!);
+    dispatch({ type: "SHOW_MENUTEXT", show: false });
+    dispatch({ type: "DELETE_ELEMENT" });
   };
 
   const addElemToCanvas = (e: MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
-      setPage((page: PageProps) => {
-        return {
-          ...page,
-          elements: [...page.elements, newElement],
-        };
-      });
+      dispatch({ type: "UPDATE_ELEMENTS", element: newElement });
       deleteNewItem();
     }
   };
@@ -126,17 +120,22 @@ const SelectionArea = (props: Props) => {
         },
         onDrop: (dropEvent: MouseEvent) => {
           dropEvent.stopPropagation();
-          setNewElement((newElement) => ({
-            ...newElement,
-            xPos:
+          dispatch({
+            type: "UPDATE_ELEMENT",
+            key: "xPos",
+            value:
               dropEvent.clientX +
               (newElement.xPos - mouseDownEvent.clientX) +
               3,
-            yPos:
+          });
+          dispatch({
+            type: "UPDATE_ELEMENT",
+            key: "yPos",
+            value:
               dropEvent.clientY +
               (newElement.yPos - mouseDownEvent.clientY) +
               5,
-          }));
+          });
         },
       });
     };
@@ -156,15 +155,7 @@ const SelectionArea = (props: Props) => {
     >
       <div style={styleArea} ref={ref} className={styles.selectionArea}>
         <div ref={dndControlRef} className={styles.dndBlock}></div>
-        {newElement.type !== "text" ? (
-          <ResizeArea
-            refResize={ref}
-            newElement={newElement}
-            setNewElement={setNewElement}
-            pageX={props.pageX}
-            pageY={props.pageY}
-          />
-        ) : null}
+        {newElement.type !== "text" ? <ResizeArea refResize={ref} /> : null}
         {addElement(newElement)}
         <div onClick={deleteNewItem}>
           <img

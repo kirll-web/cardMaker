@@ -13,8 +13,13 @@ import "../resource/fonts/RobotoSlab-SemiBold.ttf";
 import "../resource/fonts/YanoneKaffeesatz-Regular.ttf";
 import "../resource/fonts/YanoneKaffeesatz-SemiBold.ttf";
 
+import { Provider } from "react-redux";
+import store from "./store/main";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
 );

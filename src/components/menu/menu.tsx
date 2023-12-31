@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   TextBlockProps,
@@ -9,95 +10,58 @@ import {
   MenuText,
 } from "../models/models";
 
-type props = {
-  addElement: (
-    elemt:
-      | TextBlockProps
-      | ImageBlockProps
-      | CircleProps
-      | RectangleProps
-      | FilterProps
-  ) => void;
-  defaultMenuText: TextBlockProps;
-  setShowMenuText: Dispatch<SetStateAction<boolean>>;
-};
+import {
+  defaultFilter,
+  defaultImage,
+  defaultСircle,
+  defaultTextBlock,
+  defaultRectangle,
+} from "../models/data";
 
-const Menu = (props: props) => {
-  const { addElement, defaultMenuText, setShowMenuText } = props;
+const Menu = () => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.page);
+  const showMenuText = useSelector((state) => state.showMenuText);
 
   const addTextBlock = () => {
     const elem: TextBlockProps = {
-      type: "text",
-      id: defaultMenuText.value,
-      xPos: 400,
-      yPos: 400,
-      fontSize: defaultMenuText.fontSize,
-      fontFamily: defaultMenuText.fontFamily,
-      color: defaultMenuText.color,
-      bold: defaultMenuText.bold,
-      italic: defaultMenuText.italic,
-      underline: defaultMenuText.underline,
-      value: defaultMenuText.value,
+      ...defaultTextBlock,
+      id: `text${Math.floor(Math.random() * 101)}`,
     };
-    setShowMenuText(() => true);
-    addElement(elem);
+    dispatch({ type: "SHOW_MENUTEXT", show: true });
+    dispatch({ type: "ADD_ELEMENT", element: elem });
   };
 
   const addImage = () => {
     const elem: ImageBlockProps = {
-      id: "img1",
-      type: "image",
-      width: 200,
-      height: 200,
-      xPos: 300,
-      yPos: 200,
-      url: "../../../resource/1.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
+      ...defaultImage,
+      id: `image${Math.floor(Math.random() * 101)}`,
     };
-    addElement(elem);
+    dispatch({ type: "ADD_ELEMENT", element: elem });
   };
 
   const addRectangle = () => {
     const elem: RectangleProps = {
-      id: "rectangle1",
-      type: "rectangle",
-      backgroundColor: "#6aa449",
-      backgroundImage: "",
-      width: 200,
-      height: 200,
-      xPos: 600,
-      yPos: 300,
+      ...defaultRectangle,
+      id: `rectangle${Math.floor(Math.random() * 101)}`,
     };
-    addElement(elem);
+    dispatch({ type: "ADD_ELEMENT", element: elem });
   };
 
   const addCircle = () => {
     const elem: CircleProps = {
-      id: "circle2",
-      type: "circle",
-      backgroundColor: "#000000",
-      backgroundImage: "",
-      width: 400,
-      height: 400,
-      xPos: 400,
-      yPos: 400,
+      ...defaultСircle,
+      id: `filter${Math.floor(Math.random() * 101)}`,
     };
-    addElement(elem);
+    dispatch({ type: "ADD_ELEMENT", element: elem });
   };
 
   const addFilter = () => {
     const elem: FilterProps = {
-      colorOfFilter: "#3fc11c",
-      name: "greenFilter",
-      type: "filter",
-      id: "filter1",
-      opacity: 0.5,
-      width: 800,
-      height: 600,
-      xPos: 0,
-      yPos: 0,
+      ...defaultFilter,
+      id: `filter${Math.floor(Math.random() * 101)}`,
     };
-    addElement(elem);
+    dispatch({ type: "ADD_ELEMENT", element: elem });
   };
 
   return (

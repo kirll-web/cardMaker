@@ -469,6 +469,56 @@ const defaultMenuText: TextBlockProps = {
   italic: false,
 };
 
+const defaultСircle: CircleProps = {
+  id: `circle${Math.floor(Math.random() * 101)}`,
+  type: "circle",
+  backgroundColor: "#000000",
+  backgroundImage: "",
+  width: 200,
+  height: 200,
+  xPos: 50,
+  yPos: 50,
+};
+
+const defaultRectangle: RectangleProps = {
+  id: `rectangle${Math.floor(Math.random() * 101)}`,
+  type: "rectangle",
+  backgroundColor: "#6aa449",
+  backgroundImage: "",
+  width: 200,
+  height: 200,
+  xPos: 600,
+  yPos: 300,
+};
+
+const defaultImage: ImageBlockProps = {
+  id: `img${Math.floor(Math.random() * 101)}`,
+  type: "image",
+  width: 200,
+  height: 200,
+  xPos: 300,
+  yPos: 200,
+  url: "../../../resource/3.png",
+  allowedFormat: ["JPG", "JPEG", "PNG"],
+  pic: null,
+};
+
+const defaultTextBlock: TextBlockProps = {
+  id: `text${Math.floor(Math.random() * 101)}`,
+  type: "text",
+  value: "Добавить текст",
+  fontSize: 30,
+  fontFamily: "Roboto",
+  color: "#000000",
+  bold: true,
+  xPos: 250,
+  yPos: 490,
+  italic: false,
+  underline: false,
+};
+
+const defaultFilter: FilterProps = greenFilter;
+
 const doc: Doc = {
   page: historyCommands.history[historyCommands.indexOfHistory],
   templateCollection,
@@ -478,4 +528,11 @@ const doc: Doc = {
   dataMenuText,
 };
 
-export { doc, dataMenuText };
+export {
+  doc,
+  defaultFilter,
+  defaultImage,
+  defaultСircle,
+  defaultTextBlock,
+  defaultRectangle,
+};

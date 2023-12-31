@@ -15,6 +15,8 @@ import {
   ChangeEvent,
 } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+
 import {} from "../models/models";
 import styles from "./menuText.module.css";
 
@@ -26,47 +28,46 @@ type Props = {
 };
 
 const MenuText = (props: Props) => {
-  const { dataMenuText, newElement, setNewElement } = props;
+  const { dataMenuText } = props;
+
+  const dispatch = useDispatch();
+  const newElement = useSelector((state) => state.newElement);
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    setNewElement((newElement) => ({
-      ...newElement,
-      color: element.getAttribute("data-color")!,
-    }));
+    dispatch({
+      type: "UPDATE_ELEMENT",
+      key: "color",
+      value: element.getAttribute("data-color"),
+    });
   };
 
   const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    setNewElement((newElement) => ({
-      ...newElement,
-      fontFamily: target.value,
-    }));
+    dispatch({
+      type: "UPDATE_ELEMENT",
+      fontFamily: "color",
+      value: target.value,
+    });
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewElement((newElement) => ({
-      ...newElement,
-      [`${e.target.value}`]: e.target.checked,
-    }));
-    console.log(e.target.value);
+    dispatch({
+      type: "UPDATE_ELEMENT",
+      key: e.target.value,
+      value: e.target.checked,
+    });
   };
 
   const changeTextElement = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewElement((newElement) => ({
-      ...newElement,
-      value: e.target.value,
-    }));
+    dispatch({ type: "UPDATE_ELEMENT", key: "value", value: e.target.value });
   };
 
   const changeTextSize = (e: ChangeEvent<HTMLInputElement>) => {
     const fontSize = e.target.value === "" ? 0 : parseInt(e.target.value);
-    setNewElement((newElement) => ({
-      ...newElement,
-      fontSize: fontSize,
-    }));
+    dispatch({ type: "UPDATE_ELEMENT", key: "fontSize", value: fontSize });
   };
-  console.log(dataMenuText);
+
   return (
     <div className="menuText">
       <select onChange={changeFont} name="fontSelect" id="fontSelect">

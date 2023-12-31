@@ -1,6 +1,7 @@
 import { useRef, RefObject, useEffect } from "react";
 import { useResize, ControlResizeRefs } from "../../hooks/useResize/useResize";
 import { Dispatch, SetStateAction } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./resizeArea.module.css";
 
 import {
@@ -14,29 +15,18 @@ import {
 
 type Props = {
   refResize: RefObject<HTMLDivElement>;
-  newElement:
-    | TextBlockProps
-    | ImageBlockProps
-    | CircleProps
-    | RectangleProps
-    | FilterProps;
-  setNewElement: Dispatch<
-    SetStateAction<
-      | TextBlockProps
-      | ImageBlockProps
-      | CircleProps
-      | RectangleProps
-      | FilterProps
-    >
-  >;
-  pageX: number;
-  pageY: number;
 };
 
 const ResizeArea = (props: Props) => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.page);
+  const newElement = useSelector((state) => state.newElement);
+  const pageX = page.xPos,
+    pageY = page.yPos;
+
   const { registerResizeItem } = useResize();
 
-  const { refResize, newElement, setNewElement, pageX, pageY } = props;
+  const { refResize } = props;
 
   const resizeControlRef: ControlResizeRefs = {
     leftControl: useRef<HTMLDivElement>(null),
@@ -89,6 +79,17 @@ const ResizeArea = (props: Props) => {
     refResize.current!.style.width = `${
       newElement.width + dragEvent.clientX - mouseDownEvent.clientX
     }px`;
+  };
+
+  const updateSizeElement = (width, height, xPos, yPos) => {
+    dispatch({ type: "UPDATE_ELEMENT", key: "width", value: parseInt(width) });
+    dispatch({
+      type: "UPDATE_ELEMENT",
+      key: "height",
+      value: parseInt(height),
+    });
+    dispatch({ type: "UPDATE_ELEMENT", key: "xPos", value: parseInt(xPos) });
+    dispatch({ type: "UPDATE_ELEMENT", key: "yPos", value: parseInt(yPos) });
   };
 
   useEffect(() => {
@@ -152,23 +153,20 @@ const ResizeArea = (props: Props) => {
         },
         onDrop: (dropEvent) => {
           console.log(refResize.current!.style.left);
-          let x: number = props.pageX + newElement.xPos + newElement.xPos,
-            y: number = props.pageY + newElement.yPos + newElement.yPos;
+          let x: number = pageX + newElement.xPos + newElement.xPos,
+            y: number = pageY + newElement.yPos + newElement.yPos;
           if (refResize.current?.getBoundingClientRect().x != x) {
             x = refResize.current!.getBoundingClientRect().x;
           } else if (refResize.current?.getBoundingClientRect().y != y) {
-            y = refResize.current!.getBoundingClientRect().y - props.pageY;
+            y = refResize.current!.getBoundingClientRect().y - pageY;
           }
 
-          setNewElement((elem) => {
-            return {
-              ...elem,
-              width: parseInt(refResize.current!.style.width),
-              height: parseInt(refResize.current!.style.height),
-              xPos: parseInt(refResize.current!.style.left),
-              yPos: parseInt(refResize.current!.style.top),
-            };
-          });
+          updateSizeElement(
+            refResize.current!.style.width,
+            refResize.current!.style.height,
+            refResize.current!.style.left,
+            refResize.current!.style.top
+          );
         },
       });
     };

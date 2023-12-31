@@ -12,6 +12,7 @@ import {
 import SelectionArea from "../selectionArea/selectionArea";
 
 import style from "./page.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {
   page: PageProps;
@@ -34,8 +35,10 @@ type Props = {
   setShowMenuText: Dispatch<SetStateAction<boolean>>;
 };
 
-const Page = (props: Props) => {
-  const { page, newElement, setPage, setNewElement, setShowMenuText } = props;
+const Page = () => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.page);
+  const newElement = useSelector((state) => state.newElement);
 
   const stylePage = {
     width: `${page.width}px`,
@@ -47,16 +50,7 @@ const Page = (props: Props) => {
   return (
     <div className={style.page} style={stylePage}>
       <Canvas {...page} />
-      {newElement != null ? (
-        <SelectionArea
-          newElement={newElement}
-          setNewElement={setNewElement}
-          setPage={setPage}
-          pageX={page.xPos}
-          pageY={page.yPos}
-          setShowMenuText={setShowMenuText}
-        />
-      ) : null}
+      {newElement != null ? <SelectionArea /> : null}
     </div>
   );
 };
