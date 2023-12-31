@@ -49,7 +49,7 @@ const Page = () => {
 
   return (
     <div className={style.page} style={stylePage}>
-      <Canvas {...page} />
+      <Canvas />
       {newElement != null ? <SelectionArea /> : null}
     </div>
   );
