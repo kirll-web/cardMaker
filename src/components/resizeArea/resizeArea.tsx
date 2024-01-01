@@ -1,12 +1,9 @@
 import { useRef, RefObject, useEffect } from "react";
 import { useResize, ControlResizeRefs } from "../../hooks/useResize/useResize";
-import { Dispatch, SetStateAction } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./resizeArea.module.css";
-
+import { useAppSelector, useAppActions } from "../../redux/hooks";
+import { doc } from "../models/data";
 import {
-  PageProps,
-  TextBlockProps,
   ImageBlockProps,
   CircleProps,
   RectangleProps,
@@ -18,11 +15,18 @@ type Props = {
 };
 
 const ResizeArea = (props: Props) => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page);
-  const newElement = useSelector((state) => state.newElement);
-  const pageX = page.xPos,
-    pageY = page.yPos;
+  const newElement = useAppSelector(
+    (state) =>
+      state.newElement as
+        | CircleProps
+        | ImageBlockProps
+        | CircleProps
+        | RectangleProps
+        | FilterProps
+  );
+  const { updateNewElementAction } = useAppActions();
+  const pageX = doc.page.xPos,
+    pageY = doc.page.yPos;
 
   const { registerResizeItem } = useResize();
 
@@ -39,7 +43,10 @@ const ResizeArea = (props: Props) => {
     bottomRightControl: useRef<HTMLDivElement>(null),
   };
 
-  const resizeTopControl = (dragEvent, mouseDownEvent) => {
+  const resizeTopControl = (
+    dragEvent: MouseEvent,
+    mouseDownEvent: MouseEvent
+  ) => {
     refResize.current!.style.height = `${
       newElement.height - dragEvent.clientY + mouseDownEvent.clientY
     }px`;
@@ -54,7 +61,10 @@ const ResizeArea = (props: Props) => {
     }
   };
 
-  const resizeLeftControl = (dragEvent, mouseDownEvent) => {
+  const resizeLeftControl = (
+    dragEvent: MouseEvent,
+    mouseDownEvent: MouseEvent
+  ) => {
     refResize.current!.style.width = `${
       newElement.width - dragEvent.clientX + mouseDownEvent.clientX
     }px`;
@@ -69,27 +79,34 @@ const ResizeArea = (props: Props) => {
     }
   };
 
-  const resizeBottomControl = (dragEvent, mouseDownEvent) => {
+  const resizeBottomControl = (
+    dragEvent: MouseEvent,
+    mouseDownEvent: MouseEvent
+  ) => {
     refResize.current!.style.height = `${
       newElement.height + dragEvent.clientY - mouseDownEvent.clientY
     }px`;
   };
 
-  const resizeRightControl = (dragEvent, mouseDownEvent) => {
+  const resizeRightControl = (
+    dragEvent: MouseEvent,
+    mouseDownEvent: MouseEvent
+  ) => {
     refResize.current!.style.width = `${
       newElement.width + dragEvent.clientX - mouseDownEvent.clientX
     }px`;
   };
 
-  const updateSizeElement = (width, height, xPos, yPos) => {
-    dispatch({ type: "UPDATE_ELEMENT", key: "width", value: parseInt(width) });
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      key: "height",
-      value: parseInt(height),
-    });
-    dispatch({ type: "UPDATE_ELEMENT", key: "xPos", value: parseInt(xPos) });
-    dispatch({ type: "UPDATE_ELEMENT", key: "yPos", value: parseInt(yPos) });
+  const updateSizeElement = (
+    width: number,
+    height: number,
+    xPos: number,
+    yPos: number
+  ) => {
+    updateNewElementAction("width", width);
+    updateNewElementAction("height", height);
+    updateNewElementAction("xPos", xPos);
+    updateNewElementAction("yPos", yPos);
   };
 
   useEffect(() => {
@@ -151,7 +168,7 @@ const ResizeArea = (props: Props) => {
             resizeBottomControl(dragEvent, mouseDownEvent);
           }
         },
-        onDrop: (dropEvent) => {
+        onDrop: () => {
           console.log(refResize.current!.style.left);
           let x: number = pageX + newElement.xPos + newElement.xPos,
             y: number = pageY + newElement.yPos + newElement.yPos;
@@ -162,10 +179,10 @@ const ResizeArea = (props: Props) => {
           }
 
           updateSizeElement(
-            refResize.current!.style.width,
-            refResize.current!.style.height,
-            refResize.current!.style.left,
-            refResize.current!.style.top
+            parseInt(refResize.current!.style.width),
+            parseInt(refResize.current!.style.height),
+            parseInt(refResize.current!.style.left),
+            parseInt(refResize.current!.style.top)
           );
         },
       });

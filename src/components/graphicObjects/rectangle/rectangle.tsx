@@ -1,24 +1,32 @@
-import { useState } from "react";
-import SelectionArea from "../../selectionArea/selectionArea";
+import { RefObject } from "react";
 
 import { RectangleProps } from "../../models/models";
 import style from "./rectangle.module.css";
-
-const Rectangle = (props: RectangleProps) => {
-  const [activeSelectionArea, setActiveSelectionArea] = useState(false);
-
-  const [state, setState] = useState(props);
+import { useAppSelector } from "../../../redux/hooks";
+type Props = {
+  refItem: RefObject<HTMLDivElement>;
+};
+const Rectangle = (props: Props) => {
+  const newElement = useAppSelector(
+    (state) => state.newElement as RectangleProps
+  );
 
   const styleProps = {
-    backgroundImage: `${state.backgroundImage}`,
-    backgroundColor: `${state.backgroundColor}`,
+    backgroundImage: `${newElement.backgroundImage}`,
+    backgroundColor: `${newElement.backgroundColor}`,
     left: 0,
     top: 0,
-    width: "100%",
-    height: "100%",
+    width: `${newElement.width}px`,
+    height: `${newElement.height}px`,
   };
 
-  return <div className={style.rectangle} style={styleProps}></div>;
+  return (
+    <div
+      ref={props.refItem}
+      className={style.rectangle}
+      style={styleProps}
+    ></div>
+  );
 };
 
 export default Rectangle;

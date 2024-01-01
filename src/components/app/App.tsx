@@ -1,34 +1,22 @@
 import "./App.css";
-import { SetStateAction, useState, Dispatch } from "react";
+import { useEffect } from "react";
 
-import {
-  PageProps,
-  TextBlockProps,
-  ImageBlockProps,
-  CircleProps,
-  RectangleProps,
-  FilterProps,
-  MenuText as MenuTextType,
-} from "../models/models";
 import { doc } from "../models/data";
 import ButtonDownload from "../buttonDownload/buttonDownload";
 import Menu from "../menu/menu";
 import Page from "../page/page";
 import LoadInput from "../loadInput/loadInput";
 import MenuText from "../menuText/menuText";
-import { DispatchProp, useDispatch, useSelector } from "react-redux";
-
-// import { Page } from "../models/modelsOld";
+import { useAppSelector } from "../../redux/hooks";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page);
-  const showMenuText = useSelector((state) => state.showMenuText);
-
+  const elements = useAppSelector((state) => state.elementsPage);
+  const showMenuText = useAppSelector((state) => state.menuText);
+  useEffect(() => console.log(showMenuText));
   return (
     <div className="App">
       <Page />
-      <ButtonDownload {...page} />
+      <ButtonDownload {...elements} />
       <LoadInput />
       <Menu />
       {showMenuText ? (

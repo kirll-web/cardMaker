@@ -9,27 +9,26 @@ import {
   FilterProps,
 } from "../models/models";
 
-import { useDispatch, useSelector } from "react-redux";
+import { doc } from "../models/data";
+import { useAppSelector } from "../../redux/hooks";
 
 import style from "./canvas.module.css";
 
 const Canvas = () => {
   const ref = useRef(null);
-
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page);
-
+  const elements = useAppSelector((state) => state.elementsPage);
+  console.log(elements);
   useEffect(() => {
     const canvas = ref.current! as HTMLCanvasElement;
     const context = canvas.getContext("2d");
-    canvas.width = page.width;
-    canvas.height = page.height;
-    canvas.style.top = `${page.yPos}%`;
-    canvas.style.left = `${page.xPos}%`;
+    canvas.width = doc.page.width;
+    canvas.height = doc.page.height;
+    canvas.style.top = `${doc.page.yPos}%`;
+    canvas.style.left = `${doc.page.xPos}%`;
     context!.clearRect(0, 0, canvas.width, canvas.height);
 
     Promise.all(
-      page.elements.map(
+      elements.map(
         (
           element:
             | TextBlockProps
@@ -131,7 +130,7 @@ const Canvas = () => {
         }
       );
     });
-  }, [page.elements]);
+  }, [elements]);
 
   return <canvas className={style.page} ref={ref}></canvas>;
 };

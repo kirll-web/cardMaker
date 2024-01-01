@@ -10,9 +10,10 @@ import {
 } from "../models/models";
 
 import SelectionArea from "../selectionArea/selectionArea";
-
+import { doc } from "../models/data";
 import style from "./page.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
 
 type Props = {
   page: PageProps;
@@ -36,15 +37,12 @@ type Props = {
 };
 
 const Page = () => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page);
-  const newElement = useSelector((state) => state.newElement);
-
+  const newElement = useAppSelector((state) => state.newElement);
   const stylePage = {
-    width: `${page.width}px`,
-    height: `${page.height}px`,
-    top: `${page.yPos}%`,
-    left: `${page.xPos}%`,
+    width: `${doc.page.width}px`,
+    height: `${doc.page.height}px`,
+    top: `${doc.page.yPos}%`,
+    left: `${doc.page.xPos}%`,
   };
 
   return (

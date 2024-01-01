@@ -15,7 +15,7 @@ import {
   ChangeEvent,
 } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppActions, useAppSelector } from "../../redux/hooks";
 
 import {} from "../models/models";
 import styles from "./menuText.module.css";
@@ -30,42 +30,32 @@ type Props = {
 const MenuText = (props: Props) => {
   const { dataMenuText } = props;
 
-  const dispatch = useDispatch();
-  const newElement = useSelector((state) => state.newElement);
+  const newElement = useAppSelector(
+    (state) => state.newElement as TextBlockProps
+  );
+  const { updateNewElementAction } = useAppActions();
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      key: "color",
-      value: element.getAttribute("data-color"),
-    });
+    updateNewElementAction("color", element.getAttribute("data-color")!);
   };
 
   const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      fontFamily: "color",
-      value: target.value,
-    });
+    updateNewElementAction("fontFamily", target.value!);
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: "UPDATE_ELEMENT",
-      key: e.target.value,
-      value: e.target.checked,
-    });
+    updateNewElementAction(e.target.value, e.target.checked);
   };
 
   const changeTextElement = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: "UPDATE_ELEMENT", key: "value", value: e.target.value });
+    updateNewElementAction("value", e.target.value);
   };
 
   const changeTextSize = (e: ChangeEvent<HTMLInputElement>) => {
     const fontSize = e.target.value === "" ? 0 : parseInt(e.target.value);
-    dispatch({ type: "UPDATE_ELEMENT", key: "fontSize", value: fontSize });
+    updateNewElementAction("fontSize", fontSize);
   };
 
   return (
@@ -95,7 +85,7 @@ const MenuText = (props: Props) => {
       <input
         onChange={changeTextElement}
         type="text"
-        value={newElement.value}
+        value={newElement!.value}
       />
       <input onChange={changeTextStyle} type="checkbox" value={"bold"} />
       <input onChange={changeTextStyle} type="checkbox" value={"italic"} />

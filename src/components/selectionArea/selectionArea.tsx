@@ -6,62 +6,37 @@ import Circle from "../graphicObjects/circle/circle";
 import Rectangle from "../graphicObjects/rectangle/rectangle";
 import Image from "../graphicObjects/image/image";
 import Filter from "../filter/filter";
-import { Dispatch, SetStateAction } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppActions } from "../../redux/hooks";
 
 import { useDnD } from "../../hooks/useDnD/useDnD";
 
 import ResizeArea from "../resizeArea/resizeArea";
 
 import {
-  PageProps,
   TextBlockProps,
   ImageBlockProps,
   CircleProps,
   RectangleProps,
   FilterProps,
-  MenuText,
 } from "../models/models";
 
-type Props = {
-  newElement:
-    | TextBlockProps
-    | ImageBlockProps
-    | CircleProps
-    | RectangleProps
-    | FilterProps;
-  setPage: Dispatch<SetStateAction<PageProps>>;
-  setNewElement: Dispatch<
-    SetStateAction<
-      | TextBlockProps
-      | ImageBlockProps
-      | CircleProps
-      | RectangleProps
-      | FilterProps
-    >
-  >;
-  stateMenu: MenuText;
-  pageX: number;
-  pageY: number;
-  setShowMenuText: Dispatch<SetStateAction<boolean>>;
-};
-
 const SelectionArea = () => {
-  const dispatch = useDispatch();
-  const newElement = useSelector((state) => state.newElement);
-
-  const styleArea = {
-    width: newElement.width,
-    height: newElement.height,
-    top: newElement.yPos,
-    left: newElement.xPos,
-  };
+  const newElement = useAppSelector((state) => state.newElement!);
+  const { updateNewElementAction } = useAppActions();
+  const { updateElementsPageAction } = useAppActions();
+  const { showMenuTextAction } = useAppActions();
+  const { deleteNewElementAction } = useAppActions();
 
   const { registerDndItem } = useDnD();
 
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | HTMLImageElement>(null);
   const dndControlRef = useRef<HTMLDivElement>(null);
   const refAreaWrapper = useRef<HTMLDivElement>(null);
+
+  const styleProps = {
+    left: newElement.xPos,
+    top: newElement.yPos,
+  };
 
   const addElement = (
     newElement:
@@ -73,29 +48,30 @@ const SelectionArea = () => {
   ) => {
     switch (newElement.type) {
       case "text":
-        return <TextBlock {...newElement} />; //* поменять переданные элементы на stateMenu. Может возникнуть проблема с типами.
+        return <TextBlock refItem={ref} />;
       case "circle":
-        return <Circle {...newElement} />;
+        return <Circle refItem={ref} />;
       case "rectangle":
-        return <Rectangle {...newElement} />;
+        return <Rectangle refItem={ref} />;
       case "image":
-        return <Image {...newElement} />;
+        return <Image refItem={ref} />;
       case "filter":
-        return <Filter {...newElement} />;
+        return <Filter refItem={ref} />;
       default:
         return null;
     }
   };
 
   const deleteNewItem = () => {
-    dispatch({ type: "SHOW_MENUTEXT", show: false });
-    dispatch({ type: "DELETE_ELEMENT" });
+    showMenuTextAction(false);
+    deleteNewElementAction();
   };
 
   const addElemToCanvas = (e: MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
-      dispatch({ type: "UPDATE_ELEMENTS", element: newElement });
-      deleteNewItem();
+      showMenuTextAction(false);
+      updateElementsPageAction(newElement);
+      deleteNewElementAction();
     }
   };
 
@@ -120,22 +96,15 @@ const SelectionArea = () => {
         },
         onDrop: (dropEvent: MouseEvent) => {
           dropEvent.stopPropagation();
-          dispatch({
-            type: "UPDATE_ELEMENT",
-            key: "xPos",
-            value:
-              dropEvent.clientX +
-              (newElement.xPos - mouseDownEvent.clientX) +
-              3,
-          });
-          dispatch({
-            type: "UPDATE_ELEMENT",
-            key: "yPos",
-            value:
-              dropEvent.clientY +
-              (newElement.yPos - mouseDownEvent.clientY) +
-              5,
-          });
+          updateNewElementAction(
+            "xPos",
+            dropEvent.clientX + (newElement.xPos - mouseDownEvent.clientX) + 3
+          );
+
+          updateNewElementAction(
+            "yPos",
+            dropEvent.clientY + (newElement.yPos - mouseDownEvent.clientY) + 5
+          );
         },
       });
     };
@@ -145,15 +114,15 @@ const SelectionArea = () => {
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [newElement.width, newElement.height, newElement.xPos, newElement.yPos]);
-
+  }, [newElement.xPos, newElement.yPos]);
+  console.log(ref);
   return (
     <div
       ref={refAreaWrapper}
       className={styles.selectionAreaWrapper}
       onClick={addElemToCanvas}
     >
-      <div style={styleArea} ref={ref} className={styles.selectionArea}>
+      <div style={styleProps} className={styles.selectionArea}>
         <div ref={dndControlRef} className={styles.dndBlock}></div>
         {newElement.type !== "text" ? <ResizeArea refResize={ref} /> : null}
         {addElement(newElement)}

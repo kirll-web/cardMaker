@@ -14,7 +14,7 @@ import "../resource/fonts/YanoneKaffeesatz-Regular.ttf";
 import "../resource/fonts/YanoneKaffeesatz-SemiBold.ttf";
 
 import { Provider } from "react-redux";
-import store from "./store/main";
+import { store } from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>

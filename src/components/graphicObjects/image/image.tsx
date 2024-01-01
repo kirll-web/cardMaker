@@ -2,30 +2,29 @@ import { useState, RefObject } from "react";
 import { ImageBlockProps } from "../../models/models";
 import SelectionArea from "../../selectionArea/selectionArea";
 import style from "./image.module.css";
-
+import { useAppSelector } from "../../../redux/hooks";
 type Props = {
-  props: ImageBlockProps;
-  ref: RefObject<HTMLDivElement>;
+  refItem: RefObject<HTMLImageElement>;
 };
-
-const Image = (props: ImageBlockProps) => {
-  const [activeSelectionArea, setActiveSelectionArea] = useState(false);
-
-  const [state, setState] = useState(props);
+const Image = (props: Props) => {
+  const { refItem } = props;
+  const newElement = useAppSelector(
+    (state) => state.newElement as ImageBlockProps
+  );
 
   const styleProps = {
     left: 0,
     top: 0,
-    width: "100%",
-    // height: `${state.height}px`,
+    width: `${newElement.width}px`,
   };
 
   return (
     <img
+      ref={refItem}
       className={style.image}
       style={styleProps}
-      src={state.url}
-      alt={state.id}
+      src={newElement.url}
+      alt={newElement.id}
     />
   );
 };
