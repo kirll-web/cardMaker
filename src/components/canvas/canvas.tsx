@@ -13,12 +13,6 @@ import style from "./canvas.module.css";
 
 const Canvas = (props: PageProps) => {
   const ref = useRef(null);
-  //* TODO: ПОСМОТРЕТЬ КАК ОТЫГРЫВАЕТ USEFFECT ПРИ ДОБАВЛЕНИИ ЭЛЕМЕНТА
-
-  // useEffect(() => {
-  //   const canvas = ref.current! as HTMLCanvasElement;
-
-  // });
 
   useEffect(() => {
     const canvas = ref.current! as HTMLCanvasElement;
@@ -75,15 +69,15 @@ const Canvas = (props: PageProps) => {
             | FilterProps
         ) => {
           const ctx = canvas.getContext("2d")!;
-          ctx!.beginPath();
           ctx.globalAlpha = 1;
           switch (element.type) {
             case "text":
               ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
               ctx!.fillStyle = element.color;
-              ctx!.fillText(element.value, element.xPos, element.yPos);
+              ctx!.fillText(element.value, element.xPos + 3, element.yPos + 22);
               break;
             case "circle":
+              ctx!.beginPath();
               ctx.ellipse(
                 element.xPos + element.width / 2 + 4,
                 element.yPos + element.height / 2 + 4,
@@ -118,13 +112,14 @@ const Canvas = (props: PageProps) => {
               break;
             case "filter":
               ctx!.fillStyle = element.colorOfFilter;
-              ctx.globalAlpha = 0.5;
+              ctx.globalAlpha = element.opacity;
               ctx!.fillRect(
                 element.xPos,
                 element.yPos,
                 element.width,
                 element.height
               );
+              ctx.globalAlpha = 1;
               break;
             default:
               return null;
@@ -132,7 +127,7 @@ const Canvas = (props: PageProps) => {
         }
       );
     });
-  });
+  }, [props.elements]);
 
   return <canvas className={style.page} ref={ref}></canvas>;
 };
