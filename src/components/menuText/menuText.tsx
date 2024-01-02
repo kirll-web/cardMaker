@@ -1,12 +1,4 @@
-import {
-  DataMenuText,
-  MenuText as MenuTextType,
-  TextBlockProps,
-  ImageBlockProps,
-  CircleProps,
-  RectangleProps,
-  FilterProps,
-} from "../models/models";
+import { DataMenuText, TextBlockProps } from "../models/models";
 import {
   Dispatch,
   HTMLInputTypeAttribute,

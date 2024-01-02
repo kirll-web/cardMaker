@@ -8,7 +8,6 @@ import {
   CircleProps,
   RectangleProps,
   FilterProps,
-  MenuText as MenuTextType,
 } from "../models/models";
 import { doc } from "../models/data";
 import ButtonDownload from "../buttonDownload/buttonDownload";

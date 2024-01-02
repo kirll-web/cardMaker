@@ -90,7 +90,7 @@ const SelectionArea = (props: Props) => {
     setNewElement(() => null!);
   };
 
-  const addElemToCanvas = (e: MouseEvent) => {
+  const addElemToCanvas = (e: React.MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
       setPage((page: PageProps) => {
         return {
