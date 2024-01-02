@@ -53,6 +53,7 @@ const Menu = (props: props) => {
       yPos: 200,
       url: "../../../resource/1.png",
       allowedFormat: ["JPG", "JPEG", "PNG"],
+      pic: null,
     };
     addElement(elem);
   };
