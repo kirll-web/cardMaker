@@ -416,6 +416,7 @@ const colors: Colors = [
   "#ff0000",
   "#ffffff",
   "#000000",
+  "#CD5700",
 ];
 
 const fonts: Fonts = [
