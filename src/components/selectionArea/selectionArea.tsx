@@ -150,7 +150,7 @@ const SelectionArea = (props: Props) => {
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [newElement.width, newElement.height, newElement.xPos, newElement.yPos]);
+  }, [newElement]);
 
   return (
     <div
