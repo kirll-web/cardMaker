@@ -1,5 +1,3 @@
-import { RefObject } from "react";
-
 import { RectangleProps } from "../../models/models";
 import style from "./rectangle.module.css";
 import { useAppSelector } from "../../../redux/hooks";

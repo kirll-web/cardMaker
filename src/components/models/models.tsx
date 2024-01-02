@@ -20,7 +20,7 @@ type TextBlockProps = Coordinates &
     value: string;
     fontSize: number;
     fontFamily: string;
-    color: string;
+    backgroundColor: string;
     bold: boolean;
     italic: boolean;
     underline: boolean;
@@ -51,7 +51,7 @@ type FilterProps = Block & {
   name: string;
   type: "filter";
   id: string;
-  colorOfFilter: string;
+  backgroundColor: string;
   opacity: number;
 };
 
@@ -118,6 +118,7 @@ type Doc = {
   filterCollection: FilterCollection;
   dataMenuText: DataMenuText;
   defaultMenuText: TextBlockProps;
+  colors: Colors;
 };
 
 export type {

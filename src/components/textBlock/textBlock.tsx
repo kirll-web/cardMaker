@@ -1,5 +1,3 @@
-import { RefObject, useState } from "react";
-
 import { TextBlockProps } from "../models/models";
 
 import style from "./textBlock.module.css";
@@ -13,10 +11,12 @@ const TextBlock = () => {
   const styleProps = {
     fontSize: `${newElement.fontSize}px`,
     fontFamily: `${newElement.fontFamily}, sans-serif`,
-    color: `${newElement.color}`,
+    color: `${newElement.backgroundColor}`,
     fontWeight: newElement.bold ? "700" : "400",
     fontStyle: newElement.italic ? "italic" : "normal",
-    textDecoration: newElement.underline ? "underline" : "none",
+    borderBottom: newElement.underline
+      ? `3px solid ${newElement.backgroundColor}`
+      : "none",
   };
 
   return (

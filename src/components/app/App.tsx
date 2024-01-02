@@ -8,10 +8,14 @@ import Page from "../page/page";
 import LoadInput from "../loadInput/loadInput";
 import MenuText from "../menuText/menuText";
 import { useAppSelector } from "../../redux/hooks";
+import MenuGraphicObject from "../menuGraphicObject/mienuGraphicObject";
 
 const App = () => {
   const elements = useAppSelector((state) => state.elementsPage);
   const showMenuText = useAppSelector((state) => state.menuText);
+  const showMenuGraphicObject = useAppSelector(
+    (state) => state.menuGraphicObject
+  );
   useEffect(() => console.log(showMenuText));
   return (
     <div className="App">
@@ -19,12 +23,8 @@ const App = () => {
       <ButtonDownload {...elements} />
       <LoadInput />
       <Menu />
-      {showMenuText ? (
-        <MenuText
-          dataMenuText={doc.dataMenuText}
-          defaultMenuText={doc.defaultMenuText}
-        />
-      ) : null}
+      {showMenuText ? <MenuText /> : null}
+      {showMenuGraphicObject ? <MenuGraphicObject /> : null}
     </div>
   );
 };

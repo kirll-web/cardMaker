@@ -3,36 +3,24 @@ import { Dispatch, MouseEvent, SetStateAction, ChangeEvent } from "react";
 
 import { useAppActions, useAppSelector } from "../../redux/hooks";
 
-import {} from "../models/models";
+import MenuColor from "../menuColor/menuColor";
 import styles from "./menuText.module.css";
+import { doc } from "../models/data";
 
-type Props = {
-  dataMenuText: DataMenuText;
-  defaultMenuText: TextBlockProps;
-  newElement: TextBlockProps;
-  setNewElement: Dispatch<SetStateAction<TextBlockProps>>;
-};
-
-const MenuText = (props: Props) => {
-  const { dataMenuText } = props;
+const MenuText = () => {
+  const { dataMenuText } = doc;
 
   const newElement = useAppSelector(
     (state) => state.newElement as TextBlockProps
   );
   const {
     updateBoldTextNewElementAction,
-    updateColorTextNewElementAction,
     updateFontFamilyNewElementAction,
     updateFontSizeTextNewElementAction,
     updateValueTextNewElementAction,
     updateItalicTextNewElementAction,
     updateUnderlineTextNewElementAction,
   } = useAppActions();
-
-  const changeColor = (e: MouseEvent) => {
-    const element = e.target as HTMLElement;
-    updateColorTextNewElementAction(element.getAttribute("data-color")!);
-  };
 
   const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
@@ -71,20 +59,7 @@ const MenuText = (props: Props) => {
           </option>
         ))}
       </select>
-      <div id="selectColor" className={styles.selectColor}>
-        {dataMenuText.colors.map((color) => (
-          <div key={color} className={styles.colorCheckboxWrapper}>
-            <div
-              onClick={changeColor}
-              data-color={color}
-              className={`${styles.colorLabel} ${
-                newElement.color === color ? styles.checkedColorCheckbox : null
-              }`}
-              style={{ backgroundColor: color }}
-            ></div>
-          </div>
-        ))}
-      </div>
+      <MenuColor />
       <input onChange={changeTextSize} type="number" />
       <input
         onChange={changeTextElement}

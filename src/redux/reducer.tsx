@@ -24,8 +24,11 @@ const elementsPageReducer = (
   action: Action
 ) => {
   switch (action.type) {
-    case Actions.UPDATE_ELEMENTS_PAGE: {
+    case Actions.ADD_ELEMENT_PAGE: {
       return [...state, action.payload.element];
+    }
+    case Actions.LOAD_ELEMENTS_PAGE: {
+      return [...action.payload.elements];
     }
     default:
       return state;
@@ -65,7 +68,7 @@ const newElementReducer = (
       return { ...state, height: action.payload.value };
     }
     case Actions.UPDATE_COLOR: {
-      return { ...state, color: action.payload.value };
+      return { ...state, backgroundColor: action.payload.value };
     }
     case Actions.UPDATE_VALUE_TEXT: {
       return { ...state, value: action.payload.value };
@@ -82,6 +85,7 @@ const newElementReducer = (
     case Actions.UPDATE_ITALIC: {
       return { ...state, italic: action.payload.value };
     }
+
     default:
       return state;
   }
@@ -97,10 +101,21 @@ const menuTextReducer = (state: boolean = false, action: Action) => {
   }
 };
 
+const menuGraphicObjectReducer = (state: boolean = false, action: Action) => {
+  switch (action.type) {
+    case Actions.SHOW_MENU_GRAPHIC_OBJECT: {
+      return action.payload.show;
+    }
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   elementsPage: elementsPageReducer,
   newElement: newElementReducer,
   menuText: menuTextReducer,
+  menuGraphicObject: menuGraphicObjectReducer,
 });
 
 export { rootReducer };

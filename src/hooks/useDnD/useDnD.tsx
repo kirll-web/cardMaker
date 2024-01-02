@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useRef } from "react";
+import { RefObject, useCallback } from "react";
 
 type DndItemInfo = {
   elementRef: RefObject<HTMLDivElement>;

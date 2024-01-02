@@ -1,13 +1,17 @@
-import { PageProps } from "../models/models";
+import {
+  CircleProps,
+  FilterProps,
+  ImageBlockProps,
+  TextBlockProps,
+  RectangleProps,
+} from "../models/models";
 import { Dispatch, SetStateAction } from "react";
 
 import { ChangeEvent } from "react";
-type Props = {
-  setPage: Dispatch<SetStateAction<PageProps>>;
-};
+import { useAppActions } from "../../redux/hooks";
 
-const LoadInput = (props: Props) => {
-  const { setPage } = props;
+const LoadInput = () => {
+  const { loadElementsToPageAction } = useAppActions();
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -23,17 +27,15 @@ const LoadInput = (props: Props) => {
           throw Error("invalid file type: " + typeof reader.result);
         if (file.type !== "application/json")
           throw Error("invalid file: " + file.type);
-        const dataParsing = JSON.parse(reader.result);
-        setPage(() => {
-          return {
-            id: dataParsing.id,
-            width: dataParsing.width,
-            height: dataParsing.height,
-            yPos: dataParsing.yPos,
-            xPos: dataParsing.xPos,
-            elements: [...dataParsing.elements],
-          };
-        });
+        const dataParsing: Array<
+          | CircleProps
+          | FilterProps
+          | ImageBlockProps
+          | TextBlockProps
+          | RectangleProps
+        > = Object.values(JSON.parse(reader.result));
+        console.log(dataParsing);
+        loadElementsToPageAction(dataParsing);
       } catch (error) {
         alert(error);
       }

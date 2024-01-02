@@ -12,7 +12,6 @@ import {
 import SelectionArea from "../selectionArea/selectionArea";
 import { doc } from "../models/data";
 import style from "./page.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useAppSelector } from "../../redux/hooks";
 
 type Props = {

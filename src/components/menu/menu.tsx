@@ -18,14 +18,18 @@ import {
 import { useAppActions } from "../../redux/hooks";
 
 const Menu = () => {
-  const { addNewElementAction, showMenuTextAction } = useAppActions();
+  const {
+    addNewElementAction,
+    showMenuTextAction,
+    showMenuGraphicObjectAction,
+  } = useAppActions();
 
   const addTextBlock = () => {
     const elem: TextBlockProps = {
       ...defaultTextBlock,
       id: `text${Math.floor(Math.random() * 101)}`,
     };
-
+    showMenuTextAction(false);
     addNewElementAction(elem);
     showMenuTextAction(true);
   };
@@ -45,6 +49,8 @@ const Menu = () => {
       id: `rectangle${Math.floor(Math.random() * 101)}`,
     };
     showMenuTextAction(false);
+    showMenuGraphicObjectAction(false);
+    showMenuGraphicObjectAction(true);
     addNewElementAction(elem);
   };
 
@@ -54,6 +60,8 @@ const Menu = () => {
       id: `filter${Math.floor(Math.random() * 101)}`,
     };
     showMenuTextAction(false);
+    showMenuGraphicObjectAction(false);
+    showMenuGraphicObjectAction(true);
     addNewElementAction(elem);
   };
 

@@ -72,14 +72,30 @@ const Canvas = () => {
             | FilterProps
         ) => {
           const ctx = canvas.getContext("2d")!;
-          ctx!.beginPath();
           ctx.globalAlpha = 1;
+          ctx.beginPath();
+
           switch (element.type) {
             case "text":
-              ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
-              ctx!.fillStyle = element.color;
+              const font = `${element.italic ? "italic" : ""} ${
+                element.bold ? "bold" : ""
+              } ${element.fontSize}px ${element.fontFamily}`;
+              ctx.font = font;
+              console.log(font);
+              ctx.fillStyle = element.backgroundColor;
+              console.log(ctx);
+              if (element.underline) {
+                let { width } = ctx.measureText(element.value);
+                const height = element.fontSize;
+                ctx.fillRect(
+                  element.xPos + 5,
+                  element.yPos + height + 5,
+                  width,
+                  3
+                );
+              }
               ctx.textBaseline = "top";
-              ctx!.fillText(element.value, element.xPos + 5, element.yPos + 5);
+              ctx.fillText(element.value, element.xPos + 5, element.yPos + 5);
               break;
             case "circle":
               ctx.ellipse(
@@ -92,8 +108,8 @@ const Canvas = () => {
                 2 * Math.PI
               );
               ctx.stroke();
-              ctx!.fillStyle = element.backgroundColor;
-              ctx!.fill();
+              ctx.fillStyle = element.backgroundColor;
+              ctx.fill();
               break;
             case "rectangle":
               ctx!.fillStyle = element.backgroundColor;
@@ -106,7 +122,7 @@ const Canvas = () => {
               console.log(element.backgroundColor);
               break;
             case "image":
-              ctx!.drawImage(
+              ctx.drawImage(
                 element.pic as HTMLImageElement,
                 element.xPos,
                 element.yPos,
@@ -115,9 +131,9 @@ const Canvas = () => {
               );
               break;
             case "filter":
-              ctx!.fillStyle = element.colorOfFilter;
+              ctx.fillStyle = element.backgroundColor;
               ctx.globalAlpha = element.opacity;
-              ctx!.fillRect(
+              ctx.fillRect(
                 element.xPos,
                 element.yPos,
                 element.width,

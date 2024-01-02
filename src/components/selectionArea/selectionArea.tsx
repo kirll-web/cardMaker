@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./selectionArea.module.css";
 
 import TextBlock from "../textBlock/textBlock";
@@ -31,9 +31,12 @@ const SelectionArea = () => {
         | CircleProps
         | ImageBlockProps
   );
-  const { updateXPosNewElementAction, updateYPosNewElementAction } =
-    useAppActions();
-  const { updateElementsPageAction } = useAppActions();
+  const {
+    updateXPosNewElementAction,
+    updateYPosNewElementAction,
+    showMenuGraphicObjectAction,
+  } = useAppActions();
+  const { addElementToPageAction } = useAppActions();
   const { showMenuTextAction } = useAppActions();
   const { deleteNewElementAction } = useAppActions();
 
@@ -83,13 +86,15 @@ const SelectionArea = () => {
 
   const deleteNewItem = () => {
     showMenuTextAction(false);
+    showMenuGraphicObjectAction(false);
     deleteNewElementAction();
   };
 
   const addElemToCanvas = (e: React.MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
       showMenuTextAction(false);
-      updateElementsPageAction(newElement);
+      showMenuGraphicObjectAction(false);
+      addElementToPageAction(newElement);
       deleteNewElementAction();
     }
   };

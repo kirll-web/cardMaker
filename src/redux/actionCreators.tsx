@@ -128,7 +128,7 @@ function updateItalicTextNewElementAction(value: boolean) {
   };
 }
 
-function updateElementsPageAction(
+function addElementToPageAction(
   element:
     | TextBlockProps
     | ImageBlockProps
@@ -137,9 +137,26 @@ function updateElementsPageAction(
     | FilterProps
 ) {
   return {
-    type: Actions.UPDATE_ELEMENTS_PAGE,
+    type: Actions.ADD_ELEMENT_PAGE,
     payload: {
       element,
+    },
+  };
+}
+
+function loadElementsToPageAction(
+  elements: Array<
+    | TextBlockProps
+    | ImageBlockProps
+    | RectangleProps
+    | CircleProps
+    | FilterProps
+  >
+) {
+  return {
+    type: Actions.LOAD_ELEMENTS_PAGE,
+    payload: {
+      elements,
     },
   };
 }
@@ -147,6 +164,15 @@ function updateElementsPageAction(
 function showMenuTextAction(show: boolean) {
   return {
     type: Actions.SHOW_MENUTEXT,
+    payload: {
+      show,
+    },
+  };
+}
+
+function showMenuGraphicObjectAction(show: boolean) {
+  return {
+    type: Actions.SHOW_MENU_GRAPHIC_OBJECT,
     payload: {
       show,
     },
@@ -167,6 +193,8 @@ export {
   updateXPosNewElementAction,
   updateYPosNewElementAction,
   updateItalicTextNewElementAction,
-  updateElementsPageAction,
+  addElementToPageAction,
   showMenuTextAction,
+  loadElementsToPageAction,
+  showMenuGraphicObjectAction,
 };

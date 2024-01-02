@@ -6,7 +6,6 @@ import {
   RectangleProps,
   CircleProps,
   ImageBlockProps,
-  SelectionAreaProps,
   HistoryCommands,
   FilterCollection,
   TemplateProps,
@@ -14,11 +13,10 @@ import {
   Colors,
   Fonts,
   DataMenuText,
-  MenuText,
 } from "./models";
 
 const greenFilter: FilterProps = {
-  colorOfFilter: "#3fc11c",
+  backgroundColor: "#3fc11c",
   name: "greenFilter",
   type: "filter",
   id: "filter1",
@@ -31,7 +29,7 @@ const greenFilter: FilterProps = {
 
 const blueFilter: FilterProps = {
   name: "blueFilter",
-  colorOfFilter: "#009afc",
+  backgroundColor: "#009afc",
   type: "filter",
   id: "filter2",
   opacity: 0.5,
@@ -43,7 +41,7 @@ const blueFilter: FilterProps = {
 
 const redFilter: FilterProps = {
   name: "redFilter",
-  colorOfFilter: "#fc0000",
+  backgroundColor: "#fc0000",
   type: "filter",
   id: "filter3",
   opacity: 0.5,
@@ -55,7 +53,7 @@ const redFilter: FilterProps = {
 
 const grayFilter: FilterProps = {
   name: "grayFilter",
-  colorOfFilter: "#909090",
+  backgroundColor: "#909090",
   type: "filter",
   id: "filter4",
   opacity: 0.5,
@@ -96,7 +94,7 @@ const page2: PageProps = {
       value: "Привет, Мир",
       fontSize: 20,
       fontFamily: "Roboto",
-      color: "#000000",
+      backgroundColor: "#000000",
       bold: true,
       xPos: 0,
       yPos: 0,
@@ -109,7 +107,7 @@ const page2: PageProps = {
       value: "HelloWorld",
       fontSize: 17,
       fontFamily: "Roboto",
-      color: "#565656",
+      backgroundColor: "#565656",
       bold: true,
       xPos: 100,
       yPos: 100,
@@ -144,7 +142,7 @@ const page3: PageProps = {
       value: "Привет Мир",
       fontSize: 20,
       fontFamily: "Roboto",
-      color: "#000000",
+      backgroundColor: "#000000",
       bold: true,
       xPos: 0,
       yPos: 0,
@@ -157,7 +155,7 @@ const page3: PageProps = {
       value: "HelloWorld",
       fontSize: 17,
       fontFamily: "Roboto",
-      color: "#565656",
+      backgroundColor: "#565656",
       bold: true,
       xPos: 100,
       yPos: 100,
@@ -185,6 +183,7 @@ const page3: PageProps = {
       xPos: 0,
       yPos: 300,
     },
+    greenFilter,
     {
       id: "rectangle1",
       type: "rectangle",
@@ -205,7 +204,6 @@ const page3: PageProps = {
       xPos: 0,
       yPos: 0,
     },
-    greenFilter,
   ],
 };
 
@@ -219,7 +217,7 @@ const template1: TemplateProps = {
       value: "С днём",
       fontSize: 23,
       fontFamily: "Roboto",
-      color: "#000000",
+      backgroundColor: "#000000",
       bold: true,
       xPos: 300,
       yPos: 100,
@@ -232,7 +230,7 @@ const template1: TemplateProps = {
       value: "ковыряния в носу!",
       fontSize: 30,
       fontFamily: "Roboto",
-      color: "#565656",
+      backgroundColor: "#565656",
       bold: true,
       xPos: 350,
       yPos: 490,
@@ -263,7 +261,7 @@ const template2: TemplateProps = {
       value: "С днём",
       fontSize: 23,
       fontFamily: "Roboto",
-      color: "#000000",
+      backgroundColor: "#000000",
       bold: true,
       xPos: 300,
       yPos: 100,
@@ -276,7 +274,7 @@ const template2: TemplateProps = {
       value: "зелёных цифр в СберИнвестиции!",
       fontSize: 30,
       fontFamily: "Roboto",
-      color: "#565656",
+      backgroundColor: "#565656",
       bold: true,
       xPos: 250,
       yPos: 490,
@@ -301,7 +299,6 @@ const template3: TemplateProps = {
   id: "template1",
   name: "template1",
   blocks: [
-    greenFilter,
     {
       id: "img1",
       type: "image",
@@ -319,7 +316,7 @@ const template3: TemplateProps = {
       value: "С днём",
       fontSize: 50,
       fontFamily: "Roboto",
-      color: "#000000",
+      backgroundColor: "#000000",
       bold: true,
       xPos: 300,
       yPos: 100,
@@ -332,14 +329,14 @@ const template3: TemplateProps = {
       value: "красных цифр в СберИнвестиции...",
       fontSize: 100,
       fontFamily: "Roboto",
-      color: "#565656",
+      backgroundColor: "#565656",
       bold: true,
       xPos: 250,
       yPos: 490,
       italic: false,
       underline: false,
     },
-
+    greenFilter,
     {
       id: "circle1",
       type: "circle",
@@ -440,7 +437,7 @@ const defaultMenuText: TextBlockProps = {
   xPos: 400,
   yPos: 300,
   fontSize: 20,
-  color: "#000000",
+  backgroundColor: "#000000",
   fontFamily: "Roboto",
   bold: false,
   underline: false,
@@ -487,8 +484,8 @@ const defaultTextBlock: TextBlockProps = {
   value: "Добавить текст",
   fontSize: 30,
   fontFamily: "Roboto",
-  color: "#000000",
-  bold: true,
+  backgroundColor: "#000000",
+  bold: false,
   xPos: 250,
   yPos: 490,
   italic: false,
@@ -504,6 +501,7 @@ const doc: Doc = {
   filterCollection,
   defaultMenuText,
   dataMenuText,
+  colors,
 };
 
 export {
@@ -513,4 +511,5 @@ export {
   defaultСircle,
   defaultTextBlock,
   defaultRectangle,
+  colors,
 };

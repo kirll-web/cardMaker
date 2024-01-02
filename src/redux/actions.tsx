@@ -20,8 +20,10 @@ enum Actions {
   UPDATE_UNDERLINE = "UPDATE_UNDERLINE",
   UPDATE_VALUE_TEXT = "UPDATE_VALUE_TEXT",
   DELETE_NEW_ELEMENT = "DELETE_NEW_ELEMENT",
-  UPDATE_ELEMENTS_PAGE = "UPDATE_ELEMENTS_PAGE",
+  ADD_ELEMENT_PAGE = "ADD_ELEMENT_PAGE",
   SHOW_MENUTEXT = "SHOW_MENUTEXT",
+  LOAD_ELEMENTS_PAGE = "LOAD_ELEMENTS_PAGE",
+  SHOW_MENU_GRAPHIC_OBJECT = "SHOW_MENU_GRAPHIC_OBJECT",
 }
 
 type addNewElementAction = {
@@ -118,8 +120,8 @@ type updateItalicTextNewElementAction = {
   };
 };
 
-type updateElementsPageAction = {
-  type: Actions.UPDATE_ELEMENTS_PAGE;
+type addElementToPageAction = {
+  type: Actions.ADD_ELEMENT_PAGE;
   payload: {
     element:
       | TextBlockProps
@@ -130,8 +132,28 @@ type updateElementsPageAction = {
   };
 };
 
+type loadElementsToPageAction = {
+  type: Actions.LOAD_ELEMENTS_PAGE;
+  payload: {
+    elements: Array<
+      | TextBlockProps
+      | ImageBlockProps
+      | RectangleProps
+      | CircleProps
+      | FilterProps
+    >;
+  };
+};
+
 type showMenuTextAction = {
   type: Actions.SHOW_MENUTEXT;
+  payload: {
+    show: boolean;
+  };
+};
+
+type showMenuGraphicObject = {
+  type: Actions.SHOW_MENU_GRAPHIC_OBJECT;
   payload: {
     show: boolean;
   };
@@ -152,6 +174,8 @@ type Action =
   | updateUnderlineTextNewElementAction
   | updateItalicTextNewElementAction
   | showMenuTextAction
-  | updateElementsPageAction;
+  | addElementToPageAction
+  | loadElementsToPageAction
+  | showMenuGraphicObject;
 
 export { Actions, type Action };
