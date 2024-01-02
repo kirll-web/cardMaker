@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 import {
-  PageProps,
   TextBlockProps,
   ImageBlockProps,
   CircleProps,
@@ -79,7 +78,8 @@ const Canvas = () => {
             case "text":
               ctx.font = ` ${element.fontSize}px ${element.fontFamily}`;
               ctx!.fillStyle = element.color;
-              ctx!.fillText(element.value, element.xPos, element.yPos);
+              ctx.textBaseline = "top";
+              ctx!.fillText(element.value, element.xPos + 5, element.yPos + 5);
               break;
             case "circle":
               ctx.ellipse(
@@ -116,7 +116,7 @@ const Canvas = () => {
               break;
             case "filter":
               ctx!.fillStyle = element.colorOfFilter;
-              ctx.globalAlpha = 0.5;
+              ctx.globalAlpha = element.opacity;
               ctx!.fillRect(
                 element.xPos,
                 element.yPos,

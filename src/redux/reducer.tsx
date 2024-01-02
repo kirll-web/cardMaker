@@ -1,6 +1,5 @@
 import { Action, Actions } from "./actions";
 import {
-  PageProps,
   TextBlockProps,
   ImageBlockProps,
   RectangleProps,
@@ -50,8 +49,38 @@ const newElementReducer = (
     case Actions.DELETE_NEW_ELEMENT: {
       return null;
     }
-    case Actions.UPDATE_NEW_ELEMENT: {
-      return { ...state, [`${action.payload.key}`]: action.payload.value };
+    case Actions.UPDATE_FONT_FAMILY: {
+      return { ...state, fontFamily: action.payload.value };
+    }
+    case Actions.UPDATE_X_POS: {
+      return { ...state, xPos: action.payload.value };
+    }
+    case Actions.UPDATE_Y_POS: {
+      return { ...state, yPos: action.payload.value };
+    }
+    case Actions.UPDATE_WIDTH: {
+      return { ...state, width: action.payload.value };
+    }
+    case Actions.UPDATE_HEIGHT: {
+      return { ...state, height: action.payload.value };
+    }
+    case Actions.UPDATE_COLOR: {
+      return { ...state, color: action.payload.value };
+    }
+    case Actions.UPDATE_VALUE_TEXT: {
+      return { ...state, value: action.payload.value };
+    }
+    case Actions.UPDATE_FONT_SIZE: {
+      return { ...state, fontSize: action.payload.value };
+    }
+    case Actions.UPDATE_BOLD: {
+      return { ...state, bold: action.payload.value };
+    }
+    case Actions.UPDATE_UNDERLINE: {
+      return { ...state, underline: action.payload.value };
+    }
+    case Actions.UPDATE_ITALIC: {
+      return { ...state, italic: action.payload.value };
     }
     default:
       return state;

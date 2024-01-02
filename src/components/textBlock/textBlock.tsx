@@ -5,11 +5,7 @@ import { TextBlockProps } from "../models/models";
 import style from "./textBlock.module.css";
 import { useAppSelector } from "../../redux/hooks";
 
-type Props = {
-  refItem: RefObject<HTMLDivElement>;
-};
-
-const TextBlock = (props: Props) => {
+const TextBlock = () => {
   const newElement = useAppSelector(
     (state) => state.newElement as TextBlockProps
   );
@@ -25,7 +21,6 @@ const TextBlock = (props: Props) => {
 
   return (
     <div
-      ref={props.refItem}
       onClick={(e: React.MouseEvent) => e.preventDefault()}
       className={style.textBlock}
       style={styleProps}

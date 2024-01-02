@@ -1,13 +1,8 @@
-import { RefObject, useState } from "react";
-
 import { CircleProps } from "../../models/models";
-import SelectionArea from "../../selectionArea/selectionArea";
 import style from "./circle.module.css";
 import { useAppSelector } from "../../../redux/hooks";
-type Props = {
-  refItem: RefObject<HTMLDivElement>;
-};
-const Circle = (props: Props) => {
+
+const Circle = () => {
   const newElement = useAppSelector((state) => state.newElement as CircleProps);
 
   const styleProps = {
@@ -15,13 +10,11 @@ const Circle = (props: Props) => {
     backgroundColor: `${newElement.backgroundColor}`,
     left: 0,
     top: 0,
-    width: `${newElement.width}px`,
-    height: `${newElement.height}px`,
+    width: `100%`,
+    height: `100%`,
   };
 
-  return (
-    <div ref={props.refItem} className={style.circle} style={styleProps}></div>
-  );
+  return <div className={style.circle} style={styleProps}></div>;
 };
 
 export default Circle;

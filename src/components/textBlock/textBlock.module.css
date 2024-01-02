@@ -1,4 +1,6 @@
 .textBlock {
     box-sizing: content-box;
     margin: 0;
+    line-height: 1;
+    padding: 0;
 }

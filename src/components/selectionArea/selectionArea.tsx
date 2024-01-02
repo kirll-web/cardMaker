@@ -21,8 +21,18 @@ import {
 } from "../models/models";
 
 const SelectionArea = () => {
-  const newElement = useAppSelector((state) => state.newElement!);
-  const { updateNewElementAction } = useAppActions();
+  const newElement = useAppSelector(
+    (state) =>
+      state.newElement! as
+        | ImageBlockProps
+        | TextBlockProps
+        | FilterProps
+        | RectangleProps
+        | CircleProps
+        | ImageBlockProps
+  );
+  const { updateXPosNewElementAction, updateYPosNewElementAction } =
+    useAppActions();
   const { updateElementsPageAction } = useAppActions();
   const { showMenuTextAction } = useAppActions();
   const { deleteNewElementAction } = useAppActions();
@@ -32,11 +42,20 @@ const SelectionArea = () => {
   const ref = useRef<HTMLDivElement | HTMLImageElement>(null);
   const dndControlRef = useRef<HTMLDivElement>(null);
   const refAreaWrapper = useRef<HTMLDivElement>(null);
-
-  const styleProps = {
-    left: newElement.xPos,
-    top: newElement.yPos,
-  };
+  let styleProps;
+  if (newElement.type != "text") {
+    styleProps = {
+      left: newElement.xPos,
+      top: newElement.yPos,
+      width: newElement.width,
+      height: newElement.height,
+    };
+  } else {
+    styleProps = {
+      left: newElement.xPos,
+      top: newElement.yPos,
+    };
+  }
 
   const addElement = (
     newElement:
@@ -48,15 +67,15 @@ const SelectionArea = () => {
   ) => {
     switch (newElement.type) {
       case "text":
-        return <TextBlock refItem={ref} />;
+        return <TextBlock />;
       case "circle":
-        return <Circle refItem={ref} />;
+        return <Circle />;
       case "rectangle":
-        return <Rectangle refItem={ref} />;
+        return <Rectangle />;
       case "image":
-        return <Image refItem={ref} />;
+        return <Image />;
       case "filter":
-        return <Filter refItem={ref} />;
+        return <Filter />;
       default:
         return null;
     }
@@ -67,7 +86,7 @@ const SelectionArea = () => {
     deleteNewElementAction();
   };
 
-  const addElemToCanvas = (e: MouseEvent) => {
+  const addElemToCanvas = (e: React.MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
       showMenuTextAction(false);
       updateElementsPageAction(newElement);
@@ -96,14 +115,11 @@ const SelectionArea = () => {
         },
         onDrop: (dropEvent: MouseEvent) => {
           dropEvent.stopPropagation();
-          updateNewElementAction(
-            "xPos",
-            dropEvent.clientX + (newElement.xPos - mouseDownEvent.clientX) + 3
+          updateXPosNewElementAction(
+            dropEvent.clientX + (newElement.xPos - mouseDownEvent.clientX)
           );
-
-          updateNewElementAction(
-            "yPos",
-            dropEvent.clientY + (newElement.yPos - mouseDownEvent.clientY) + 5
+          updateYPosNewElementAction(
+            dropEvent.clientY + (newElement.yPos - mouseDownEvent.clientY)
           );
         },
       });
@@ -122,7 +138,7 @@ const SelectionArea = () => {
       className={styles.selectionAreaWrapper}
       onClick={addElemToCanvas}
     >
-      <div style={styleProps} className={styles.selectionArea}>
+      <div ref={ref} style={styleProps} className={styles.selectionArea}>
         <div ref={dndControlRef} className={styles.dndBlock}></div>
         {newElement.type !== "text" ? <ResizeArea refResize={ref} /> : null}
         {addElement(newElement)}

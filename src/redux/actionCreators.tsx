@@ -29,11 +29,100 @@ function deleteNewElementAction() {
   };
 }
 
-function updateNewElementAction(key: string, value: string | number | boolean) {
+function updateFontFamilyNewElementAction(value: string) {
   return {
-    type: Actions.UPDATE_NEW_ELEMENT,
+    type: Actions.UPDATE_FONT_FAMILY,
     payload: {
-      key,
+      value,
+    },
+  };
+}
+
+function updateXPosNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_X_POS,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateYPosNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_Y_POS,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateWidthNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_WIDTH,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateHeightNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_HEIGHT,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateColorTextNewElementAction(value: string) {
+  return {
+    type: Actions.UPDATE_COLOR,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateValueTextNewElementAction(value: string) {
+  return {
+    type: Actions.UPDATE_VALUE_TEXT,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateFontSizeTextNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_FONT_SIZE,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateBoldTextNewElementAction(value: boolean) {
+  return {
+    type: Actions.UPDATE_BOLD,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateUnderlineTextNewElementAction(value: boolean) {
+  return {
+    type: Actions.UPDATE_UNDERLINE,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateItalicTextNewElementAction(value: boolean) {
+  return {
+    type: Actions.UPDATE_ITALIC,
+    payload: {
       value,
     },
   };
@@ -67,7 +156,17 @@ function showMenuTextAction(show: boolean) {
 export {
   addNewElementAction,
   deleteNewElementAction,
-  updateNewElementAction,
+  updateBoldTextNewElementAction,
+  updateFontFamilyNewElementAction,
+  updateHeightNewElementAction,
+  updateUnderlineTextNewElementAction,
+  updateWidthNewElementAction,
+  updateFontSizeTextNewElementAction,
+  updateValueTextNewElementAction,
+  updateColorTextNewElementAction,
+  updateXPosNewElementAction,
+  updateYPosNewElementAction,
+  updateItalicTextNewElementAction,
   updateElementsPageAction,
   showMenuTextAction,
 };

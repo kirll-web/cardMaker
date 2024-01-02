@@ -1,19 +1,5 @@
-import {
-  DataMenuText,
-  MenuText as MenuTextType,
-  TextBlockProps,
-  ImageBlockProps,
-  CircleProps,
-  RectangleProps,
-  FilterProps,
-} from "../models/models";
-import {
-  Dispatch,
-  HTMLInputTypeAttribute,
-  MouseEvent,
-  SetStateAction,
-  ChangeEvent,
-} from "react";
+import { DataMenuText, TextBlockProps } from "../models/models";
+import { Dispatch, MouseEvent, SetStateAction, ChangeEvent } from "react";
 
 import { useAppActions, useAppSelector } from "../../redux/hooks";
 
@@ -33,29 +19,47 @@ const MenuText = (props: Props) => {
   const newElement = useAppSelector(
     (state) => state.newElement as TextBlockProps
   );
-  const { updateNewElementAction } = useAppActions();
+  const {
+    updateBoldTextNewElementAction,
+    updateColorTextNewElementAction,
+    updateFontFamilyNewElementAction,
+    updateFontSizeTextNewElementAction,
+    updateValueTextNewElementAction,
+    updateItalicTextNewElementAction,
+    updateUnderlineTextNewElementAction,
+  } = useAppActions();
 
   const changeColor = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    updateNewElementAction("color", element.getAttribute("data-color")!);
+    updateColorTextNewElementAction(element.getAttribute("data-color")!);
   };
 
   const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    updateNewElementAction("fontFamily", target.value!);
+    updateFontFamilyNewElementAction(target.value!);
   };
 
   const changeTextStyle = (e: ChangeEvent<HTMLInputElement>) => {
-    updateNewElementAction(e.target.value, e.target.checked);
+    switch (e.target.value) {
+      case "bold":
+        updateBoldTextNewElementAction(e.target.checked);
+        break;
+      case "italic":
+        updateItalicTextNewElementAction(e.target.checked);
+        break;
+      case "underline":
+        updateUnderlineTextNewElementAction(e.target.checked);
+        break;
+    }
   };
 
   const changeTextElement = (e: ChangeEvent<HTMLInputElement>) => {
-    updateNewElementAction("value", e.target.value);
+    updateValueTextNewElementAction(e.target.value);
   };
 
   const changeTextSize = (e: ChangeEvent<HTMLInputElement>) => {
     const fontSize = e.target.value === "" ? 0 : parseInt(e.target.value);
-    updateNewElementAction("fontSize", fontSize);
+    updateFontSizeTextNewElementAction(fontSize);
   };
 
   return (

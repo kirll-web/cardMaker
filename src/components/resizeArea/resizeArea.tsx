@@ -24,7 +24,12 @@ const ResizeArea = (props: Props) => {
         | RectangleProps
         | FilterProps
   );
-  const { updateNewElementAction } = useAppActions();
+  const {
+    updateWidthNewElementAction,
+    updateHeightNewElementAction,
+    updateXPosNewElementAction,
+    updateYPosNewElementAction,
+  } = useAppActions();
   const pageX = doc.page.xPos,
     pageY = doc.page.yPos;
 
@@ -103,10 +108,10 @@ const ResizeArea = (props: Props) => {
     xPos: number,
     yPos: number
   ) => {
-    updateNewElementAction("width", width);
-    updateNewElementAction("height", height);
-    updateNewElementAction("xPos", xPos);
-    updateNewElementAction("yPos", yPos);
+    updateWidthNewElementAction(width);
+    updateHeightNewElementAction(height);
+    updateXPosNewElementAction(xPos);
+    updateYPosNewElementAction(yPos);
   };
 
   useEffect(() => {

@@ -35,6 +35,7 @@ const Menu = () => {
       ...defaultImage,
       id: `image${Math.floor(Math.random() * 101)}`,
     };
+    showMenuTextAction(false);
     addNewElementAction(elem);
   };
 
@@ -43,6 +44,7 @@ const Menu = () => {
       ...defaultRectangle,
       id: `rectangle${Math.floor(Math.random() * 101)}`,
     };
+    showMenuTextAction(false);
     addNewElementAction(elem);
   };
 
@@ -51,6 +53,7 @@ const Menu = () => {
       ...defaultСircle,
       id: `filter${Math.floor(Math.random() * 101)}`,
     };
+    showMenuTextAction(false);
     addNewElementAction(elem);
   };
 
