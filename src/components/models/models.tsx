@@ -18,8 +18,6 @@ type TextBlockProps = Coordinates &
   Info & {
     type: "text";
     value: string;
-    width: number;
-    height: number;
     fontSize: number;
     fontFamily: string;
     color: string;

@@ -47,13 +47,20 @@ type Props = {
 
 const SelectionArea = (props: Props) => {
   const { newElement, setPage, setNewElement, setShowMenuText } = props;
-
-  const styleArea = {
-    width: newElement.width,
-    height: newElement.height,
-    top: newElement.yPos,
-    left: newElement.xPos,
-  };
+  let styleArea;
+  if (newElement.type != "text") {
+    styleArea = {
+      width: newElement.width,
+      height: newElement.height,
+      top: newElement.yPos,
+      left: newElement.xPos,
+    };
+  } else {
+    styleArea = {
+      top: newElement.yPos,
+      left: newElement.xPos,
+    };
+  }
 
   const { registerDndItem } = useDnD();
 
