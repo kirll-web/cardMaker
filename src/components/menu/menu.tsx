@@ -6,7 +6,6 @@ import {
   CircleProps,
   RectangleProps,
   FilterProps,
-  MenuText,
 } from "../models/models";
 
 type props = {
@@ -86,20 +85,20 @@ const Menu = (props: props) => {
     addElement(elem);
   };
 
-  const addFilter = () => {
-    const elem: FilterProps = {
-      colorOfFilter: "#3fc11c",
-      name: "greenFilter",
-      type: "filter",
-      id: "filter1",
-      opacity: 0.5,
-      width: 800,
-      height: 600,
-      xPos: 0,
-      yPos: 0,
-    };
-    addElement(elem);
-  };
+  // const addFilter = () => {
+  //   const elem: FilterProps = {
+  //     colorOfFilter: "#3fc11c",
+  //     name: "greenFilter",
+  //     type: "filter",
+  //     id: "filter1",
+  //     opacity: 0.5,
+  //     width: 800,
+  //     height: 600,
+  //     xPos: 0,
+  //     yPos: 0,
+  //   };
+  //   addElement(elem);
+  // };
 
   return (
     <div className="menu">

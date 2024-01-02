@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./selectionArea.module.css";
 
 import TextBlock from "../textBlock/textBlock";
@@ -47,9 +47,6 @@ type Props = {
 
 const SelectionArea = (props: Props) => {
   const { newElement, setPage, setNewElement, setShowMenuText } = props;
-
-  const [state, setState] = useState(props.newElement);
-  // const [newElementState, setnewElementState] = useState(props.newElement);
 
   const styleArea = {
     width: newElement.width,
