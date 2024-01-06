@@ -8,6 +8,7 @@ import {
 } from "../components/models/models";
 import { combineReducers } from "redux";
 import { doc } from "../components/models/data";
+import createHistory from "../components/models/history";
 
 const initData: Array<
   TextBlockProps | ImageBlockProps | RectangleProps | CircleProps | FilterProps
@@ -25,11 +26,25 @@ const elementsPageReducer = (
 ) => {
   switch (action.type) {
     case Actions.ADD_ELEMENT_PAGE: {
+      history.addHistoryItem([...state, action.payload.element]);
       return [...state, action.payload.element];
     }
     case Actions.LOAD_ELEMENTS_PAGE: {
+      history.addHistoryItem([...action.payload.elements]);
       return [...action.payload.elements];
     }
+    case Actions.UNDO:
+      const prevState = history.undo();
+      if (prevState) {
+        return prevState;
+      }
+      return state;
+    case Actions.REDO:
+      const nextState = history.redo();
+      if (nextState) {
+        return nextState;
+      }
+      return state;
     default:
       return state;
   }
@@ -85,6 +100,12 @@ const newElementReducer = (
     case Actions.UPDATE_ITALIC: {
       return { ...state, italic: action.payload.value };
     }
+    case Actions.UPDATE_SRC_IMAGE: {
+      return { ...state, url: action.payload.value };
+    }
+    case Actions.UPDATE_OPACITY_FILTER: {
+      return { ...state, opacity: action.payload.value };
+    }
 
     default:
       return state;
@@ -111,11 +132,44 @@ const menuGraphicObjectReducer = (state: boolean = false, action: Action) => {
   }
 };
 
+const menuFilterReducer = (state: boolean = false, action: Action) => {
+  switch (action.type) {
+    case Actions.SHOW_MENU_FILTER: {
+      return action.payload.show;
+    }
+    default:
+      return state;
+  }
+};
+
+const menuImageReducer = (state: boolean = false, action: Action) => {
+  switch (action.type) {
+    case Actions.SHOW_MENU_IMAGE: {
+      return action.payload.show;
+    }
+    default:
+      return state;
+  }
+};
+
+const history =
+  createHistory<
+    Array<
+      | TextBlockProps
+      | ImageBlockProps
+      | RectangleProps
+      | CircleProps
+      | FilterProps
+    >
+  >(initData); // Создаем историю команд
+
 const rootReducer = combineReducers({
   elementsPage: elementsPageReducer,
   newElement: newElementReducer,
   menuText: menuTextReducer,
   menuGraphicObject: menuGraphicObjectReducer,
+  menuFilter: menuFilterReducer,
+  menuImage: menuImageReducer,
 });
 
 export { rootReducer };

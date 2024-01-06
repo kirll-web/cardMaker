@@ -1,8 +1,7 @@
-import { DataMenuText, TextBlockProps } from "../models/models";
-import { Dispatch, MouseEvent, SetStateAction, ChangeEvent } from "react";
+import { TextBlockProps } from "../models/models";
 
 import { useAppActions, useAppSelector } from "../../redux/hooks";
-
+import { ChangeEvent } from "react";
 import MenuColor from "../menuColor/menuColor";
 import styles from "./menuText.module.css";
 import { doc } from "../models/data";

@@ -1,7 +1,11 @@
 import MenuColor from "../menuColor/menuColor";
 
 const MenuGraphicObject = () => {
-  return <MenuColor />;
+  return (
+    <div>
+      <MenuColor />
+    </div>
+  );
 };
 
 export default MenuGraphicObject;

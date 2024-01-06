@@ -24,6 +24,12 @@ enum Actions {
   SHOW_MENUTEXT = "SHOW_MENUTEXT",
   LOAD_ELEMENTS_PAGE = "LOAD_ELEMENTS_PAGE",
   SHOW_MENU_GRAPHIC_OBJECT = "SHOW_MENU_GRAPHIC_OBJECT",
+  SHOW_MENU_FILTER = "SHOW_MENU_FILTER",
+  SHOW_MENU_IMAGE = "SHOW_MENU_IMAGE",
+  UPDATE_SRC_IMAGE = "UPDATE_SRC_IMAGE",
+  UPDATE_OPACITY_FILTER = "UPDATE_OPACITY_FILTER",
+  UNDO = "UNDO",
+  REDO = "REDO",
 }
 
 type addNewElementAction = {
@@ -47,6 +53,13 @@ type updateFontFamilyNewElementAction = {
   type: Actions.UPDATE_FONT_FAMILY;
   payload: {
     value: string;
+  };
+};
+
+type updateOpacityFilterNewElementAction = {
+  type: Actions.UPDATE_OPACITY_FILTER;
+  payload: {
+    value: number;
   };
 };
 
@@ -120,6 +133,13 @@ type updateItalicTextNewElementAction = {
   };
 };
 
+type updateImageSrcNewElementAction = {
+  type: Actions.UPDATE_SRC_IMAGE;
+  payload: {
+    value: string;
+  };
+};
+
 type addElementToPageAction = {
   type: Actions.ADD_ELEMENT_PAGE;
   payload: {
@@ -159,6 +179,28 @@ type showMenuGraphicObject = {
   };
 };
 
+type showMenuFilter = {
+  type: Actions.SHOW_MENU_FILTER;
+  payload: {
+    show: boolean;
+  };
+};
+
+type showMenuImage = {
+  type: Actions.SHOW_MENU_IMAGE;
+  payload: {
+    show: boolean;
+  };
+};
+
+type UndoAction = {
+  type: Actions.UNDO;
+};
+
+type RedoAction = {
+  type: Actions.REDO;
+};
+
 type Action =
   | addNewElementAction
   | deleteNewElementAction
@@ -176,6 +218,12 @@ type Action =
   | showMenuTextAction
   | addElementToPageAction
   | loadElementsToPageAction
-  | showMenuGraphicObject;
+  | showMenuGraphicObject
+  | showMenuFilter
+  | showMenuImage
+  | updateImageSrcNewElementAction
+  | UndoAction
+  | RedoAction
+  | updateOpacityFilterNewElementAction;
 
 export { Actions, type Action };

@@ -36,7 +36,6 @@ type ImageBlockProps = Block &
   Info & {
     type: "image";
     url: string;
-    allowedFormat: Array<string>;
     pic: HTMLImageElement | null;
   };
 
@@ -72,6 +71,8 @@ type TemplateProps = {
     | RectangleProps
   >;
 };
+
+type AllowedFormatImage = Array<string>;
 
 type TemplatesCollection = {
   templates: Array<TemplateProps>;
@@ -114,11 +115,11 @@ type MenuText = {
 type Doc = {
   page: PageProps;
   templateCollection: TemplatesCollection;
-  historyCommands: HistoryCommands;
   filterCollection: FilterCollection;
   dataMenuText: DataMenuText;
   defaultMenuText: TextBlockProps;
   colors: Colors;
+  allowedFormatImage: AllowedFormatImage;
 };
 
 export type {
@@ -139,4 +140,5 @@ export type {
   Fonts,
   MenuText,
   DataMenuText,
+  AllowedFormatImage,
 };

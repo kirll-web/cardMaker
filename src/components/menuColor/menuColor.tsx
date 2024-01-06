@@ -1,10 +1,8 @@
 import {
   TextBlockProps,
-  ImageBlockProps,
   CircleProps,
   RectangleProps,
   FilterProps,
-  Colors,
 } from "../models/models";
 import { doc } from "../models/data";
 import { MouseEvent } from "react";

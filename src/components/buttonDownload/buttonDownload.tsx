@@ -1,18 +1,18 @@
-import { PageProps } from "../models/models";
+import { useAppSelector } from "../../redux/hooks";
 
-const ButtonDownload = (props: PageProps) => {
+const ButtonDownload = () => {
+  const elements = useAppSelector((state) => state.elementsPage);
   const createFile = () => {
-    const file = new Blob([JSON.stringify(props)], {
+    const file = new Blob([JSON.stringify(elements)], {
       type: "application/json",
-    }); // создаём файл на стороне пользователя
-    return file; //возвращаем созданный файл
+    });
+    return file;
   };
 
-  const file = createFile(); // переменная с файлом, который возвращает функция createFile()[которая выше]
+  const file = createFile();
 
   const downloadFile = () => {
-    console.log(props);
-    const url = URL.createObjectURL(file); // создаём ссылку на файл
+    const url = URL.createObjectURL(file);
     const link = document.createElement("a");
     link.href = url;
     link.download = "file.json";

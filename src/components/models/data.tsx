@@ -13,6 +13,7 @@ import {
   Colors,
   Fonts,
   DataMenuText,
+  AllowedFormatImage,
 } from "./models";
 
 const greenFilter: FilterProps = {
@@ -122,7 +123,6 @@ const page2: PageProps = {
       xPos: 300,
       yPos: 300,
       url: "../../../resource/1.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
       pic: null,
     },
   ],
@@ -170,7 +170,6 @@ const page3: PageProps = {
       xPos: 300,
       yPos: 300,
       url: "../../../resource/1.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
       pic: null,
     },
     {
@@ -245,7 +244,6 @@ const template1: TemplateProps = {
       xPos: 250,
       yPos: 150,
       url: "../../../resource/1.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
       pic: null,
     },
   ],
@@ -289,7 +287,6 @@ const template2: TemplateProps = {
       xPos: 300,
       yPos: 200,
       url: "../../../resource/2.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
       pic: null,
     },
   ],
@@ -307,7 +304,6 @@ const template3: TemplateProps = {
       xPos: 300,
       yPos: 200,
       url: "../../../resource/3.png",
-      allowedFormat: ["JPG", "JPEG", "PNG"],
       pic: null,
     },
     {
@@ -404,11 +400,6 @@ const templateCollection: TemplatesCollection = {
   templates: [template1, template2, template3],
 };
 
-const historyCommands: HistoryCommands = {
-  indexOfHistory: 0,
-  history: [page6],
-};
-
 const colors: Colors = [
   "#ac00ff",
   "#0000ff",
@@ -475,9 +466,10 @@ const defaultImage: ImageBlockProps = {
   xPos: 300,
   yPos: 200,
   url: "../../../resource/3.png",
-  allowedFormat: ["JPG", "JPEG", "PNG"],
   pic: null,
 };
+
+const allowedFormatImage: AllowedFormatImage = ["png", "jpg", "jpeg"];
 
 const defaultTextBlock: TextBlockProps = {
   id: `text${Math.floor(Math.random() * 101)}`,
@@ -496,13 +488,13 @@ const defaultTextBlock: TextBlockProps = {
 const defaultFilter: FilterProps = greenFilter;
 
 const doc: Doc = {
-  page: historyCommands.history[historyCommands.indexOfHistory],
+  page: page1,
   templateCollection,
-  historyCommands,
   filterCollection,
   defaultMenuText,
   dataMenuText,
   colors,
+  allowedFormatImage,
 };
 
 export {

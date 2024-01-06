@@ -71,6 +71,10 @@
   transform: translateX(-50%); 
 }
 
+.deleteIconFilter{
+  bottom: 40px;
+}
+
 .selectionAreaWrapper {
   position: absolute;
   width: 100%;

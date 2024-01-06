@@ -19,12 +19,14 @@ const Canvas = () => {
   console.log(elements);
   useEffect(() => {
     const canvas = ref.current! as HTMLCanvasElement;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext("2d")!;
     canvas.width = doc.page.width;
     canvas.height = doc.page.height;
     canvas.style.top = `${doc.page.yPos}%`;
     canvas.style.left = `${doc.page.xPos}%`;
-    context!.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, doc.page.width, doc.page.height);
 
     Promise.all(
       elements.map(
@@ -81,7 +83,6 @@ const Canvas = () => {
                 element.bold ? "bold" : ""
               } ${element.fontSize}px ${element.fontFamily}`;
               ctx.font = font;
-              console.log(font);
               ctx.fillStyle = element.backgroundColor;
               console.log(ctx);
               if (element.underline) {
@@ -119,7 +120,6 @@ const Canvas = () => {
                 element.width,
                 element.height
               );
-              console.log(element.backgroundColor);
               break;
             case "image":
               ctx.drawImage(
@@ -148,7 +148,7 @@ const Canvas = () => {
     });
   }, [elements]);
 
-  return <canvas className={style.page} ref={ref}></canvas>;
+  return <canvas id="canvas" className={style.page} ref={ref}></canvas>;
 };
 
 export default Canvas;

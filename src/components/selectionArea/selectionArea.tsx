@@ -35,10 +35,12 @@ const SelectionArea = () => {
     updateXPosNewElementAction,
     updateYPosNewElementAction,
     showMenuGraphicObjectAction,
+    addElementToPageAction,
+    deleteNewElementAction,
+    showMenuTextAction,
+    showMenuFilter,
+    showMenuImage,
   } = useAppActions();
-  const { addElementToPageAction } = useAppActions();
-  const { showMenuTextAction } = useAppActions();
-  const { deleteNewElementAction } = useAppActions();
 
   const { registerDndItem } = useDnD();
 
@@ -85,17 +87,17 @@ const SelectionArea = () => {
   };
 
   const deleteNewItem = () => {
+    showMenuFilter(false);
     showMenuTextAction(false);
     showMenuGraphicObjectAction(false);
+    showMenuImage(false);
     deleteNewElementAction();
   };
 
   const addElemToCanvas = (e: React.MouseEvent) => {
     if (e.target === refAreaWrapper.current) {
-      showMenuTextAction(false);
-      showMenuGraphicObjectAction(false);
       addElementToPageAction(newElement);
-      deleteNewElementAction();
+      deleteNewItem();
     }
   };
 

@@ -1,30 +1,36 @@
 import "./App.css";
 import { useEffect } from "react";
 
-import { doc } from "../models/data";
 import ButtonDownload from "../buttonDownload/buttonDownload";
 import Menu from "../menu/menu";
 import Page from "../page/page";
 import LoadInput from "../loadInput/loadInput";
 import MenuText from "../menuText/menuText";
 import { useAppSelector } from "../../redux/hooks";
-import MenuGraphicObject from "../menuGraphicObject/mienuGraphicObject";
+import MenuGraphicObject from "../menuGraphicObject/menuGraphicObject";
+import MenuFilter from "../menuFilter/menuFilter";
+import MenuImage from "../menuImage/menuImage";
+import useUndoRedoListeners from "../../hooks/useUndoRedo/useUndoRedo";
 
 const App = () => {
-  const elements = useAppSelector((state) => state.elementsPage);
   const showMenuText = useAppSelector((state) => state.menuText);
   const showMenuGraphicObject = useAppSelector(
     (state) => state.menuGraphicObject
   );
+  const showMenuFilter = useAppSelector((state) => state.menuFilter);
+  const showMenuImage = useAppSelector((state) => state.menuImage);
   useEffect(() => console.log(showMenuText));
+  useUndoRedoListeners();
   return (
     <div className="App">
       <Page />
-      <ButtonDownload {...elements} />
+      <ButtonDownload />
       <LoadInput />
       <Menu />
       {showMenuText ? <MenuText /> : null}
       {showMenuGraphicObject ? <MenuGraphicObject /> : null}
+      {showMenuFilter ? <MenuFilter /> : null}
+      {showMenuImage ? <MenuImage /> : null}
     </div>
   );
 };

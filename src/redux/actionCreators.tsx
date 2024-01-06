@@ -128,6 +128,24 @@ function updateItalicTextNewElementAction(value: boolean) {
   };
 }
 
+function updateImageSrcNewElementAction(value: string) {
+  return {
+    type: Actions.UPDATE_SRC_IMAGE,
+    payload: {
+      value,
+    },
+  };
+}
+
+function updateOpacityFilterNewElementAction(value: number) {
+  return {
+    type: Actions.UPDATE_OPACITY_FILTER,
+    payload: {
+      value,
+    },
+  };
+}
+
 function addElementToPageAction(
   element:
     | TextBlockProps
@@ -179,6 +197,36 @@ function showMenuGraphicObjectAction(show: boolean) {
   };
 }
 
+function showMenuFilter(show: boolean) {
+  return {
+    type: Actions.SHOW_MENU_FILTER,
+    payload: {
+      show,
+    },
+  };
+}
+
+function showMenuImage(show: boolean) {
+  return {
+    type: Actions.SHOW_MENU_IMAGE,
+    payload: {
+      show,
+    },
+  };
+}
+
+function createUndoAction() {
+  return {
+    type: Actions.UNDO,
+  };
+}
+
+function createRedoAction() {
+  return {
+    type: Actions.REDO,
+  };
+}
+
 export {
   addNewElementAction,
   deleteNewElementAction,
@@ -197,4 +245,10 @@ export {
   showMenuTextAction,
   loadElementsToPageAction,
   showMenuGraphicObjectAction,
+  showMenuFilter,
+  showMenuImage,
+  updateImageSrcNewElementAction,
+  createRedoAction,
+  createUndoAction,
+  updateOpacityFilterNewElementAction,
 };

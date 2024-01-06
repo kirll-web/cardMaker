@@ -1,15 +1,13 @@
-import { useDispatch } from "react-redux";
-
 import {
   TextBlockProps,
   ImageBlockProps,
   CircleProps,
   RectangleProps,
-  // FilterProps,
+  FilterProps,
 } from "../models/models";
 
 import {
-  // defaultFilter,
+  defaultFilter,
   defaultImage,
   defaultСircle,
   defaultTextBlock,
@@ -22,14 +20,23 @@ const Menu = () => {
     addNewElementAction,
     showMenuTextAction,
     showMenuGraphicObjectAction,
+    showMenuFilter,
+    showMenuImage,
   } = useAppActions();
+
+  const hideAllMenu = () => {
+    showMenuTextAction(false);
+    showMenuGraphicObjectAction(false);
+    showMenuFilter(false);
+    showMenuImage(false);
+  };
 
   const addTextBlock = () => {
     const elem: TextBlockProps = {
       ...defaultTextBlock,
       id: `text${Math.floor(Math.random() * 101)}`,
     };
-    showMenuTextAction(false);
+    hideAllMenu();
     addNewElementAction(elem);
     showMenuTextAction(true);
   };
@@ -39,8 +46,9 @@ const Menu = () => {
       ...defaultImage,
       id: `image${Math.floor(Math.random() * 101)}`,
     };
-    showMenuTextAction(false);
+    hideAllMenu();
     addNewElementAction(elem);
+    showMenuImage(true);
   };
 
   const addRectangle = () => {
@@ -48,10 +56,9 @@ const Menu = () => {
       ...defaultRectangle,
       id: `rectangle${Math.floor(Math.random() * 101)}`,
     };
-    showMenuTextAction(false);
-    showMenuGraphicObjectAction(false);
-    showMenuGraphicObjectAction(true);
+    hideAllMenu();
     addNewElementAction(elem);
+    showMenuGraphicObjectAction(true);
   };
 
   const addCircle = () => {
@@ -59,19 +66,31 @@ const Menu = () => {
       ...defaultСircle,
       id: `filter${Math.floor(Math.random() * 101)}`,
     };
-    showMenuTextAction(false);
-    showMenuGraphicObjectAction(false);
-    showMenuGraphicObjectAction(true);
+    hideAllMenu();
     addNewElementAction(elem);
+    showMenuGraphicObjectAction(true);
   };
 
-  // const addFilter = () => {
-  //   const elem: FilterProps = {
-  //     ...defaultFilter,
-  //     id: `filter${Math.floor(Math.random() * 101)}`,
-  //   };
-  //   dispatch({ type: "ADD_ELEMENT", element: elem });
-  // };
+  const addFilter = () => {
+    const elem: FilterProps = {
+      ...defaultFilter,
+      id: `filter${Math.floor(Math.random() * 101)}`,
+    };
+
+    hideAllMenu();
+    addNewElementAction(elem);
+    showMenuFilter(true);
+  };
+
+  const download = () => {
+    const canvas: HTMLCanvasElement = document.getElementById(
+      "canvas"
+    ) as HTMLCanvasElement;
+    var link = document.createElement("a");
+    link.download = "filename.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  };
 
   return (
     <div className="menu">
@@ -79,6 +98,8 @@ const Menu = () => {
       <button onClick={addCircle}>Добавить круг</button>
       <button onClick={addRectangle}>Добавить квадрат</button>
       <button onClick={addImage}>Добавить картинку</button>
+      <button onClick={addFilter}>Добавить фильтр</button>
+      <button onClick={download}>Скачать открытку</button>
     </div>
   );
 };

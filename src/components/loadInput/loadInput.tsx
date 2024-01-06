@@ -5,7 +5,6 @@ import {
   TextBlockProps,
   RectangleProps,
 } from "../models/models";
-import { Dispatch, SetStateAction } from "react";
 
 import { ChangeEvent } from "react";
 import { useAppActions } from "../../redux/hooks";
