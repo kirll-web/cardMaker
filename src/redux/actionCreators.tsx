@@ -215,6 +215,24 @@ function showMenuImage(show: boolean) {
   };
 }
 
+function showMenuSaveImage(show: boolean) {
+  return {
+    type: Actions.SHOW_MENU_SAVE_IMAGE,
+    payload: {
+      show,
+    },
+  };
+}
+
+function changeFormatSaveImageImage(format: string) {
+  return {
+    type: Actions.CHANGE_FORMAT_SAVE_IMAGE,
+    payload: {
+      format,
+    },
+  };
+}
+
 function createUndoAction() {
   return {
     type: Actions.UNDO,
@@ -251,4 +269,6 @@ export {
   createRedoAction,
   createUndoAction,
   updateOpacityFilterNewElementAction,
+  showMenuSaveImage,
+  changeFormatSaveImageImage,
 };

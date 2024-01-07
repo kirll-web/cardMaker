@@ -28,6 +28,8 @@ enum Actions {
   SHOW_MENU_IMAGE = "SHOW_MENU_IMAGE",
   UPDATE_SRC_IMAGE = "UPDATE_SRC_IMAGE",
   UPDATE_OPACITY_FILTER = "UPDATE_OPACITY_FILTER",
+  SHOW_MENU_SAVE_IMAGE = "SHOW_MENU_SAVE_IMAGE",
+  CHANGE_FORMAT_SAVE_IMAGE = "CHANGE_FORMAT_SAVE_IMAGE",
   UNDO = "UNDO",
   REDO = "REDO",
 }
@@ -193,6 +195,20 @@ type showMenuImage = {
   };
 };
 
+type showMenuSaveImage = {
+  type: Actions.SHOW_MENU_SAVE_IMAGE;
+  payload: {
+    show: boolean;
+  };
+};
+
+type changeFormatSaveImage = {
+  type: Actions.CHANGE_FORMAT_SAVE_IMAGE;
+  payload: {
+    format: string;
+  };
+};
+
 type UndoAction = {
   type: Actions.UNDO;
 };
@@ -224,6 +240,8 @@ type Action =
   | updateImageSrcNewElementAction
   | UndoAction
   | RedoAction
-  | updateOpacityFilterNewElementAction;
+  | updateOpacityFilterNewElementAction
+  | showMenuSaveImage
+  | changeFormatSaveImage;
 
 export { Actions, type Action };

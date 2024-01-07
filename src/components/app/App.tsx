@@ -11,6 +11,7 @@ import MenuGraphicObject from "../menuGraphicObject/menuGraphicObject";
 import MenuFilter from "../menuFilter/menuFilter";
 import MenuImage from "../menuImage/menuImage";
 import useUndoRedoListeners from "../../hooks/useUndoRedo/useUndoRedo";
+import MenuSaveImage from "../menuSaveImage/menuSaveImage";
 
 const App = () => {
   const showMenuText = useAppSelector((state) => state.menuText);
@@ -19,6 +20,7 @@ const App = () => {
   );
   const showMenuFilter = useAppSelector((state) => state.menuFilter);
   const showMenuImage = useAppSelector((state) => state.menuImage);
+  const showMenuSaveImage = useAppSelector((state) => state.menuSaveImage);
   useEffect(() => console.log(showMenuText));
   useUndoRedoListeners();
   return (
@@ -31,6 +33,7 @@ const App = () => {
       {showMenuGraphicObject ? <MenuGraphicObject /> : null}
       {showMenuFilter ? <MenuFilter /> : null}
       {showMenuImage ? <MenuImage /> : null}
+      {showMenuSaveImage.show ? <MenuSaveImage /> : null}
     </div>
   );
 };

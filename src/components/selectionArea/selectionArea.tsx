@@ -40,6 +40,7 @@ const SelectionArea = () => {
     showMenuTextAction,
     showMenuFilter,
     showMenuImage,
+    showMenuSaveImage,
   } = useAppActions();
 
   const { registerDndItem } = useDnD();
@@ -91,6 +92,7 @@ const SelectionArea = () => {
     showMenuTextAction(false);
     showMenuGraphicObjectAction(false);
     showMenuImage(false);
+    showMenuSaveImage(false);
     deleteNewElementAction();
   };
 
@@ -151,7 +153,7 @@ const SelectionArea = () => {
         {addElement(newElement)}
         <div onClick={deleteNewItem}>
           <img
-            className={styles.deleteIcon}
+            className={`${styles.deleteIcon}`}
             src="../../../resource/basket.svg"
             alt="Basket"
           />

@@ -152,6 +152,27 @@ const menuImageReducer = (state: boolean = false, action: Action) => {
   }
 };
 
+const defaultStateMenuSaveImage = {
+  show: false,
+  format: "png",
+};
+
+const menuSaveImageReducer = (
+  state = defaultStateMenuSaveImage,
+  action: Action
+) => {
+  switch (action.type) {
+    case Actions.SHOW_MENU_SAVE_IMAGE: {
+      return { ...state, show: action.payload.show };
+    }
+    case Actions.CHANGE_FORMAT_SAVE_IMAGE: {
+      return { ...state, format: action.payload.format };
+    }
+    default:
+      return state;
+  }
+};
+
 const history =
   createHistory<
     Array<
@@ -170,6 +191,7 @@ const rootReducer = combineReducers({
   menuGraphicObject: menuGraphicObjectReducer,
   menuFilter: menuFilterReducer,
   menuImage: menuImageReducer,
+  menuSaveImage: menuSaveImageReducer,
 });
 
 export { rootReducer };

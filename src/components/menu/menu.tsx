@@ -22,6 +22,8 @@ const Menu = () => {
     showMenuGraphicObjectAction,
     showMenuFilter,
     showMenuImage,
+    showMenuSaveImage,
+    deleteNewElementAction,
   } = useAppActions();
 
   const hideAllMenu = () => {
@@ -29,6 +31,7 @@ const Menu = () => {
     showMenuGraphicObjectAction(false);
     showMenuFilter(false);
     showMenuImage(false);
+    showMenuSaveImage(false);
   };
 
   const addTextBlock = () => {
@@ -82,14 +85,10 @@ const Menu = () => {
     showMenuFilter(true);
   };
 
-  const download = () => {
-    const canvas: HTMLCanvasElement = document.getElementById(
-      "canvas"
-    ) as HTMLCanvasElement;
-    var link = document.createElement("a");
-    link.download = "filename.png";
-    link.href = canvas.toDataURL();
-    link.click();
+  const menuSaveImage = () => {
+    hideAllMenu();
+    deleteNewElementAction();
+    showMenuSaveImage(true);
   };
 
   return (
@@ -99,7 +98,7 @@ const Menu = () => {
       <button onClick={addRectangle}>Добавить квадрат</button>
       <button onClick={addImage}>Добавить картинку</button>
       <button onClick={addFilter}>Добавить фильтр</button>
-      <button onClick={download}>Скачать открытку</button>
+      <button onClick={menuSaveImage}>Скачать открытку</button>
     </div>
   );
 };

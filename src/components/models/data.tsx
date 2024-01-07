@@ -6,7 +6,6 @@ import {
   RectangleProps,
   CircleProps,
   ImageBlockProps,
-  HistoryCommands,
   FilterCollection,
   TemplateProps,
   TemplatesCollection,
