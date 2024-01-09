@@ -23,8 +23,8 @@ const greenFilter: FilterProps = {
   opacity: 0.5,
   width: 800,
   height: 600,
-  xPos: 0,
-  yPos: 0,
+  xPos: -5,
+  yPos: -5,
 };
 
 const blueFilter: FilterProps = {
@@ -207,8 +207,9 @@ const page3: PageProps = {
 
 const template1: TemplateProps = {
   id: "template1",
-  name: "template1",
-  blocks: [
+  name: 'Открытка "С днём валяния на диване!"',
+  urlPic: "../../../resource/templates/template1.png",
+  elements: [
     {
       id: "text1",
       type: "text",
@@ -225,7 +226,7 @@ const template1: TemplateProps = {
     {
       id: "text2",
       type: "text",
-      value: "ковыряния в носу!",
+      value: "валяния на диване!",
       fontSize: 30,
       fontFamily: "Roboto",
       backgroundColor: "#565656",
@@ -249,9 +250,10 @@ const template1: TemplateProps = {
 };
 
 const template2: TemplateProps = {
-  id: "template1",
-  name: "template1",
-  blocks: [
+  id: "template2",
+  name: 'Открытка сбер "Зелёные цифры"',
+  urlPic: "../../../resource/templates/template2.png",
+  elements: [
     {
       id: "text1",
       type: "text",
@@ -292,9 +294,11 @@ const template2: TemplateProps = {
 };
 
 const template3: TemplateProps = {
-  id: "template1",
-  name: "template1",
-  blocks: [
+  id: "template3",
+  name: 'Открытка сбер "Красные цифры"',
+  urlPic: "../../../resource/templates/template3.png",
+  elements: [
+    grayFilter,
     {
       id: "img1",
       type: "image",
@@ -322,45 +326,14 @@ const template3: TemplateProps = {
       id: "text2",
       type: "text",
       value: "красных цифр в СберИнвестиции...",
-      fontSize: 100,
-      fontFamily: "Roboto",
-      backgroundColor: "#565656",
+      fontSize: 35,
+      fontFamily: "RobotoSlab",
+      backgroundColor: "#e6191c",
       bold: true,
-      xPos: 250,
+      xPos: 150,
       yPos: 490,
       italic: false,
       underline: false,
-    },
-    greenFilter,
-    {
-      id: "circle1",
-      type: "circle",
-      backgroundColor: "#da2b35",
-      backgroundImage: "",
-      width: 200,
-      height: 200,
-      xPos: 200,
-      yPos: 200,
-    },
-    {
-      id: "circle2",
-      type: "circle",
-      backgroundColor: "#000000",
-      backgroundImage: "",
-      width: 200,
-      height: 200,
-      xPos: 50,
-      yPos: 50,
-    },
-    {
-      id: "circle3",
-      type: "circle",
-      backgroundColor: "#fe00ff",
-      backgroundImage: "",
-      width: 200,
-      height: 200,
-      xPos: 600,
-      yPos: 600,
     },
   ],
 };
@@ -372,7 +345,7 @@ const page4: PageProps = {
   height: 600,
   xPos: 50,
   yPos: 50,
-  elements: [...template1.blocks],
+  elements: [...template3.elements],
 };
 
 const page5: PageProps = {
@@ -382,7 +355,7 @@ const page5: PageProps = {
   height: 600,
   xPos: 50,
   yPos: 50,
-  elements: [...template2.blocks],
+  elements: [...template2.elements],
 };
 
 const page6: PageProps = {
@@ -392,12 +365,14 @@ const page6: PageProps = {
   height: 600,
   xPos: 50,
   yPos: 50,
-  elements: [...template3.blocks],
+  elements: [...template3.elements],
 };
 
-const templateCollection: TemplatesCollection = {
-  templates: [template1, template2, template3],
-};
+const templateCollection: TemplatesCollection = [
+  template1,
+  template2,
+  template3,
+];
 
 const colors: Colors = [
   "#ac00ff",
@@ -423,10 +398,10 @@ const dataMenuText: DataMenuText = {
 
 const defaultMenuText: TextBlockProps = {
   type: "text",
-  id: "1",
+  id: "text1",
   value: "Добавить текст",
-  xPos: 400,
-  yPos: 300,
+  xPos: 300,
+  yPos: 200,
   fontSize: 20,
   backgroundColor: "#000000",
   fontFamily: "Roboto",
@@ -442,19 +417,19 @@ const defaultСircle: CircleProps = {
   backgroundImage: "",
   width: 200,
   height: 200,
-  xPos: 50,
-  yPos: 50,
+  xPos: 289,
+  yPos: 196,
 };
 
 const defaultRectangle: RectangleProps = {
   id: `rectangle${Math.floor(Math.random() * 101)}`,
   type: "rectangle",
-  backgroundColor: "#6aa449",
+  backgroundColor: "#000000",
   backgroundImage: "",
   width: 200,
   height: 200,
-  xPos: 600,
-  yPos: 300,
+  xPos: 300,
+  yPos: 200,
 };
 
 const defaultImage: ImageBlockProps = {
@@ -464,7 +439,7 @@ const defaultImage: ImageBlockProps = {
   height: 200,
   xPos: 300,
   yPos: 200,
-  url: "../../../resource/3.png",
+  url: "../../../resource/templatePhoto.png",
   pic: null,
 };
 
@@ -478,8 +453,8 @@ const defaultTextBlock: TextBlockProps = {
   fontFamily: "Roboto",
   backgroundColor: "#000000",
   bold: false,
-  xPos: 250,
-  yPos: 490,
+  xPos: 284,
+  yPos: 269,
   italic: false,
   underline: false,
 };

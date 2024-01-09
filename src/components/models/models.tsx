@@ -63,20 +63,19 @@ type SelectionAreaProps = Block & {
 type TemplateProps = {
   id: string;
   name: string;
-  blocks: Array<
+  elements: Array<
     | TextBlockProps
     | ImageBlockProps
     | FilterProps
     | CircleProps
     | RectangleProps
   >;
+  urlPic: string;
 };
 
 type AllowedFormatImage = Array<string>;
 
-type TemplatesCollection = {
-  templates: Array<TemplateProps>;
-};
+type TemplatesCollection = Array<TemplateProps>;
 
 interface PageProps extends Block {
   id: string;

@@ -1,0 +1,55 @@
+.menuWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+  height: 100vh;
+  background: #7479DC;
+  z-index: 5;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 300px;
+}
+
+.menuBtn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  margin: 15px ;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle, rgba(116,121,220,1) 0%, rgba(150,155,246,1) 100%);
+  box-shadow: 0px 0px 8px 4px rgba(34, 60, 80, 0.3);
+}
+
+.menuImg {
+  width: 75%;
+}
+
+.uploadInput {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 0; 
+  height: 0; 
+  visibility: hidden;
+}
+
+
+.hidingInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+

@@ -1,9 +1,13 @@
 import MenuColor from "../menuColor/menuColor";
+type Props = {
+  styles: CSSModuleClasses;
+};
 
-const MenuGraphicObject = () => {
+const MenuGraphicObject = (props: Props) => {
+  const { styles } = props;
   return (
-    <div>
-      <MenuColor />
+    <div className={styles.menuElement}>
+      <MenuColor styles={styles} />
     </div>
   );
 };

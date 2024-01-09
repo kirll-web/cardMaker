@@ -9,7 +9,12 @@ import {
 import { ChangeEvent } from "react";
 import { useAppActions } from "../../redux/hooks";
 
-const LoadInput = () => {
+type Props = {
+  styles: CSSModuleClasses;
+};
+
+const LoadInput = (props: Props) => {
+  const { styles } = props;
   const { loadElementsToPageAction } = useAppActions();
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,12 +47,26 @@ const LoadInput = () => {
   };
 
   return (
-    <input
-      accept=".json"
-      onChange={onChange}
-      type="file"
-      placeholder="Загрузить"
-    />
+    <>
+      <label
+        title="Загрузить заготовку"
+        htmlFor="laodInput"
+        className={styles.menuBtn}
+      >
+        <img
+          src="../../../resource/icons/upload.png"
+          alt="Загрузить заготовку"
+        />
+      </label>
+      <input
+        className={styles.uploadInput}
+        id="laodInput"
+        accept=".json"
+        onChange={onChange}
+        type="file"
+        placeholder="Загрузить"
+      />
+    </>
   );
 };
 

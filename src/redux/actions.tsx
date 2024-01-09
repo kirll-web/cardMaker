@@ -32,6 +32,9 @@ enum Actions {
   CHANGE_FORMAT_SAVE_IMAGE = "CHANGE_FORMAT_SAVE_IMAGE",
   UNDO = "UNDO",
   REDO = "REDO",
+  SHOW_MENU_TEMPLATES = "SHOW_MENU_TEMPLATES",
+  ADD_NEW_COLOR = "ADD_NEW_COLOR",
+  CLEAR_PAGE = "CLEAR_PAGE",
 }
 
 type addNewElementAction = {
@@ -135,13 +138,6 @@ type updateItalicTextNewElementAction = {
   };
 };
 
-type updateImageSrcNewElementAction = {
-  type: Actions.UPDATE_SRC_IMAGE;
-  payload: {
-    value: string;
-  };
-};
-
 type addElementToPageAction = {
   type: Actions.ADD_ELEMENT_PAGE;
   payload: {
@@ -167,6 +163,11 @@ type loadElementsToPageAction = {
   };
 };
 
+type clearPageAction = {
+  type: Actions.CLEAR_PAGE;
+  payload: [];
+};
+
 type showMenuTextAction = {
   type: Actions.SHOW_MENUTEXT;
   payload: {
@@ -181,15 +182,15 @@ type showMenuGraphicObject = {
   };
 };
 
-type showMenuFilter = {
-  type: Actions.SHOW_MENU_FILTER;
+type showMenuTemplates = {
+  type: Actions.SHOW_MENU_TEMPLATES;
   payload: {
     show: boolean;
   };
 };
 
-type showMenuImage = {
-  type: Actions.SHOW_MENU_IMAGE;
+type showMenuFilter = {
+  type: Actions.SHOW_MENU_FILTER;
   payload: {
     show: boolean;
   };
@@ -206,6 +207,13 @@ type changeFormatSaveImage = {
   type: Actions.CHANGE_FORMAT_SAVE_IMAGE;
   payload: {
     format: string;
+  };
+};
+
+type addNewColor = {
+  type: Actions.ADD_NEW_COLOR;
+  payload: {
+    value: string;
   };
 };
 
@@ -236,12 +244,13 @@ type Action =
   | loadElementsToPageAction
   | showMenuGraphicObject
   | showMenuFilter
-  | showMenuImage
-  | updateImageSrcNewElementAction
   | UndoAction
   | RedoAction
   | updateOpacityFilterNewElementAction
   | showMenuSaveImage
-  | changeFormatSaveImage;
+  | changeFormatSaveImage
+  | showMenuTemplates
+  | addNewColor
+  | clearPageAction;
 
 export { Actions, type Action };

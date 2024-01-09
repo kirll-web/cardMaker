@@ -1,7 +1,12 @@
 import { ChangeEvent } from "react";
 import { useAppActions, useAppSelector } from "../../redux/hooks";
 
-const MenuSaveImage = () => {
+type Props = {
+  styles: CSSModuleClasses;
+};
+
+const MenuSaveImage = (props: Props) => {
+  const { styles } = props;
   const { changeFormatSaveImageImage } = useAppActions();
   const menuSaveImage = useAppSelector((state) => state.menuSaveImage);
 
@@ -21,13 +26,22 @@ const MenuSaveImage = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="format">Выберите формат: </label>
-      <select onChange={changeFormat} name="format" id="format">
+    <div className={styles.menuElement}>
+      <label className={styles.menuLabel} htmlFor="format">
+        Выберите формат:{" "}
+      </label>
+      <select
+        className={`${styles.select} ${styles.menuInput}`}
+        onChange={changeFormat}
+        name="format"
+        id="format"
+      >
         <option value="png">PNG</option>
         <option value="jpeg">JPEG</option>
       </select>
-      <button onClick={download}>Сохранить</button>
+      <button className={styles.menuBigButton} onClick={download}>
+        Сохранить
+      </button>
     </div>
   );
 };

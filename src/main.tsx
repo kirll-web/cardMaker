@@ -1,6 +1,5 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/app/App";
+import App from "./components/app/App.tsx";
 import "./index.css";
 import "../resource/fonts/PlayfairDisplay-Italic.ttf";
 import "../resource/fonts/PlayfairDisplay-Regular.ttf";
@@ -18,8 +17,8 @@ import { store } from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <App />
+    {/* </React.StrictMode> */}
   </Provider>
 );

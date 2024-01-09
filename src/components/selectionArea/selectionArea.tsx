@@ -34,13 +34,12 @@ const SelectionArea = () => {
   const {
     updateXPosNewElementAction,
     updateYPosNewElementAction,
-    showMenuGraphicObjectAction,
     addElementToPageAction,
     deleteNewElementAction,
     showMenuTextAction,
     showMenuFilter,
-    showMenuImage,
     showMenuSaveImage,
+    showMenuGraphicObjectAction,
   } = useAppActions();
 
   const { registerDndItem } = useDnD();
@@ -91,7 +90,6 @@ const SelectionArea = () => {
     showMenuFilter(false);
     showMenuTextAction(false);
     showMenuGraphicObjectAction(false);
-    showMenuImage(false);
     showMenuSaveImage(false);
     deleteNewElementAction();
   };

@@ -10,7 +10,12 @@ import {
   FilterProps,
 } from "../models/models";
 
-const MenuFilter = () => {
+type Props = {
+  styles: CSSModuleClasses;
+};
+
+const MenuFilter = (props: Props) => {
+  const { styles } = props;
   const newElement = useAppSelector((state) => state.newElement as FilterProps);
   const {
     addElementToPageAction,
@@ -39,10 +44,20 @@ const MenuFilter = () => {
   };
 
   return (
-    <div /*className={styles.menuFilter}*/>
-      <MenuColor />
-      <input onChange={updateOpacityFilter} type="number" />
-      <button onClick={() => addFilterToCanvas()}>Сохранить фильтр</button>
+    <div className={styles.menuElement}>
+      <MenuColor styles={styles} />
+      <input
+        className={styles.menuInput}
+        onChange={updateOpacityFilter}
+        type="number"
+        value={newElement.opacity}
+      />
+      <button
+        className={styles.menuBigButton}
+        onClick={() => addFilterToCanvas()}
+      >
+        Сохранить фильтр
+      </button>
     </div>
   );
 };

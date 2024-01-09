@@ -79,12 +79,12 @@ const Canvas = () => {
 
           switch (element.type) {
             case "text":
-              const font = `${element.italic ? "italic" : ""} ${
-                element.bold ? "bold" : ""
-              } ${element.fontSize}px ${element.fontFamily}`;
-              ctx.font = font;
-              ctx.fillStyle = element.backgroundColor;
+              // const font = `${element.italic ? "italic" : ""} ${
+              //   element.bold ? "bold" : ""
+              // } ${element.fontSize}px ${element.fontFamily}`;
+              ctx.font = `${element.fontSize}px ${element.fontFamily}`;
               console.log(ctx);
+              ctx.fillStyle = element.backgroundColor;
               if (element.underline) {
                 let { width } = ctx.measureText(element.value);
                 const height = element.fontSize;

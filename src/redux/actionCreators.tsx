@@ -56,6 +56,13 @@ function updateYPosNewElementAction(value: number) {
   };
 }
 
+function clearPageAction() {
+  return {
+    type: Actions.CLEAR_PAGE,
+    payload: [],
+  };
+}
+
 function updateWidthNewElementAction(value: number) {
   return {
     type: Actions.UPDATE_WIDTH,
@@ -122,15 +129,6 @@ function updateUnderlineTextNewElementAction(value: boolean) {
 function updateItalicTextNewElementAction(value: boolean) {
   return {
     type: Actions.UPDATE_ITALIC,
-    payload: {
-      value,
-    },
-  };
-}
-
-function updateImageSrcNewElementAction(value: string) {
-  return {
-    type: Actions.UPDATE_SRC_IMAGE,
     payload: {
       value,
     },
@@ -206,20 +204,29 @@ function showMenuFilter(show: boolean) {
   };
 }
 
-function showMenuImage(show: boolean) {
+function showMenuSaveImage(show: boolean) {
   return {
-    type: Actions.SHOW_MENU_IMAGE,
+    type: Actions.SHOW_MENU_SAVE_IMAGE,
     payload: {
       show,
     },
   };
 }
 
-function showMenuSaveImage(show: boolean) {
+function showMenuTemplates(show: boolean) {
   return {
-    type: Actions.SHOW_MENU_SAVE_IMAGE,
+    type: Actions.SHOW_MENU_TEMPLATES,
     payload: {
       show,
+    },
+  };
+}
+
+function addNewColor(value: string) {
+  return {
+    type: Actions.ADD_NEW_COLOR,
+    payload: {
+      value,
     },
   };
 }
@@ -264,11 +271,12 @@ export {
   loadElementsToPageAction,
   showMenuGraphicObjectAction,
   showMenuFilter,
-  showMenuImage,
-  updateImageSrcNewElementAction,
   createRedoAction,
   createUndoAction,
   updateOpacityFilterNewElementAction,
   showMenuSaveImage,
   changeFormatSaveImageImage,
+  showMenuTemplates,
+  addNewColor,
+  clearPageAction,
 };

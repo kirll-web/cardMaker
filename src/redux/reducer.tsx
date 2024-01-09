@@ -26,12 +26,110 @@ const elementsPageReducer = (
 ) => {
   switch (action.type) {
     case Actions.ADD_ELEMENT_PAGE: {
-      history.addHistoryItem([...state, action.payload.element]);
-      return [...state, action.payload.element];
+      switch (action.payload.element.type) {
+        case "rectangle": {
+          history.addHistoryItem([
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ]);
+          return [
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ];
+        }
+        case "filter": {
+          history.addHistoryItem([
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ]);
+          return [
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ];
+        }
+        case "image": {
+          history.addHistoryItem([
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ]);
+          return [
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 5,
+              yPos: action.payload.element.yPos + 5,
+            },
+          ];
+        }
+        case "circle": {
+          history.addHistoryItem([
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 1,
+              yPos: action.payload.element.yPos + 1,
+            },
+          ]);
+          return [
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos + 1,
+              yPos: action.payload.element.yPos + 1,
+            },
+          ];
+        }
+        case "text": {
+          history.addHistoryItem([
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos,
+              yPos: action.payload.element.yPos + 2,
+            },
+          ]);
+          return [
+            ...state,
+            {
+              ...action.payload.element,
+              xPos: action.payload.element.xPos,
+              yPos: action.payload.element.yPos + 2,
+            },
+          ];
+        }
+        default: {
+          history.addHistoryItem([...state]);
+          return [...state];
+        }
+      }
     }
     case Actions.LOAD_ELEMENTS_PAGE: {
       history.addHistoryItem([...action.payload.elements]);
       return [...action.payload.elements];
+    }
+    case Actions.CLEAR_PAGE: {
+      history.addHistoryItem([]);
+      return [];
     }
     case Actions.UNDO:
       const prevState = history.undo();
@@ -100,9 +198,6 @@ const newElementReducer = (
     case Actions.UPDATE_ITALIC: {
       return { ...state, italic: action.payload.value };
     }
-    case Actions.UPDATE_SRC_IMAGE: {
-      return { ...state, url: action.payload.value };
-    }
     case Actions.UPDATE_OPACITY_FILTER: {
       return { ...state, opacity: action.payload.value };
     }
@@ -142,10 +237,20 @@ const menuFilterReducer = (state: boolean = false, action: Action) => {
   }
 };
 
-const menuImageReducer = (state: boolean = false, action: Action) => {
+const menuTemplatesReducer = (state: boolean = false, action: Action) => {
   switch (action.type) {
-    case Actions.SHOW_MENU_IMAGE: {
+    case Actions.SHOW_MENU_TEMPLATES: {
       return action.payload.show;
+    }
+    default:
+      return state;
+  }
+};
+
+const colorsReducer = (state: Array<string> = doc.colors, action: Action) => {
+  switch (action.type) {
+    case Actions.ADD_NEW_COLOR: {
+      return [...state, action.payload.value];
     }
     default:
       return state;
@@ -190,97 +295,9 @@ const rootReducer = combineReducers({
   menuText: menuTextReducer,
   menuGraphicObject: menuGraphicObjectReducer,
   menuFilter: menuFilterReducer,
-  menuImage: menuImageReducer,
   menuSaveImage: menuSaveImageReducer,
+  menuTemplates: menuTemplatesReducer,
+  colors: colorsReducer,
 });
 
 export { rootReducer };
-
-// const notesReducer = (state: Note[] = initData, action: Action) => {
-// 	switch (action.type) {
-// 	case NotesActions.CHANGE_TITLE: {
-// 		const newState = state.map(note => {
-// 			if (note.id === action.payload.noteId) {
-// 				return {
-// 					...note,
-// 					title: action.payload.newTitle,
-// 				}
-// 			}
-// 			return note
-// 		})
-
-// 		history.addHistoryItem(newState)
-// 		return newState
-// 	}
-// 	case NotesActions.CHANGE_TEXT: {
-// 		const newState = state.map(note => {
-// 			if (note.id === action.payload.noteId) {
-// 				return {
-// 					...note,
-// 					text: action.payload.newText,
-// 				}
-// 			}
-// 			return note
-// 		})
-// 		history.addHistoryItem(newState)
-// 		return newState
-// 	}
-// 	case NotesActions.CHANGE_BACKGROUND: {
-// 		const newState = state.map(note => {
-// 			if (note.id === action.payload.noteId) {
-// 				return {
-// 					...note,
-// 					background: action.payload.newBackground,
-// 				}
-// 			}
-// 			return note
-// 		})
-// 		history.addHistoryItem(newState)
-// 		return newState
-// 	}
-// 	case NotesActions.CHANGE_ORDER:
-// 		const newNotes = [...state]
-// 		const removed = newNotes.splice(action.payload.from, 1)
-// 		newNotes.splice(action.payload.to, 0, removed[0])
-
-// 		history.addHistoryItem(newNotes)
-// 		return newNotes
-// 	case NotesActions.ADD_NOTE: {
-// 		const newState = [
-// 			...state,
-// 			action.payload
-// 		]
-
-// 		history.addHistoryItem(newState)
-// 		return newState
-// 	}
-// 	case NotesActions.DELETE_NOTE: {
-// 		const newState = state.filter(item => item.id !== action.payload.noteId)
-
-// 		history.addHistoryItem(newState)
-// 		return newState
-// 	}
-// 	case NotesActions.UNDO:
-// 		const prevState = history.undo()
-// 		if (prevState) {
-// 			return prevState
-// 		}
-// 		return state
-// 	case NotesActions.REDO:
-// 		const nextState = history.redo()
-// 		if (nextState) {
-// 			return nextState
-// 		}
-// 		return state
-// 	default:
-// 		return state
-// 	}
-// }
-
-// const rootReducer = combineReducers({
-// 	notes: notesReducer,
-// })
-
-// export {
-// 	rootReducer,
-// }

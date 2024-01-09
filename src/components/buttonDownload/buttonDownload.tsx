@@ -1,6 +1,11 @@
 import { useAppSelector } from "../../redux/hooks";
 
-const ButtonDownload = () => {
+type Props = {
+  styles: CSSModuleClasses;
+};
+
+const ButtonDownload = (props: Props) => {
+  const { styles } = props;
   const elements = useAppSelector((state) => state.elementsPage);
   const createFile = () => {
     const file = new Blob([JSON.stringify(elements)], {
@@ -19,7 +24,15 @@ const ButtonDownload = () => {
     link.click();
   };
 
-  return <button onClick={downloadFile}>Скачать открытку</button>;
+  return (
+    <button
+      title="Скачать заготовку"
+      className={styles.menuBtn}
+      onClick={downloadFile}
+    >
+      <img src="../../../resource/icons/download.png" alt="Скачать заготовку" />
+    </button>
+  );
 };
 
 export default ButtonDownload;
